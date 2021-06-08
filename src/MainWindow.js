@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Reports from "./pages/Reports";
 import Products from "./pages/Products";
 import Tabla from "./Tabla";
+import { BusAdd } from "./BusAdd";
 
 function App() {
 	return (
@@ -15,7 +16,7 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/reports" component={Tabla} />
-					<Route path="/products" component={Products} />
+					<Route path="/products" component={BusAdd} />
 				</Switch>
 			</Router>
 		</>
