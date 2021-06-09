@@ -1,67 +1,80 @@
 import React, { useState } from "react";
-import * as XLSX from "xlsx";
+import "./App.css";
+import MaterialTable from "material-table";
+import XLSX from "xlsx";
 
+const EXTENSIONS = ["xlsx", "xls", "csv"];
 function Tabla() {
-	const [items, setItems] = useState([]);
+	const [colDefs, setColDefs] = useState();
+	const [data, setData] = useState();
 
-	const readExcel = (file) => {
-		const promise = new Promise((resolve, reject) => {
-			const fileReader = new FileReader();
-			fileReader.readAsArrayBuffer(file);
+	const getExention = (file) => {
+		const parts = file.name.split(".");
+		const extension = parts[parts.length - 1];
+		return EXTENSIONS.includes(extension); // return boolean
+	};
 
-			fileReader.onload = (e) => {
-				const bufferArray = e.target.result;
-
-				const wb = XLSX.read(bufferArray, { type: "buffer" });
-
-				const wsname = wb.SheetNames[0];
-
-				const ws = wb.Sheets[wsname];
-
-				const data = XLSX.utils.sheet_to_json(ws);
-
-				resolve(data);
-			};
-
-			fileReader.onerror = (error) => {
-				reject(error);
-			};
+	const convertToJson = (headers, data) => {
+		const rows = [];
+		data.forEach((row) => {
+			let rowData = {};
+			row.forEach((element, index) => {
+				rowData[headers[index]] = element;
+			});
+			rows.push(rowData);
 		});
+		return rows;
+	};
 
-		promise.then((d) => {
-			console.log(d);
-			setItems(d);
-		});
+	const importExcel = (e) => {
+		const file = e.target.files[0];
+
+		const reader = new FileReader();
+		reader.onload = (event) => {
+			//parse data
+
+			const bstr = event.target.result;
+			const workBook = XLSX.read(bstr, { type: "binary" });
+
+			//get first sheet
+			const workSheetName = workBook.SheetNames[0];
+			const workSheet = workBook.Sheets[workSheetName];
+			//convert to array
+			const fileData = XLSX.utils.sheet_to_json(workSheet, { header: 1 });
+			// console.log(fileData)
+			const headers = fileData[0];
+			const heads = headers.map((head) => ({ title: head, field: head }));
+			setColDefs(heads);
+
+			//removing header
+			fileData.splice(0, 1);
+
+			setData(convertToJson(headers, fileData));
+		};
+
+		if (file) {
+			if (getExention(file)) {
+				reader.readAsBinaryString(file);
+			} else {
+				alert("Invalid file input, Select Excel, CSV file");
+			}
+		} else {
+			setData([]);
+			setColDefs([]);
+		}
 	};
 
 	return (
-		<div>
-			<input
-				type="file"
-				onChange={(e) => {
-					const file = e.target.files[0];
-					readExcel(file);
-				}}
+		<div className="App">
+			<h1 align="center">TITLE</h1>
+			<h4 align="center">Descripcion</h4>
+			<input type="file" onChange={importExcel} />
+			<MaterialTable
+				title="Marsa Data"
+				data={data}
+				columns={colDefs}
+				style={{ zIndex: -1 }}
 			/>
-
-			<table class="table container">
-				<thead>
-					<tr>
-						<th scope="col">Sede</th>
-						<th scope="col">Clinica</th>
-						<th scope="col">Codigo</th>
-					</tr>
-				</thead>
-				<tbody>
-					{items.map((d, index) => (
-						<tr key={index}>
-							<th>{d.SEDE}</th>
-							<td>{d.CLINICA}</td>
-							<td>{d.CODIGO}</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
 		</div>
 	);
 }
