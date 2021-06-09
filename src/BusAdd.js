@@ -14,12 +14,14 @@ export const BusAdd = () => {
 					<form>
 						<fieldset class="form-fieldset">
 							<div class="mb-3">
-								<div class="form-label">Empresa</div>
-								<select class="form-select">
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								</select>
+								<label class="form-label required">Empresa</label>
+								<input
+									type="text"
+									class="form-control"
+									autocomplete="off"
+									placeholder="Ingrese Empresa"
+									style={{ textTransform: "uppercase" }}
+								/>
 							</div>
 							<div class="mb-3">
 								<label class="form-label required">Placa</label>
@@ -28,6 +30,7 @@ export const BusAdd = () => {
 									class="form-control"
 									autocomplete="off"
 									placeholder="Ingrese Placa"
+									style={{ textTransform: "uppercase" }}
 								/>
 							</div>
 							<div class="mb-3">

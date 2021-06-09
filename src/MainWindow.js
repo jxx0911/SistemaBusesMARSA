@@ -3,10 +3,9 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Reports from "./pages/Reports";
-import Products from "./pages/Products";
 import Tabla from "./Tabla";
 import { BusAdd } from "./BusAdd";
+import { WizardTicket } from "./WizardTicket";
 
 function App() {
 	return (
@@ -17,6 +16,7 @@ function App() {
 					<Route path="/" exact component={Home} />
 					<Route path="/reports" component={Tabla} />
 					<Route path="/products" component={BusAdd} />
+					<Route path="/ticket" component={WizardTicket} />
 				</Switch>
 			</Router>
 		</>
