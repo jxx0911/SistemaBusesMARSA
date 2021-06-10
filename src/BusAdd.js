@@ -12,38 +12,38 @@ export const BusAdd = () => {
 				</div>
 				<div className="card-body">
 					<form>
-						<fieldset class="form-fieldset">
-							<div class="mb-3">
-								<label class="form-label required">Empresa</label>
+						<fieldset className="form-fieldset">
+							<div className="mb-3">
+								<label className="form-label required">Empresa</label>
 								<input
 									type="text"
-									class="form-control"
+									className="form-control"
 									autocomplete="off"
 									placeholder="Ingrese Empresa"
 									style={{ textTransform: "uppercase" }}
 								/>
 							</div>
-							<div class="mb-3">
-								<label class="form-label required">Placa</label>
+							<div className="mb-3">
+								<label className="form-label required">Placa</label>
 								<input
 									type="text"
-									class="form-control"
+									className="form-control"
 									autocomplete="off"
 									placeholder="Ingrese Placa"
 									style={{ textTransform: "uppercase" }}
 								/>
 							</div>
-							<div class="mb-3">
-								<label class="form-label required">Capacidad</label>
+							<div className="mb-3">
+								<label className="form-label required">Capacidad</label>
 								<input
 									type="number"
-									class="form-control"
+									className="form-control"
 									autocomplete="off"
 									placeholder="Ingrese capacidad"
 								/>
 							</div>
-							<div class="col-6 col-sm-4  mb-3 float-end">
-								<button href="#" class="btn btn-primary w-100">
+							<div className="col-6 col-sm-4  mb-3 float-end">
+								<button href="#" className="btn btn-primary w-100">
 									Registrar
 								</button>
 							</div>

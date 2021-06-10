@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Tabla from "./Tabla";
 import { BusAdd } from "./BusAdd";
-import { WizardTicket } from "./WizardTicket";
+import { MultiStepForm } from "./components/FormSteps/MultiStepForm";
 
 function App() {
 	return (
@@ -16,7 +16,7 @@ function App() {
 					<Route path="/" exact component={Home} />
 					<Route path="/reports" component={Tabla} />
 					<Route path="/products" component={BusAdd} />
-					<Route path="/ticket" component={WizardTicket} />
+					<Route path="/ticket" component={MultiStepForm} />
 				</Switch>
 			</Router>
 		</>
