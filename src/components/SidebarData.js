@@ -1,7 +1,7 @@
 import React from "react";
-import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
+import * as ImIcons from "react-icons/im";
+import { IoBusSharp,IoTicket, IoSettings, IoLogOut } from "react-icons/io5";
 
 export const SidebarData = [
 	{
@@ -11,33 +11,33 @@ export const SidebarData = [
 		cName: "nav-text",
 	},
 	{
-		title: "Reports",
-		path: "/reports",
-		icon: <IoIcons.IoIosPaper />,
+		title: "Tablas",
+		path: "/tabla",
+		icon: <ImIcons.ImTable />,
 		cName: "nav-text",
 	},
 	{
-		title: "Products",
-		path: "/products",
-		icon: <FaIcons.FaCartPlus />,
+		title: "Bus",
+		path: "/registro-buses",
+		icon: <IoBusSharp />,
 		cName: "nav-text",
 	},
 	{
 		title: "Ticket",
 		path: "/ticket",
-		icon: <IoIcons.IoMdPeople />,
+		icon: <IoTicket />,
 		cName: "nav-text",
 	},
 	{
-		title: "Messages",
-		path: "/messages",
-		icon: <FaIcons.FaEnvelopeOpenText />,
+		title: "Configuracion",
+		path: "/config",
+		icon: <IoSettings />,
 		cName: "nav-text",
 	},
 	{
-		title: "Support",
+		title: "Salir",
 		path: "/support",
-		icon: <IoIcons.IoMdHelpCircle />,
+		icon: <IoLogOut />,
 		cName: "nav-text",
 	},
 ];

@@ -1,7 +1,9 @@
 import React from "react";
 
-export const Address = ({ formData, setForm, navigation }) => {
+export const IngresoPaciente = ({ formData, setForm, navigation }) => {
 	const { dni, apellidos, nombres } = formData;
+
+	console.log(navigation);
 
 	return (
 		<div className="container-tight py-2">
@@ -52,7 +54,7 @@ export const Address = ({ formData, setForm, navigation }) => {
 							</div>
 							<div className="col-6 col-sm-4 mb-3">
 								<div className="d-flex justify-content-between">
-									<button class="btn btn-dark">Atras</button>
+									<button className="btn btn-dark" onClick={ () => navigation.previous()}>Atras</button>
 									<button
 										className="btn btn-primary"
 										onClick={() => navigation.next()}

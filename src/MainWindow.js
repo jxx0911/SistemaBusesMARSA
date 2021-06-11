@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Tabla from "./Tabla";
 import { BusAdd } from "./BusAdd";
 import { MultiStepForm } from "./components/FormSteps/MultiStepForm";
+import { Config } from "./components/Config";
 
 function App() {
 	return (
@@ -14,9 +15,10 @@ function App() {
 				<Navbar />
 				<Switch>
 					<Route path="/" exact component={Home} />
-					<Route path="/reports" component={Tabla} />
-					<Route path="/products" component={BusAdd} />
-					<Route path="/ticket" component={MultiStepForm} />
+					<Route path="/tabla" exact component={Tabla} />
+					<Route path="/registro-buses" exact component={BusAdd} />
+					<Route path="/ticket" exact component={MultiStepForm} />
+					<Route path="/config" exact component={Config} />
 				</Switch>
 			</Router>
 		</>

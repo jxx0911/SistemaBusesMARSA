@@ -1,10 +1,8 @@
 import React from "react";
 import { useForm, useStep } from "react-hooks-helper";
-import { Names } from "./Names";
-import { Address } from "./Address";
-import { Contact } from "./Contact";
-import { Review } from "./Review";
-import { Submit } from "./Submit";
+import { IngresoBus } from "./IngresoBus";
+import { IngresoPaciente } from "./IngresoPaciente";
+import { SubmitTicket } from "./SubmitTicket";
 
 const defaultData = {
 	busPlaca: "",
@@ -20,8 +18,6 @@ const steps = [
 	{ id: "names" },
 	{ id: "address" },
 	{ id: "contact" },
-	{ id: "review" },
-	{ id: "submit" },
 ];
 
 export const MultiStepForm = () => {
@@ -36,15 +32,11 @@ export const MultiStepForm = () => {
 	// eslint-disable-next-line default-case
 	switch (step.id) {
 		case "names":
-			return <Names {...props} />;
+			return <IngresoBus {...props} />;
 		case "address":
-			return <Address {...props} />;
+			return <IngresoPaciente {...props} />;
 		case "contact":
-			return <Contact />;
-		case "review":
-			return <Review />;
-		case "submit":
-			return <Submit />;
+			return <SubmitTicket {...props}  />;
 	}
 
 	return <div></div>;

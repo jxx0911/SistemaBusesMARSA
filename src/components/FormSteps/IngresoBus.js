@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Names = ({ formData, setForm, navigation }) => {
+export const IngresoBus = ({ formData, setForm, navigation }) => {
 	const { busPlaca, busAforo, busEmpresa, busCapacidad } = formData;
 
 	return (
