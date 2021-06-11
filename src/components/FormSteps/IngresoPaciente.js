@@ -52,16 +52,19 @@ export const IngresoPaciente = ({ formData, setForm, navigation }) => {
 									disabled="true"
 								/>
 							</div>
-							<div className="col-6 col-sm-4 mb-3">
-								<div className="d-flex justify-content-between">
-									<button className="btn btn-dark" onClick={ () => navigation.previous()}>Atras</button>
-									<button
-										className="btn btn-primary"
-										onClick={() => navigation.next()}
-									>
-										Siguiente
-									</button>
-								</div>
+							<div className="col-sm-12 mb-3 d-flex justify-content-between">
+								<button
+									className="btn btn-dark"
+									onClick={() => navigation.previous()}
+								>
+									Atras
+								</button>
+								<button
+									className="btn btn-primary"
+									onClick={() => navigation.next()}
+								>
+									Siguiente
+								</button>
 								{/* <button href="#" class="btn btn-primary disabled w-100">
 									Primary
 								</button> */}

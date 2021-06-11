@@ -7,22 +7,38 @@ import Tabla from "./Tabla";
 import { BusAdd } from "./BusAdd";
 import { MultiStepForm } from "./components/FormSteps/MultiStepForm";
 import { Config } from "./components/Config";
+import { useFormHook } from "./components/hooks/useFormHook";
+import { useStepHook } from "./components/hooks/useStepHook";
 
-function App() {
+function MainWindow() {
+	const { formData, setForm } = useFormHook();
+	const { navigation } = useStepHook();
+	const props = { formData, setForm, navigation };
+
 	return (
 		<>
 			<Router>
 				<Navbar />
 				<Switch>
-					<Route path="/" exact component={Home} />
-					<Route path="/tabla" exact component={Tabla} />
-					<Route path="/registro-buses" exact component={BusAdd} />
-					<Route path="/ticket" exact component={MultiStepForm} />
-					<Route path="/config" exact component={Config} />
+					<Route path="/" exact>
+						<Home />
+					</Route>
+					<Route path="/tabla" exact>
+						<Tabla />
+					</Route>
+					<Route path="/registro-buses" exact>
+						<BusAdd />
+					</Route>
+					<Route path="/ticket" exact>
+						<MultiStepForm />
+					</Route>
+					<Route path="/config" exact>
+						<Config {...props} />
+					</Route>
 				</Switch>
 			</Router>
 		</>
 	);
 }
 
-export default App;
+export default MainWindow;
