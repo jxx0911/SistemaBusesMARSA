@@ -1,7 +1,16 @@
 import React from "react";
+import $ from "jquery";
 
 export const IngresoBus = ({ formData, setForm, navigation }) => {
 	const { busPlaca, busAforo, busEmpresa, busCapacidad } = formData;
+
+	$(document).ready(function () {
+		$("form").keypress(function (e) {
+			if (e.which === 13) {
+				return false;
+			}
+		});
+	});
 
 	return (
 		<div className="container-tight py-2">
@@ -19,13 +28,14 @@ export const IngresoBus = ({ formData, setForm, navigation }) => {
 								<label className="form-label required">Bus</label>
 								<input
 									type="text"
-									className="form-control"
+									className="form-control inputBus"
 									autocomplete="off"
 									placeholder="Ingrese Placa de Bus"
 									style={{ textTransform: "uppercase" }}
 									value={busPlaca}
 									onChange={setForm}
 									name="busPlaca"
+									autoFocus
 								/>
 							</div>
 							<div className="mb-3">

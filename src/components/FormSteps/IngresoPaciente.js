@@ -1,9 +1,16 @@
 import React from "react";
+import $ from "jquery";
 
 export const IngresoPaciente = ({ formData, setForm, navigation }) => {
 	const { dni, apellidos, nombres } = formData;
 
-	console.log(navigation);
+	$(document).ready(function () {
+		$("form").keypress(function (e) {
+			if (e.which === 13) {
+				return false;
+			}
+		});
+	});
 
 	return (
 		<div className="container-tight py-2">
@@ -28,6 +35,7 @@ export const IngresoPaciente = ({ formData, setForm, navigation }) => {
 									value={dni}
 									onChange={setForm}
 									name="dni"
+									autoFocus
 								/>
 							</div>
 							<div className="mb-3">
