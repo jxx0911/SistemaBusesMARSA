@@ -1,7 +1,8 @@
 import React from "react";
 import * as AiIcons from "react-icons/ai";
 import * as ImIcons from "react-icons/im";
-import { IoBusSharp,IoTicket, IoSettings, IoLogOut } from "react-icons/io5";
+import { IoBusSharp, IoTicket, IoSettings, IoLogOut } from "react-icons/io5";
+import { FaHistory } from "react-icons/fa";
 
 export const SidebarData = [
 	{
@@ -14,6 +15,12 @@ export const SidebarData = [
 		title: "Tablas",
 		path: "/tabla",
 		icon: <ImIcons.ImTable />,
+		cName: "nav-text",
+	},
+	{
+		title: "Historial",
+		path: "/historial",
+		icon: <FaHistory />,
 		cName: "nav-text",
 	},
 	{

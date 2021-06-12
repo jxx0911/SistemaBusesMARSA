@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Tabla from "./Tabla";
+import { Historial } from "./components/Historial";
 import { BusAdd } from "./BusAdd";
 import { MultiStepForm } from "./components/FormSteps/MultiStepForm";
 import { Config } from "./components/Config";
@@ -25,6 +26,9 @@ function MainWindow() {
 					</Route>
 					<Route path="/tabla" exact>
 						<Tabla />
+					</Route>
+					<Route path="/historial" exact>
+						<Historial />
 					</Route>
 					<Route path="/registro-buses" exact>
 						<BusAdd />
