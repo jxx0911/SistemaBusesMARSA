@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import MaterialTable from "material-table";
+import "bootstrap/dist/css/bootstrap.min.css";
 import XLSX from "xlsx";
 
 const EXTENSIONS = ["xlsx", "xls", "csv"];
@@ -45,6 +46,7 @@ function Tabla() {
 			const headers = fileData[0];
 			const heads = headers.map((head) => ({ title: head, field: head }));
 			setColDefs(heads);
+			console.log(colDefs);
 
 			//removing header
 			fileData.splice(0, 1);
@@ -64,17 +66,48 @@ function Tabla() {
 		}
 	};
 
+	{
+		/* <input className="col-3" type="file" onChange={importExcel} /> */
+	}
+
 	return (
 		<div className="App">
-			<h1 align="center">TITLE</h1>
-			<h4 align="center">Descripcion</h4>
-			<input type="file" onChange={importExcel} />
-			<MaterialTable
-				title="Marsa Data"
-				data={data}
-				columns={colDefs}
-				style={{ zIndex: -1 }}
-			/>
+			<h1 align="center">TABLE IMPORT</h1>
+			{/* <h4 align="center">Descripcion</h4> */}
+			<div className="container d-flex flex-column flex-lg-row">
+				{/* Select para Sede */}
+				<div className="m-3 col-lg-4">
+					<div className="form-label">SEDE</div>
+					<select className="form-select">
+						<option value="1">One</option>
+						<option value="2">Two</option>
+						<option value="3">Three</option>
+					</select>
+				</div>
+				{/* Select para Servicio */}
+				<div className="m-3 col-lg-4">
+					<div className="form-label">SERVICIO</div>
+					<select className="form-select">
+						<option value="1">One</option>
+						<option value="2">Two</option>
+						<option value="3">Three</option>
+					</select>
+				</div>
+				{/* Input para fecha */}
+				<div className="m-3 col-lg-4">
+					<label className="form-label">FECHA DE ATENCION</label>
+					<input
+						type="date"
+						className="form-control"
+						name="example-text-input"
+						placeholder="Input placeholder"
+					/>
+				</div>
+			</div>
+
+			<div className="table-responsive">
+				<MaterialTable title="Marsa Data" data={data} columns={colDefs} />
+			</div>
 		</div>
 	);
 }
