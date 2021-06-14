@@ -66,17 +66,13 @@ function Tabla() {
 		}
 	};
 
-	{
-		/* <input className="col-3" type="file" onChange={importExcel} /> */
-	}
-
 	return (
 		<div className="App">
 			<h1 align="center">TABLE IMPORT</h1>
 			{/* <h4 align="center">Descripcion</h4> */}
-			<div className="container d-flex flex-column flex-lg-row">
+			<div className="container table-inputs">
 				{/* Select para Sede */}
-				<div className="m-3 col-lg-4">
+				<div className="sede">
 					<div className="form-label">SEDE</div>
 					<select className="form-select">
 						<option value="1">One</option>
@@ -85,7 +81,7 @@ function Tabla() {
 					</select>
 				</div>
 				{/* Select para Servicio */}
-				<div className="m-3 col-lg-4">
+				<div className="servicio">
 					<div className="form-label">SERVICIO</div>
 					<select className="form-select">
 						<option value="1">One</option>
@@ -94,7 +90,7 @@ function Tabla() {
 					</select>
 				</div>
 				{/* Input para fecha */}
-				<div className="m-3 col-lg-4">
+				<div className="fecha">
 					<label className="form-label">FECHA DE ATENCION</label>
 					<input
 						type="date"
@@ -103,6 +99,14 @@ function Tabla() {
 						placeholder="Input placeholder"
 					/>
 				</div>
+			</div>
+			<div className="container mt-1">
+				<div className="botones">
+					<button className="btn btn-primary generar">Generar Lote</button>
+					<button className="btn btn-danger limpiar">Limpiar</button>
+					<button className="btn btn-success registrar">Registrar</button>
+				</div>
+				<input className="col-3" type="file" onChange={importExcel} />
 			</div>
 
 			<div className="table-responsive">
