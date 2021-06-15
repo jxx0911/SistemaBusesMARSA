@@ -1,5 +1,4 @@
 import React from "react";
-import { HistorialEditar } from "./HistorialEditar";
 import { Link } from "react-router-dom";
 
 export const HistorialItem = () => {

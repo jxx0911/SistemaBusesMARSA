@@ -23,7 +23,7 @@ export const Config = ({ formData, setForm, navigation }) => {
 									name="busAforo"
 									placeholder={busAforo}
 									value={busAforo}
-									disabled="true"
+									disabled={true}
 								/>
 							</div>
 							{/* falta añadir el script para el conteo de palabras del Text Area */}
@@ -35,7 +35,7 @@ export const Config = ({ formData, setForm, navigation }) => {
 									placeholder={mensaje}
 									value={mensaje}
 									maxlength="100"
-									disabled="true"
+									disabled={true}
 								></textarea>
 								<div id="contador">0/50</div>
 							</div>

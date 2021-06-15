@@ -10,7 +10,7 @@ import { MultiStepForm } from "./components/FormSteps/MultiStepForm";
 import { Config } from "./components/Config";
 import { useFormHook } from "./components/hooks/useFormHook";
 import { useStepHook } from "./components/hooks/useStepHook";
-import { HistorialEditar } from "./components/HistorialEditar";
+import HistorialEditar from "./components/HistorialEditar";
 
 function MainWindow() {
 	const { formData, setForm } = useFormHook();

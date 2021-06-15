@@ -111,7 +111,6 @@
 
 @media (min-width: 991px) {
 	.botones {
-		display: grid;
 		grid-template-areas: "generar" "limpiar" "registrar";
 		grid-template-rows: 1fr;
 		grid-template-columns: 1fr 1fr 1fr;
@@ -119,6 +118,60 @@
 	}
 
 	.registrar {
+		grid-column: 3/4;
+		grid-row: 1/2;
+	}
+}
+
+.grid-editar {
+	display: grid;
+	grid-template-areas:
+		"lote" "lote" "lote"
+		"subir" "subir" "subir"
+		"registrarEditar";
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 10px;
+}
+
+.lote {
+	grid-area: "lote";
+	grid-column: 1/4;
+	grid-row: 1/2;
+}
+
+.subir {
+	grid-area: "subir";
+	grid-column: 1/4;
+	grid-row: 2/3;
+}
+
+.registrarEditar {
+	grid-area: "registrarEditar";
+	grid-column: 2/3;
+	grid-row: 3/4;
+}
+
+@media (min-width: 991px) {
+	.grid-editar {
+		display: grid;
+		grid-template-areas: "lote" "subir" "registrarEditar";
+		grid-template-rows: 1fr;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 10px;
+	}
+
+	.lote {
+		grid-column: 1/2;
+		grid-row: 1/2;
+	}
+
+	.subir {
+		grid-column: 2/3;
+		grid-row: 1/2;
+	}
+
+	.registrarEditar {
 		grid-column: 3/4;
 		grid-row: 1/2;
 	}
