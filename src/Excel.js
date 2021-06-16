@@ -25,8 +25,29 @@ export const Excel = () => {
 		return rows;
 	};
 
+	function ExcelDateToJSDate(serial) {
+		let fechaMonth1 = "";
+		let fechaMonth2 = "";
+		let utc_days = Math.floor(serial - 25569);
+		let utc_value = utc_days * 86400;
+		let date_info = new Date(utc_value * 1000);
+
+		let day = date_info.getDate() + 1;
+		let month = date_info.getMonth() + 1;
+		let year = date_info.getFullYear();
+
+		if (month < 10) {
+			fechaMonth1 = `${day}/0${month}/${year}`;
+			return fechaMonth1;
+		} else {
+			fechaMonth2 = `${day}/${month}/${year}`;
+			return fechaMonth2;
+		}
+	}
+
 	const importExcel = (e) => {
 		const file = e.target.files[0];
+		const fecha = "Fecha";
 
 		const reader = new FileReader();
 		reader.onload = (event) => {
@@ -42,9 +63,18 @@ export const Excel = () => {
 			const fileData = XLSX.utils.sheet_to_json(workSheet, { header: 1 });
 			// console.log(fileData)
 			const headers = fileData[0];
-			const heads = headers.map((head) => ({ title: head, field: head }));
+			const heads = headers.map((head) =>
+				head === fecha
+					? {
+							title: head,
+							field: head,
+							render: (row) => ExcelDateToJSDate(row[fecha]),
+					  }
+					: { title: head, field: head }
+			);
+
 			setColDefs(heads);
-			console.log(colDefs);
+			/* console.log(heads[1]["title"]); */
 
 			//removing header
 			fileData.splice(0, 1);
