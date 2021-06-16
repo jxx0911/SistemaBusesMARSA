@@ -3,7 +3,9 @@ import XLSX from "xlsx";
 
 export const Excel = () => {
 	const EXTENSIONS = ["xlsx", "xls", "csv"];
-	const { getJsDateFromExcel } = require("excel-date-to-js");
+
+	/* const { getJsDateFromExcel } = require("excel-date-to-js");
+	getJsDateFromExcel("42510"); */
 
 	const [colDefs, setColDefs] = useState();
 	const [data, setData] = useState();
