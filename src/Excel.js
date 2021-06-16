@@ -37,12 +37,16 @@ export const Excel = () => {
 		let month = date_info.getMonth() + 1;
 		let year = date_info.getFullYear();
 
-		if (month < 10) {
-			fechaMonth1 = `${day}/0${month}/${year}`;
-			return fechaMonth1;
+		if (!isNaN(month)) {
+			if (month < 10) {
+				fechaMonth1 = `${day}/0${month}/${year}`;
+				return fechaMonth1;
+			} else {
+				fechaMonth2 = `${day}/${month}/${year}`;
+				return fechaMonth2;
+			}
 		} else {
-			fechaMonth2 = `${day}/${month}/${year}`;
-			return fechaMonth2;
+			return "";
 		}
 	}
 
