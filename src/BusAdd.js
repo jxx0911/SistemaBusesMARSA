@@ -1,6 +1,40 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+
+/* const initialState = {
+	empresa: "",
+	placa: "",
+	capacidad: "",
+}; */
 
 export const BusAdd = () => {
+	/* const [bodyBus, setBodyBus] = useState(initialState);
+	const { empresa, placa, capacidad } = bodyBus;
+
+	const changeHandler = (e) => {
+		setBodyBus({ [e.target.name]: e.target.value });
+	};
+
+	const submitHandler = (e) => {
+		e.preventDefault();
+		console.log(bodyBus);
+	}; */
+
+	const { register, errors, handleSubmit } = useForm();
+
+	const onSubmit = (data) => {
+		console.log(data);
+		axios
+			.post("http://192.168.68.116:3002/bd/bus/insertar", data)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
 	return (
 		<div className="container-tight py-4">
 			<div className="card card-md">
@@ -11,7 +45,7 @@ export const BusAdd = () => {
 					</p>
 				</div>
 				<div className="card-body">
-					<form>
+					<form onSubmit={handleSubmit(onSubmit)}>
 						<fieldset className="form-fieldset">
 							<div className="mb-3">
 								<label className="form-label required">Empresa</label>
@@ -21,6 +55,10 @@ export const BusAdd = () => {
 									autocomplete="off"
 									placeholder="Ingrese Empresa"
 									style={{ textTransform: "uppercase" }}
+									name="empresa"
+									{...register("empresa", {
+										required: true,
+									})}
 								/>
 							</div>
 							<div className="mb-3">
@@ -31,6 +69,10 @@ export const BusAdd = () => {
 									autocomplete="off"
 									placeholder="Ingrese Placa"
 									style={{ textTransform: "uppercase" }}
+									name="placa"
+									{...register("placa", {
+										required: true,
+									})}
 								/>
 							</div>
 							<div className="mb-3">
@@ -40,12 +82,14 @@ export const BusAdd = () => {
 									className="form-control"
 									autocomplete="off"
 									placeholder="Ingrese capacidad"
+									name="capacidad"
+									{...register("capacidad", {
+										required: true,
+									})}
 								/>
 							</div>
 							<div className="col-6 col-sm-4  mb-3 float-end">
-								<button href="#" className="btn btn-primary w-100">
-									Registrar
-								</button>
+								<button className="btn btn-primary w-100">Registrar</button>
 							</div>
 						</fieldset>
 					</form>
