@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 export const BusAdd = () => {
-	const { register, errors, handleSubmit } = useForm();
+	const { register, handleSubmit } = useForm();
 
 	const onSubmit = (data) => {
 		console.log(data);
