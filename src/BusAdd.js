@@ -1,16 +1,23 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { ModalState } from "./ModalState";
 
 export const BusAdd = () => {
 	const { register, handleSubmit } = useForm();
 
-	const onSubmit = (data) => {
-		console.log(data);
+	const onSubmit = (data, e) => {
+		const { empresa, placa, capacidad } = data;
+		const http = {
+			empresa: empresa.toUpperCase(),
+			placa: placa.toUpperCase(),
+			capacidad,
+		};
 		axios
-			.post("http://192.168.68.116:3002/bd/bus/insertar", data)
+			.post("http://167.99.115.105/bd/bus/insertar", http)
 			.then((response) => {
 				console.log(response);
+				if (response) e.target.reset();
 			})
 			.catch((error) => {
 				console.log(error);
@@ -30,18 +37,21 @@ export const BusAdd = () => {
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<fieldset className="form-fieldset">
 							<div className="mb-3">
-								<label className="form-label required">Empresa</label>
-								<input
-									type="text"
-									className="form-control"
-									autocomplete="off"
-									placeholder="Ingrese Empresa"
-									style={{ textTransform: "uppercase" }}
+								<div className="d-flex justify-content-between">
+									<label className="form-label required">Empresa</label>
+									<ModalState />
+								</div>
+								<select
+									className="form-select"
 									name="empresa"
 									{...register("empresa", {
 										required: true,
 									})}
-								/>
+								>
+									<option value="One">One</option>
+									<option value="Two">Two</option>
+									<option value="Three">Three</option>
+								</select>
 							</div>
 							<div className="mb-3">
 								<label className="form-label required">Placa</label>
