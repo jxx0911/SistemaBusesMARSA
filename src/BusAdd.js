@@ -2,25 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-/* const initialState = {
-	empresa: "",
-	placa: "",
-	capacidad: "",
-}; */
-
 export const BusAdd = () => {
-	/* const [bodyBus, setBodyBus] = useState(initialState);
-	const { empresa, placa, capacidad } = bodyBus;
-
-	const changeHandler = (e) => {
-		setBodyBus({ [e.target.name]: e.target.value });
-	};
-
-	const submitHandler = (e) => {
-		e.preventDefault();
-		console.log(bodyBus);
-	}; */
-
 	const { register, errors, handleSubmit } = useForm();
 
 	const onSubmit = (data) => {
