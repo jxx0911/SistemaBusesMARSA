@@ -58,7 +58,7 @@ export const BusAdd = () => {
 								<input
 									type="text"
 									className="form-control"
-									autocomplete="off"
+									autoComplete="off"
 									placeholder="Ingrese Placa"
 									style={{ textTransform: "uppercase" }}
 									name="placa"
@@ -72,7 +72,7 @@ export const BusAdd = () => {
 								<input
 									type="number"
 									className="form-control"
-									autocomplete="off"
+									autoComplete="off"
 									placeholder="Ingrese capacidad"
 									name="capacidad"
 									{...register("capacidad", {
