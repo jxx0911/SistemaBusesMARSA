@@ -54,7 +54,7 @@ export const ModalState = () => {
 
 	return (
 		<>
-			<p class="btn-modal enlace" onClick={toggleModal}>
+			<p className="btn-modal enlace" onClick={toggleModal}>
 				Agregar
 			</p>
 

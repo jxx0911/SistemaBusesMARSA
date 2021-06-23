@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ModalState } from "./ModalState";
+import { ModalStateEditar } from "./ModalStateEditar";
 
 export const BusAdd = () => {
 	const { register, handleSubmit } = useForm();
@@ -39,7 +40,10 @@ export const BusAdd = () => {
 							<div className="mb-3">
 								<div className="d-flex justify-content-between">
 									<label className="form-label required">Empresa</label>
-									<ModalState />
+									<div className="d-flex">
+										<ModalStateEditar />
+										<ModalState />
+									</div>
 								</div>
 								<select
 									className="form-select"
