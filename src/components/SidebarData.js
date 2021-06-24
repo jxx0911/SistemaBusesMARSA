@@ -7,7 +7,7 @@ import { FaHistory } from "react-icons/fa";
 export const SidebarData = [
 	{
 		title: "Home",
-		path: "/",
+		path: "/home",
 		icon: <AiIcons.AiFillHome />,
 		cName: "nav-text",
 	},
@@ -43,7 +43,7 @@ export const SidebarData = [
 	},
 	{
 		title: "Salir",
-		path: "/support",
+		path: "/",
 		icon: <IoLogOut />,
 		cName: "nav-text",
 	},

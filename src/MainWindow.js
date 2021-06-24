@@ -1,10 +1,9 @@
 import React from "react";
 import "./App.css";
-import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Tabla from "./Tabla";
-import { Login } from "./Login";
+import Login from "./Login";
 import { Historial } from "./components/Historial";
 import { BusAdd } from "./BusAdd";
 import { MultiStepForm } from "./components/FormSteps/MultiStepForm";
@@ -22,37 +21,28 @@ function MainWindow() {
 		<>
 			<Router>
 				<Switch>
-					<Route path="/" exact>
-						<Login />
+					<Route exact path="/" component={Login} />
+					<Route path="/home" exact>
+						<Home />
 					</Route>
-					<Route path="/dashboard" exact>
-						<Navbar />
-						<Switch>
-							<Route path="/dashboard/home" exact>
-								<Home />
-							</Route>
-							<Route path="/dashboard/tabla" exact>
-								<Tabla />
-							</Route>
-							<Route path="/dashboard/historial" exact>
-								<Historial />
-							</Route>
-							<Route path="/dashboard/registro-buses" exact>
-								<BusAdd />
-							</Route>
-							<Route path="/dashboard/ticket" exact>
-								<MultiStepForm />
-							</Route>
-							<Route path="/dashboard/historial-editar" exact>
-								<HistorialEditar />
-							</Route>
-							<Route path="/dashboard/config" exact>
-								<Config {...props} />
-							</Route>{" "}
-							*/
-						</Switch>
+					<Route path="/tabla" exact>
+						<Tabla />
 					</Route>
-					{}
+					<Route path="/historial" exact>
+						<Historial />
+					</Route>
+					<Route path="/registro-buses" exact>
+						<BusAdd />
+					</Route>
+					<Route path="/ticket" exact>
+						<MultiStepForm />
+					</Route>
+					<Route path="/historial-editar" exact>
+						<HistorialEditar />
+					</Route>
+					<Route path="/config" exact>
+						<Config {...props} />
+					</Route>{" "}
 				</Switch>
 			</Router>
 		</>

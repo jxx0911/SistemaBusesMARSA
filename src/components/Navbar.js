@@ -6,11 +6,31 @@ import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
 import { Hora } from "../Hora";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+
+function componentDidMount() {
+	if (!cookies.get("username")) {
+		window.location.href = "./";
+	}
+}
 
 function Navbar() {
 	const [sidebar, setSidebar] = useState(false);
 
 	const showSidebar = () => setSidebar(!sidebar);
+
+	const cerrarSesion = () => {
+		cookies.remove("id", { path: "/" });
+		cookies.remove("apellido_paterno", { path: "/" });
+		cookies.remove("apellido_materno", { path: "/" });
+		cookies.remove("nombre", { path: "/" });
+		cookies.remove("username", { path: "/" });
+		window.location.href = "./";
+	};
+
+	componentDidMount();
 
 	return (
 		<>
@@ -29,14 +49,26 @@ function Navbar() {
 							</Link>
 						</li>
 						{SidebarData.map((item, index) => {
-							return (
-								<li key={index} className={item.cName}>
-									<Link to={item.path}>
-										{item.icon}
-										<span>{item.title}</span>
-									</Link>
-								</li>
-							);
+							if (item.title !== "Salir") {
+								return (
+									<li key={index} className={item.cName}>
+										<Link to={item.path}>
+											{item.icon}
+											<span>{item.title}</span>
+										</Link>
+									</li>
+								);
+							} else {
+								console.log(item.title);
+								return (
+									<li key={index} className={item.cName}>
+										<Link to={item.path}>
+											{item.icon}
+											<span onClick={cerrarSesion}>{item.title}</span>
+										</Link>
+									</li>
+								);
+							}
 						})}
 					</ul>
 				</nav>

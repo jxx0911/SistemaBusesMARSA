@@ -1,93 +1,106 @@
 import React, { Component } from "react";
 import "./Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useForm } from "react-hook-form";
 import axios from "axios";
 import md5 from "md5";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
 
-export const Login = () => {
-	const { register, handleSubmit } = useForm();
+class Login extends Component {
+	state = {
+		form: {
+			username: "",
+			password: "",
+		},
+	};
 
-	const onSubmit = (data) => {
-		const { usuario, contrasena } = data;
-		const pass = md5(contrasena);
-		const httplogin = {
-			usuario,
-			contrasena: pass,
-		};
+	handleChange = async (e) => {
+		await this.setState({
+			form: {
+				...this.state.form,
+				[e.target.name]: e.target.value,
+			},
+		});
+	};
 
-		console.log(httplogin);
-
-		axios
-			.post("http://167.99.115.105/baseDatos/login", httplogin)
+	iniciarSesion = async () => {
+		await axios
+			.get(
+				`http://167.99.115.105/bdmarsa/tercera/login/validar?user=${
+					this.state.form.username
+				}&contra=${md5(this.state.form.password)}`
+			)
 			.then((response) => {
 				console.log(response);
-				return response;
+				return response.data;
 			})
-			/* .then((response) => {
-            console.log(response);
-            if (Object.keys(response).length > 0) {
-                var respuesta = response[0];
-                cookies.set("usuario", respuesta.usuario, { path: "/" });
-                alert(`Bienvenido ${respuesta.usuario} `);
-                window.location.href = "./menu";
-            } else {
-                alert("Usuario o contraseña no son correctos");
-            }
-        }) */
+			.then((response) => {
+				if (response.length > 0) {
+					console.log(response);
+					var respuesta = response[0];
+					cookies.set("id", respuesta.id, { path: "/" });
+					cookies.set("apellido_paterno", respuesta.apellido_paterno, {
+						path: "/",
+					});
+					cookies.set("apellido_materno", respuesta.apellido_materno, {
+						path: "/",
+					});
+					cookies.set("nombre", respuesta.nombre, { path: "/" });
+					cookies.set("username", respuesta.username, { path: "/" });
+					/* alert(`Bienvenido ${respuesta.nombre} ${respuesta.apellido_paterno}`); */
+					window.location.href = "./home";
+				} else {
+					console.log(response);
+					alert("El usuario o la contraseña no son correctos");
+				}
+			})
 			.catch((error) => {
+				console.log(this.state.form);
 				console.log(error);
 			});
 	};
 
-	return (
-		<div className="containerPrincipal">
-			<div className="box">
-				<div className="box-form">
-					<div className="box-login-tab"></div>
-					<div className="box-login-title">
-						<div className="i i-login"></div>
-						<h2>LOGwfwefwIN</h2>
-					</div>
-					<div className="box-login">
-						<form onSubmit={handleSubmit(onSubmit)}>
-							<div className="fieldset-body" id="login_form">
-								<p className="field">
-									<label>E-MAIL</label>
-									<input
-										type="text"
-										id="usuario"
-										name="usuario"
-										title="usuario"
-										{...register("usuario", {
-											required: true,
-										})}
-									/>
-									<span id="valida" className="i i-warning"></span>
-								</p>
-								<p className="field">
-									<label>PASSWORD</label>
-									<input
-										type="password"
-										name="contrasena"
-										title="contrasena"
-										{...register("contrasena", {
-											required: true,
-										})}
-									/>
-									<span id="valida" className="i i-close"></span>
-								</p>
+	componentDidMount() {
+		if (cookies.get("username")) {
+			window.location.href = "./home";
+		}
+	}
 
-								<label className="checkbox"></label>
-								<button type="submit">Iniciar Sesion</button>
-							</div>
-						</form>
+	render() {
+		return (
+			<div className="containerPrincipal">
+				<div className="containerSecundario">
+					<div className="form-group">
+						<label>Usuario: </label>
+						<br />
+						<input
+							type="text"
+							className="form-control"
+							name="username"
+							onChange={this.handleChange}
+						/>
+						<br />
+						<label>Contraseña: </label>
+						<br />
+						<input
+							type="password"
+							className="form-control"
+							name="password"
+							onChange={this.handleChange}
+						/>
+						<br />
+						<button
+							className="btn btn-primary"
+							onClick={() => this.iniciarSesion()}
+						>
+							Iniciar Sesión
+						</button>
 					</div>
 				</div>
 			</div>
-		</div>
-	);
-};
+		);
+	}
+}
+
+export default Login;
