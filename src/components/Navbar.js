@@ -35,7 +35,7 @@ function Navbar() {
 	return (
 		<>
 			<IconContext.Provider value={{ color: "#fff" }}>
-				<div className="navbar">
+				<div className="navbar d-flex justify-content-between">
 					<Link to="#" className="menu-bars">
 						<FaIcons.FaBars onClick={showSidebar} />
 					</Link>
