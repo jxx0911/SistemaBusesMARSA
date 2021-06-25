@@ -39,10 +39,7 @@ export const ModalState = () => {
 		};
 		console.log(data);
 		axios
-			.post(
-				"http://192.168.68.116:3003/bdmarsa/tercera/busEmpresa/registrar",
-				http
-			)
+			.post("http://167.99.115.105/bdmarsa/tercera/busEmpresa/registrar", http)
 			.then((response) => {
 				console.log(response);
 				if (response) e.target.reset();

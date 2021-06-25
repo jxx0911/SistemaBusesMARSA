@@ -4,9 +4,15 @@ import axios from "axios";
 import { ModalState } from "./ModalState";
 import { ModalStateEditar } from "./ModalStateEditar";
 import Navbar from "./components/Navbar";
+import { useEmpresaBus } from "./components/hooks/useEmpresaBus";
+import { useNombreEmpresa } from "./components/hooks/useNombreEmpresa";
 
 export const BusAdd = () => {
 	const { register, handleSubmit } = useForm();
+	const { empresaEdit, setEmpresaEdit } = useNombreEmpresa();
+	const { ruc, nombre_empresa } = empresaEdit;
+	console.log(ruc);
+	const { empresasBus } = useEmpresaBus();
 
 	const onSubmit = (data, e) => {
 		const { empresa, placa, capacidad } = data;
@@ -44,7 +50,7 @@ export const BusAdd = () => {
 									<div className="d-flex justify-content-between">
 										<label className="form-label required">Empresa</label>
 										<div className="d-flex">
-											<ModalStateEditar />
+											<ModalStateEditar _ruc={ruc} />
 											<ModalState />
 										</div>
 									</div>
@@ -55,9 +61,25 @@ export const BusAdd = () => {
 											required: true,
 										})}
 									>
-										<option value="One">One</option>
-										<option value="Two">Two</option>
-										<option value="Three">Three</option>
+										<option defaultValue="selected">
+											{" "}
+											-- Seleccione Empresa --{" "}
+										</option>
+										{empresasBus.map((item, index) => (
+											<option
+												key={index}
+												value={item.nombre_empresa}
+												onClick={(e) => {
+													e.preventDefault();
+													setEmpresaEdit({
+														ruc: item.ruc,
+														nombre_empresa: item.nombre_empresa,
+													});
+												}}
+											>
+												{item.nombre_empresa}
+											</option>
+										))}
 									</select>
 								</div>
 								<div className="mb-3">
@@ -69,9 +91,9 @@ export const BusAdd = () => {
 										placeholder="Ingrese Placa"
 										style={{ textTransform: "uppercase" }}
 										name="placa"
-										{...register("placa", {
+										/* {...register("placa", {
 											required: true,
-										})}
+										})} */
 									/>
 								</div>
 								<div className="mb-3">
@@ -82,9 +104,9 @@ export const BusAdd = () => {
 										autoComplete="off"
 										placeholder="Ingrese capacidad"
 										name="capacidad"
-										{...register("capacidad", {
+										/* {...register("capacidad", {
 											required: true,
-										})}
+										})} */
 									/>
 								</div>
 								<div className="col-6 col-sm-4  mb-3 float-end">

@@ -26,7 +26,7 @@ export const Config = () => {
 		console.log(e.target.name);
 		setDatosConfig({
 			...datosConfig,
-			[e.target.aforo]: e.target.value,
+			[e.target.value]: e.target.value,
 		});
 	};
 

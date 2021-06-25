@@ -4,9 +4,13 @@ import MaterialTable from "material-table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Excel } from "./Excel";
 import Navbar from "./components/Navbar";
+import { useSedes } from "./components/hooks/useSedes";
+import { useServicios } from "./components/hooks/useServicios";
 
 function Tabla() {
 	const { importExcel, data, colDefs } = Excel();
+	const { sedes } = useSedes();
+	const { servicios } = useServicios();
 
 	return (
 		<>
@@ -19,18 +23,22 @@ function Tabla() {
 					<div className="sede">
 						<div className="form-label">SEDE</div>
 						<select className="form-select">
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
+							{sedes.map((item, index) => (
+								<option key={index} value={item.sede}>
+									{item.sede}
+								</option>
+							))}
 						</select>
 					</div>
 					{/* Select para Servicio */}
 					<div className="servicio">
 						<div className="form-label">SERVICIO</div>
 						<select className="form-select">
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
+							{servicios.map((item, index) => (
+								<option key={index} value={item.nombre_servicio}>
+									{item.nombre_servicio}
+								</option>
+							))}
 						</select>
 					</div>
 					{/* Input para fecha */}
