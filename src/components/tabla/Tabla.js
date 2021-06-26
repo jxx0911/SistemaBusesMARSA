@@ -1,11 +1,10 @@
 import React from "react";
-import "./App.css";
+import "../../App.css";
 import MaterialTable from "material-table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Excel } from "./Excel";
-import Navbar from "./components/Navbar";
-import { useSedes } from "./components/hooks/useSedes";
-import { useServicios } from "./components/hooks/useServicios";
+import { Excel } from "../../helpers/Excel";
+import { useSedes } from "../../hooks/useSedes";
+import { useServicios } from "../../hooks/useServicios";
 
 function Tabla() {
 	const { importExcel, data, colDefs } = Excel();
@@ -14,7 +13,6 @@ function Tabla() {
 
 	return (
 		<>
-			<Navbar />
 			<div className="App">
 				<h1 align="center">TABLE IMPORT</h1>
 				{/* <h4 align="center">Descripcion</h4> */}

@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 export const useEmpresaBus = () => {
 	const [empresasBus, setEmpresasBus] = useState([]);
 
-	console.log(empresasBus);
 	useEffect(() => {
 		getEmpresa();
 	}, []);

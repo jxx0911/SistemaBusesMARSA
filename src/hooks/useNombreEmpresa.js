@@ -6,8 +6,6 @@ export const useNombreEmpresa = () => {
 		nombre_empresa: "",
 	});
 
-	console.log(empresaEdit);
-
 	return {
 		empresaEdit,
 		setEmpresaEdit,

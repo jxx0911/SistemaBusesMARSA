@@ -1,6 +1,5 @@
 import React from "react";
 import $ from "jquery";
-import Navbar from "../Navbar";
 
 export const IngresoPaciente = ({ formData, setForm, navigation }) => {
 	const { dni, apellidos, nombres } = formData;
@@ -15,7 +14,6 @@ export const IngresoPaciente = ({ formData, setForm, navigation }) => {
 
 	return (
 		<>
-			<Navbar />
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">

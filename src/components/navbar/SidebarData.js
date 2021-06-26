@@ -1,7 +1,13 @@
 import React from "react";
 import * as AiIcons from "react-icons/ai";
 import * as ImIcons from "react-icons/im";
-import { IoBusSharp, IoTicket, IoSettings, IoLogOut } from "react-icons/io5";
+import {
+	IoBusSharp,
+	IoTicket,
+	IoSettings,
+	IoLogOut,
+	IoBusinessSharp,
+} from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
 
 export const SidebarData = [
@@ -25,8 +31,14 @@ export const SidebarData = [
 	},
 	{
 		title: "Bus",
-		path: "/registro-buses",
+		path: "/buses",
 		icon: <IoBusSharp />,
+		cName: "nav-text",
+	},
+	{
+		title: "Empresa",
+		path: "/empresas",
+		icon: <IoBusinessSharp />,
 		cName: "nav-text",
 	},
 	{

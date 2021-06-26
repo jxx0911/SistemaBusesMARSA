@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
-import { Hora } from "../Hora";
+import { Hora } from "../../helpers/Hora";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
@@ -59,7 +59,6 @@ function Navbar() {
 									</li>
 								);
 							} else {
-								console.log(item.title);
 								return (
 									<li key={index} className={item.cName}>
 										<Link to={item.path}>

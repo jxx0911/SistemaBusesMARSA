@@ -4,7 +4,6 @@ import { useState } from "react";
 export const useSedes = () => {
 	const [sedes, setSedes] = useState([]);
 
-	console.log(sedes);
 	useEffect(() => {
 		getEmpresa();
 	}, []);

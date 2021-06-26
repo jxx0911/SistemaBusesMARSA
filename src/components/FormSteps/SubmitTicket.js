@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../Navbar";
 
 export const SubmitTicket = ({ formData, setForm, navigation }) => {
 	const {
@@ -14,7 +13,6 @@ export const SubmitTicket = ({ formData, setForm, navigation }) => {
 
 	return (
 		<>
-			<Navbar />
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useConfig } from "./hooks/useConfig";
+import { useConfig } from "../../hooks/useConfig";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import Navbar from "./Navbar";
 
 const date = new Date();
 const dia = date.toLocaleDateString("en-US");
@@ -44,7 +43,6 @@ export const Config = () => {
 
 	return (
 		<>
-			<Navbar />
 			<div className="container-tight py-4">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">

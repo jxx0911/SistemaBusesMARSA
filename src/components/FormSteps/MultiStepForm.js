@@ -2,8 +2,8 @@ import React from "react";
 import { IngresoBus } from "./IngresoBus";
 import { IngresoPaciente } from "./IngresoPaciente";
 import { SubmitTicket } from "./SubmitTicket";
-import { useFormHook } from "../hooks/useFormHook";
-import { useStepHook } from "../hooks/useStepHook";
+import { useFormHook } from "../../hooks/useFormHook";
+import { useStepHook } from "../../hooks/useStepHook";
 
 export const MultiStepForm = () => {
 	const { formData, setForm } = useFormHook();

@@ -1,6 +1,5 @@
 import React from "react";
 import $ from "jquery";
-import Navbar from "../Navbar";
 
 export const IngresoBus = ({ formData, setForm, navigation }) => {
 	const { busPlaca, busAforo, busEmpresa, busCapacidad } = formData;
@@ -15,7 +14,6 @@ export const IngresoBus = ({ formData, setForm, navigation }) => {
 
 	return (
 		<>
-			<Navbar />
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">

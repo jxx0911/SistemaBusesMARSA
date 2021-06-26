@@ -1,16 +1,14 @@
 import React from "react";
-import "../App.css";
+import "../../App.css";
 import MaterialTable from "material-table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Excel } from "../Excel";
-import Navbar from "./Navbar";
+import { Excel } from "../../helpers/Excel";
 
 function HistorialEditar() {
 	const { importExcel, data, colDefs } = Excel();
 
 	return (
 		<>
-			<Navbar />
 			<div className="App">
 				<h1 align="center">TABLE IMPORT</h1>
 				{/* <h4 align="center">Descripcion</h4> */}

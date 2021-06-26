@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 export const useServicios = () => {
 	const [servicios, setServicios] = useState([]);
 
-	console.log(servicios);
 	useEffect(() => {
 		getEmpresa();
 	}, []);

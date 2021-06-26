@@ -1,11 +1,9 @@
 import React from "react";
 import { HistorialItem } from "./HistorialItem";
-import Navbar from "./Navbar";
 
 export const Historial = () => {
 	return (
 		<>
-			<Navbar />
 			<div className="container table-responsive">
 				<table className="table">
 					<thead>

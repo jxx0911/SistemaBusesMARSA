@@ -1,16 +1,18 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Tabla from "./Tabla";
-import Login from "./Login";
-import { Historial } from "./components/Historial";
-import { BusAdd } from "./BusAdd";
-import { MultiStepForm } from "./components/FormSteps/MultiStepForm";
-import { Config } from "./components/Config";
-import { useFormHook } from "./components/hooks/useFormHook";
-import { useStepHook } from "./components/hooks/useStepHook";
-import HistorialEditar from "./components/HistorialEditar";
+import { Home } from "./components/home/Home";
+import Tabla from "./components/tabla/Tabla";
+import Login from "./components/login/Login";
+import { Historial } from "./components/historial/Historial";
+import { Bus } from "./components/bus/Bus";
+import Empresa from "./components/empresa/Empresa";
+import { MultiStepForm } from "./components/formSteps/MultiStepForm";
+import { Config } from "./components/config/Config";
+import { useFormHook } from "./hooks/useFormHook";
+import { useStepHook } from "./hooks/useStepHook";
+import HistorialEditar from "./components/historial/HistorialEditar";
+import Navbar from "./components/navbar/Navbar";
 
 function MainWindow() {
 	const { formData, setForm } = useFormHook();
@@ -22,27 +24,39 @@ function MainWindow() {
 			<Router>
 				<Switch>
 					<Route exact path="/" component={Login} />
+
 					<Route path="/home" exact>
+						<Navbar />
 						<Home />
 					</Route>
 					<Route path="/tabla" exact>
+						<Navbar />
 						<Tabla />
 					</Route>
 					<Route path="/historial" exact>
+						<Navbar />
 						<Historial />
 					</Route>
-					<Route path="/registro-buses" exact>
-						<BusAdd />
+					<Route path="/buses" exact>
+						<Navbar />
+						<Bus />
+					</Route>
+					<Route path="/empresas" exact>
+						<Navbar />
+						<Empresa />
 					</Route>
 					<Route path="/ticket" exact>
+						<Navbar />
 						<MultiStepForm />
 					</Route>
 					<Route path="/historial-editar" exact>
+						<Navbar />
 						<HistorialEditar />
 					</Route>
 					<Route path="/config" exact>
+						<Navbar />
 						<Config {...props} />
-					</Route>{" "}
+					</Route>
 				</Switch>
 			</Router>
 		</>
