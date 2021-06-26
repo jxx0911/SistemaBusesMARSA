@@ -54,14 +54,14 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
 					name="ruc"
 					placeholder="R.U.C."
 					onChange={handleChange}
-					value={form.name}
+					value={form.ruc}
 				/>
 				<input
 					type="text"
 					name="nombre_empresa"
 					placeholder="Empresa"
 					onChange={handleChange}
-					value={form.constellation}
+					value={form.nombre_empresa}
 				/>
 				<input type="submit" value="Enviar" />
 				<input type="reset" value="Limpiar" onClick={handleReset} />
