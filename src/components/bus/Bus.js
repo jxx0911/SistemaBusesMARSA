@@ -65,10 +65,10 @@ const Bus = () => {
 			//console.log(res);
 			if (!res.err) {
 				console.log(res);
-				let newData = db.map((el) =>
-					el.ruc === data.ruc ? data.nombre_empresa : el.nombre_empresa
+				/* let newData = db.map((el) =>
+					el.placa === data.placa ? data.empresa : el.empresa : 
 				);
-				setDb(newData);
+				setDb(newData); */
 			} else {
 				console.log(res);
 				/* setError(res); */

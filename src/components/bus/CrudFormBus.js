@@ -75,15 +75,20 @@ const CrudFormBus = ({
 					onChange={handleChange}
 					value={form.placa}
 				/>
-				<select name="empresa" className="form-select" onChange={handleChange}>
+				<select
+					name="empresa"
+					className="form-select"
+					value={form.empresa}
+					onChange={handleChange}
+				>
 					{empresasBus.map((item, index) =>
 						item.nombre_empresa !== form.empresa ? (
-							<option key={index} value={form.empresa}>
+							<option key={index} value={item.nombre_empresa}>
 								{item.nombre_empresa}
 							</option>
 						) : (
-							<option key={index} value={form.empresa} selected>
-								{form.empresa}
+							<option key={index} value={item.nombre_empresa} selected>
+								{item.nombre_empresa}
 							</option>
 						)
 					)}
