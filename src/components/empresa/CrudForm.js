@@ -5,7 +5,13 @@ const initialForm = {
 	nombre_empresa: "",
 };
 
-const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
+const CrudForm = ({
+	createData,
+	updateData,
+	dataToEdit,
+	setDataToEdit,
+	data,
+}) => {
 	const [form, setForm] = useState(initialForm);
 
 	useEffect(() => {
@@ -31,11 +37,19 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
 			return;
 		}
 
-		if (form.ruc === null) {
+		console.log(data);
+		console.log(form.ruc);
+
+		//metodo .some comprueba si almenos un elemento cumple con la condicion implementada
+		let found = data.some((item) => item.ruc === form.ruc);
+
+		found ? updateData(form) : createData(form);
+
+		/* if (form.ruc === null) {
 			createData(form);
 		} else {
 			updateData(form);
-		}
+		} */
 
 		handleReset();
 	};

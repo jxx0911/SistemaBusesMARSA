@@ -44,9 +44,11 @@ const CrudApi = () => {
 		api.post(urlPostRegistrar, options).then((res) => {
 			//console.log(res);
 			if (!res.err) {
+				console.log(res);
 				setDb([...db, res]);
 			} else {
-				setError(res);
+				console.log(res);
+				/* setError(res); */
 			}
 		});
 	};
@@ -60,26 +62,31 @@ const CrudApi = () => {
 			headers: { "content-type": "application/json" },
 		};
 
-		api.put(endpoint, options).then((res) => {
+		api.post(endpoint, options).then((res) => {
 			//console.log(res);
 			if (!res.err) {
-				let newData = db.map((el) => (el.id === data.id ? data : el));
+				console.log(res);
+				let newData = db.map((el) =>
+					el.ruc === data.ruc ? data.nombre_empresa : el.nombre_empresa
+				);
 				setDb(newData);
 			} else {
-				setError(res);
+				console.log(res);
+				/* setError(res); */
 			}
 		});
 	};
 
 	return (
 		<div>
-			<h2>CRUD API</h2>
+			<h2>EMPRESAS</h2>
 			<article className="grid-1-2">
 				<CrudForm
 					createData={createData}
 					updateData={updateData}
 					dataToEdit={dataToEdit}
 					setDataToEdit={setDataToEdit}
+					data={db}
 				/>
 				{loading && <Loader />}
 				{error && (
