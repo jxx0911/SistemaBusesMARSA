@@ -1,6 +1,6 @@
 import React from "react";
 
-const CrudTableRow = ({ el, setDataToEdit }) => {
+const CrudTableRowEmpresa = ({ el, setDataToEdit }) => {
 	let { ruc, nombre_empresa } = el;
 
 	return (
@@ -14,4 +14,4 @@ const CrudTableRow = ({ el, setDataToEdit }) => {
 	);
 };
 
-export default CrudTableRow;
+export default CrudTableRowEmpresa;

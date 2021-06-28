@@ -1,22 +1,27 @@
 import React from "react";
-import CrudTableRow from "./CrudTableRow";
+import CrudTableRowBus from "./CrudTableRowBus";
 
-const CrudTable = ({ data, setDataToEdit }) => {
+const CrudTableBus = ({ data, setDataToEdit }) => {
 	return (
 		<div>
-			<h3>Tabla de Empresas</h3>
+			<h3>Tabla de Buses</h3>
 			<table>
 				<thead>
 					<tr>
-						<th>R.U.C.</th>
+						<th>Placa</th>
 						<th>Empresa</th>
+						<th>Capacidad</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
 					{data.length > 0 ? (
 						data.map((el, index) => (
-							<CrudTableRow key={index} el={el} setDataToEdit={setDataToEdit} />
+							<CrudTableRowBus
+								key={index}
+								el={el}
+								setDataToEdit={setDataToEdit}
+							/>
 						))
 					) : (
 						<tr>
@@ -29,4 +34,4 @@ const CrudTable = ({ data, setDataToEdit }) => {
 	);
 };
 
-export default CrudTable;
+export default CrudTableBus;

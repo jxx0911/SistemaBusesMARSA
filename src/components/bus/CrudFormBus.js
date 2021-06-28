@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useEmpresaBus } from "../../hooks/useEmpresaBus";
 
 const initialForm = {
-	ruc: "",
-	nombre_empresa: "",
+	placa: "",
+	empresa: "",
+	capacidad: "",
 };
 
-const CrudForm = ({
+const CrudFormBus = ({
 	createData,
 	updateData,
 	dataToEdit,
@@ -13,6 +15,7 @@ const CrudForm = ({
 	data,
 }) => {
 	const [form, setForm] = useState(initialForm);
+	const { empresasBus } = useEmpresaBus();
 
 	useEffect(() => {
 		if (dataToEdit) {
@@ -29,19 +32,21 @@ const CrudForm = ({
 		});
 	};
 
+	console.log(form);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (!form.ruc || !form.nombre_empresa) {
+		if (!form.placa || !form.empresa || !form.capacidad) {
 			alert("Datos incompletos");
 			return;
 		}
 
 		console.log(data);
-		console.log(form.ruc);
+		console.log(form);
 
 		//metodo .some comprueba si almenos un elemento cumple con la condicion implementada
-		let found = data.some((item) => item.ruc === form.ruc);
+		let found = data.some((item) => item.placa === form.placa);
 
 		found ? updateData(form) : createData(form);
 
@@ -65,17 +70,30 @@ const CrudForm = ({
 			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
-					name="ruc"
-					placeholder="R.U.C."
+					name="placa"
+					placeholder="Placa"
 					onChange={handleChange}
-					value={form.ruc}
+					value={form.placa}
 				/>
+				<select name="empresa" className="form-select" onChange={handleChange}>
+					{empresasBus.map((item, index) =>
+						item.nombre_empresa !== form.empresa ? (
+							<option key={index} value={form.empresa}>
+								{item.nombre_empresa}
+							</option>
+						) : (
+							<option key={index} value={form.empresa} selected>
+								{form.empresa}
+							</option>
+						)
+					)}
+				</select>
 				<input
-					type="text"
-					name="nombre_empresa"
-					placeholder="Empresa"
+					type="number"
+					name="capacidad"
+					placeholder="capacidad"
 					onChange={handleChange}
-					value={form.nombre_empresa}
+					value={form.capacidad}
 				/>
 				<input type="submit" value="Enviar" />
 				<input type="reset" value="Limpiar" onClick={handleReset} />
@@ -84,4 +102,4 @@ const CrudForm = ({
 	);
 };
 
-export default CrudForm;
+export default CrudFormBus;

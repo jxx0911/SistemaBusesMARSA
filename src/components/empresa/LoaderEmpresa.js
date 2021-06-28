@@ -1,7 +1,7 @@
 import React from "react";
-import "./Loader.css";
+import "./LoaderEmpresa.css";
 
-const Loader = () => {
+const LoaderEmpresa = () => {
 	return (
 		<div className="lds-ring">
 			<div></div>
@@ -12,4 +12,4 @@ const Loader = () => {
 	);
 };
 
-export default Loader;
+export default LoaderEmpresa;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
-import CrudForm from "./CrudForm";
-import CrudTable from "./CrudTable";
-import Loader from "./Loader";
-import Message from "./Message";
+import CrudFormEmpresa from "./CrudFormEmpresa";
+import CrudTableEmpresa from "./CrudTableEmpresa";
+import LoaderEmpresa from "./LoaderEmpresa";
+import MessageEmpresa from "./MessageEmpresa";
 
-const CrudApi = () => {
+const Empresa = () => {
 	const [db, setDb] = useState(null);
 	const [dataToEdit, setDataToEdit] = useState(null);
 	const [error, setError] = useState(null);
@@ -81,24 +81,24 @@ const CrudApi = () => {
 		<div>
 			<h2>EMPRESAS</h2>
 			<article className="grid-1-2">
-				<CrudForm
+				<CrudFormEmpresa
 					createData={createData}
 					updateData={updateData}
 					dataToEdit={dataToEdit}
 					setDataToEdit={setDataToEdit}
 					data={db}
 				/>
-				{loading && <Loader />}
+				{loading && <LoaderEmpresa />}
 				{error && (
-					<Message
+					<MessageEmpresa
 						msg={`Error ${error.status}: ${error.statusText}`}
 						bgColor="#dc3545"
 					/>
 				)}
-				{db && <CrudTable data={db} setDataToEdit={setDataToEdit} />}
+				{db && <CrudTableEmpresa data={db} setDataToEdit={setDataToEdit} />}
 			</article>
 		</div>
 	);
 };
 
-export default CrudApi;
+export default Empresa;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Message = ({ msg, bgColor }) => {
+const MessageBus = ({ msg, bgColor }) => {
 	let styles = {
 		padding: "1rem",
 		marginBottom: "1rem",
@@ -18,4 +18,4 @@ const Message = ({ msg, bgColor }) => {
 	);
 };
 
-export default Message;
+export default MessageBus;
