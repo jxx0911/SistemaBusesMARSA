@@ -34,6 +34,7 @@ function Tabla() {
 	const [servicioLote, setServicioLote] = useState();
 	/* const [loading, setLoading] = useState(false); */
 	const [form, setForm] = useState(initialForm);
+	const [file, setFile] = useState(false);
 
 	const handleInputChange = (e) => {
 		setForm({
@@ -41,19 +42,24 @@ function Tabla() {
 			[e.target.name]: e.target.value,
 		});
 	};
+	console.log(form);
 
 	/* 
-	console.log(form.fecha_salida);
+	
 	let fecha = form.fecha_salida.toLocaleDateString("en-US");
 	console.log(fecha); */
 
 	const validarLote = async () => {
 		await axios
 			.get(
-				`http://167.99.115.105/bdmarsa/tercera/lote/validar?cod_servicio=${form.cod_servicio}&nombre_sede=${form.nombre_sede}&fecha_salida=06/19/2021`
+				`http://167.99.115.105/bdmarsa/tercera/lote/validar?cod_servicio=${form.cod_servicio}&nombre_sede=${form.nombre_sede}&fecha_salida=${form.fecha_salida}`
 			)
 			.then((response) => {
 				console.log(response);
+				if (response) setFile(true);
+			})
+			.catch((err) => {
+				console.log(err);
 			});
 	};
 
@@ -110,10 +116,17 @@ function Tabla() {
 							/>
 						</div>
 						<button className="btn btn-dark" onClick={validarLote}>
-							Generar Lote
+							Validar Lote
 						</button>
-						<button className="btn btn-primary">Registrar Lote</button>
-						<input className="col-3" type="file" onChange={importExcel} />
+
+						{file ? (
+							<>
+								<button className="btn btn-primary">Generar Lote</button>
+								<input className="col-3" type="file" onChange={importExcel} />
+							</>
+						) : (
+							""
+						)}
 					</div>
 				</div>
 
