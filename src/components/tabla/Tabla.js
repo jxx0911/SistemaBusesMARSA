@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Excel } from "../../helpers/Excel";
 import { useSedes } from "../../hooks/useSedes";
 import { useServicios } from "../../hooks/useServicios";
+import { SedeLote } from "../../helpers/SedeLote";
 /* import { helpHttp } from "../../helpers/helpHttp"; */
 import axios from "axios";
 
@@ -28,13 +29,18 @@ const initialLote = {
 function Tabla() {
 	/* let api = helpHttp(); */
 	const { importExcel, data, colDefs } = Excel();
+
 	const { sedes } = useSedes();
-	const [sedeLote, setSedeLote] = useState();
+
+	console.log(sedes);
+
 	const { servicios } = useServicios();
 	const [servicioLote, setServicioLote] = useState();
+
 	/* const [loading, setLoading] = useState(false); */
 	const [form, setForm] = useState(initialForm);
 	const [file, setFile] = useState(false);
+	const [lote, setLote] = useState(initialLote);
 
 	const handleInputChange = (e) => {
 		setForm({
@@ -42,6 +48,7 @@ function Tabla() {
 			[e.target.name]: e.target.value,
 		});
 	};
+
 	console.log(form);
 
 	/* 
@@ -49,14 +56,29 @@ function Tabla() {
 	let fecha = form.fecha_salida.toLocaleDateString("en-US");
 	console.log(fecha); */
 
-	const validarLote = async () => {
+	const validarLote = async (e) => {
 		await axios
 			.get(
 				`http://167.99.115.105/bdmarsa/tercera/lote/validar?cod_servicio=${form.cod_servicio}&nombre_sede=${form.nombre_sede}&fecha_salida=${form.fecha_salida}`
 			)
 			.then((response) => {
-				console.log(response);
-				if (response) setFile(true);
+				let res = response.data[0]["respuesta"];
+				if (res === "SI") {
+					alert("El Lote ya existe");
+					setForm(initialForm);
+				} else if (res === "NO") {
+					setFile(true);
+					/* setLote({
+						cod_servicio: "",
+						nombre_servicio: "",
+						cod_sede: "",
+						nombre_sede: "",
+						fecha_actual: "", // toLocalDateString()
+						hora: "", // toLocalTimeString()
+						fecha_salida: "",
+
+					}) */
+				}
 			})
 			.catch((err) => {
 				console.log(err);
@@ -106,16 +128,21 @@ function Tabla() {
 					{/* Input para fecha */}
 					<div>
 						<div>
-							<label className="form-label">FECHA DE ATENCION</label>
+							<label className="form-label">FECHA DE SALIDA</label>
 							<input
 								type="date"
 								className="form-control"
 								name="fecha_salida"
 								placeholder="Input placeholder"
 								onChange={handleInputChange}
+								value={form.fecha_salida}
 							/>
 						</div>
-						<button className="btn btn-dark" onClick={validarLote}>
+						<button
+							className="btn btn-dark"
+							onClick={validarLote}
+							disabled={file ? "disabled" : ""}
+						>
 							Validar Lote
 						</button>
 
