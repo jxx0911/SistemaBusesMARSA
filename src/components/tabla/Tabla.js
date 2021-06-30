@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Excel } from "../../helpers/Excel";
 import { useSedes } from "../../hooks/useSedes";
 import { useServicios } from "../../hooks/useServicios";
+import { Fecha } from "../../helpers/Fecha";
 /* import { helpHttp } from "../../helpers/helpHttp"; */
 import axios from "axios";
 
@@ -27,23 +28,23 @@ const initialLote = {
 
 let sedeLote = "";
 let servicioLote = "";
+let lote = {};
+let day = new Date();
 
 function Tabla() {
 	/* let api = helpHttp(); */
 	const { importExcel, data, colDefs } = Excel();
-	let day = new Date();
 
 	const { sedes } = useSedes();
-	const [sedeBand, setSedeBand] = useState(false);
-	/* const [sedeLote, setSedeLote] = useState(""); */
-
 	const { servicios } = useServicios();
-	const [servicioBand, setServicioBand] = useState(false);
+	const [band, setBand] = useState(false);
 
 	/* const [loading, setLoading] = useState(false); */
+	const [enable, setEnable] = useState(false);
 	const [file, setFile] = useState(false);
+	const [register, setRegister] = useState(false);
 	const [form, setForm] = useState(initialForm);
-	const [lote, setLote] = useState(initialLote);
+	/* const [lote, setLote] = useState(initialLote); */
 
 	const handleInputChange = (e) => {
 		setForm({
@@ -52,56 +53,70 @@ function Tabla() {
 		});
 	};
 
-	if (sedeBand) {
+	if (band) {
 		sedes.forEach((valor) => {
 			if (valor.sede === form.nombre_sede) {
-				sedeLote = valor.cod_sede;
+				sedeLote = valor.cod_sede.toString();
 			}
 		});
-	}
 
-	if (servicioBand) {
 		servicios.forEach((valor) => {
 			if (valor.id_servicio === parseInt(form.cod_servicio)) {
 				servicioLote = valor.nombre_servicio;
-				console.log(servicioLote);
 			}
 		});
 	}
 
 	const validarLote = async (e) => {
-		await axios
-			.get(
-				`http://167.99.115.105/bdmarsa/tercera/lote/validar?cod_servicio=${form.cod_servicio}&nombre_sede=${form.nombre_sede}&fecha_salida=${form.fecha_salida}`
-			)
-			.then((response) => {
-				let res = response.data[0]["respuesta"];
-				if (res === "SI") {
-					alert("El Lote ya existe");
-					setForm(initialForm);
-				} else if (res === "NO") {
-					console.log("respuesta fue NO");
-					setFile(true);
-					setSedeBand(!sedeBand);
-					setServicioBand(!servicioBand);
-					/* let c_s = SedeLote(form.nombre_sede); */
-					setLote({
-						cod_servicio: form.cod_servicio,
-						nombre_servicio: servicioLote,
-						cod_sede: sedeLote,
-						nombre_sede: form.nombre_sede,
-						fecha_actual: day.toLocaleDateString(), // toLocalDateString()
-						hora: day.toLocaleTimeString(), // toLocalTimeString()
-						fecha_salida: form.fecha_salida,
-					});
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		const resp1 = await fetch(
+			`http://167.99.115.105/bdmarsa/tercera/lote/validar?cod_servicio=${form.cod_servicio}&nombre_sede=${form.nombre_sede}&fecha_salida=${form.fecha_salida}`
+		);
+		const data1 = await resp1.json();
+		const validacion = data1[0]["respuesta"];
+
+		if (validacion === "SI") {
+			alert("El Lote ya existe");
+			setForm(initialForm);
+		} else if (validacion === "NO") {
+			setBand(!band);
+			lote = {
+				cod_servicio: form.cod_servicio,
+				nombre_servicio: servicioLote,
+				cod_sede: sedeLote,
+				nombre_sede: form.nombre_sede,
+				fecha_actual: Fecha().fechaHoy,
+				hora: day.toLocaleTimeString(),
+				fecha_salida: form.fecha_salida,
+			};
+			setFile(!file);
+		}
 	};
 
-	console.log(lote);
+	const registrarLote = async () => {
+		await axios
+			.post("http://167.99.115.105/bdmarsa/tercera/lote/registrar", lote)
+			.then((response) => {
+				if (response) {
+					lote = {};
+					setForm(initialForm);
+					setBand(!band);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+
+		/* const resp2 = await axios.post(
+				"http://167.99.115.105/bdmarsa/tercera/lote/registrar",
+				lote
+			);
+	
+			const { data } = resp2;
+			const respuesta = data.Respuesta;
+	
+			if (respuesta === "OK") {
+			} */
+	};
 
 	return (
 		<>
@@ -166,7 +181,6 @@ function Tabla() {
 
 						{file ? (
 							<>
-								<button className="btn btn-primary">Generar Lote</button>
 								<input className="col-3" type="file" onChange={importExcel} />
 							</>
 						) : (
