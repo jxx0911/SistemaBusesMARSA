@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Excel } from "../../helpers/Excel";
 import { useSedes } from "../../hooks/useSedes";
 import { useServicios } from "../../hooks/useServicios";
-import { ServicioLote } from "../../helpers/ServicioLote";
-import { SedeLote } from "../../helpers/SedeLote";
 /* import { helpHttp } from "../../helpers/helpHttp"; */
 import axios from "axios";
 
@@ -27,15 +25,20 @@ const initialLote = {
 	fecha_salida: "", // form.fecha_salida
 };
 
+let sedeLote = "";
+let servicioLote = "";
+
 function Tabla() {
 	/* let api = helpHttp(); */
 	const { importExcel, data, colDefs } = Excel();
 	let day = new Date();
 
 	const { sedes } = useSedes();
+	const [sedeBand, setSedeBand] = useState(false);
+	/* const [sedeLote, setSedeLote] = useState(""); */
 
 	const { servicios } = useServicios();
-	const [servicioLote, setServicioLote] = useState();
+	const [servicioBand, setServicioBand] = useState(false);
 
 	/* const [loading, setLoading] = useState(false); */
 	const [file, setFile] = useState(false);
@@ -49,6 +52,23 @@ function Tabla() {
 		});
 	};
 
+	if (sedeBand) {
+		sedes.forEach((valor) => {
+			if (valor.sede === form.nombre_sede) {
+				sedeLote = valor.cod_sede;
+			}
+		});
+	}
+
+	if (servicioBand) {
+		servicios.forEach((valor) => {
+			if (valor.id_servicio === parseInt(form.cod_servicio)) {
+				servicioLote = valor.nombre_servicio;
+				console.log(servicioLote);
+			}
+		});
+	}
+
 	const validarLote = async (e) => {
 		await axios
 			.get(
@@ -60,12 +80,15 @@ function Tabla() {
 					alert("El Lote ya existe");
 					setForm(initialForm);
 				} else if (res === "NO") {
+					console.log("respuesta fue NO");
 					setFile(true);
+					setSedeBand(!sedeBand);
+					setServicioBand(!servicioBand);
 					/* let c_s = SedeLote(form.nombre_sede); */
 					setLote({
 						cod_servicio: form.cod_servicio,
-						nombre_servicio: "",
-						cod_sede: "",
+						nombre_servicio: servicioLote,
+						cod_sede: sedeLote,
 						nombre_sede: form.nombre_sede,
 						fecha_actual: day.toLocaleDateString(), // toLocalDateString()
 						hora: day.toLocaleTimeString(), // toLocalTimeString()
@@ -78,7 +101,6 @@ function Tabla() {
 			});
 	};
 
-	console.log(form);
 	console.log(lote);
 
 	return (

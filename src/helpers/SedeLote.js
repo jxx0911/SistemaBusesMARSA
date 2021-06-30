@@ -1,15 +1,22 @@
 import { useState } from "react";
-import { useSedes } from "../hooks/useSedes";
 
-export const SedeLote = (form) => {
-	const { sedes } = useSedes();
-	let sedeLote = "";
+export const SedeLote = async (form) => {
 
-	sedes.forEach((valor, index) => {
-		if (valor.sede === form) sedeLote = valor.cod_sede;
-	});
+	const [sedeLote, setSedeLote] = useState();
 
-	return {
-		sedeLote,
-	};
+	/* const resp = await fetch("http://167.99.115.105/baseDatos/sedes");
+	const data = await resp.json(); */
+
+	fetch('http://167.99.115.105/baseDatos/sedes')
+            .then(response => response.json())
+            .then(data => {
+				data.forEach((valor) => {
+					if (valor.sede === form) setSedeLote(valor.cod_sede);
+					
+				});
+			});  
+
+			return(sedeLote);
+	
+
 };

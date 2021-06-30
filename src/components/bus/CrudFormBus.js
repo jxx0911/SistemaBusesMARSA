@@ -32,8 +32,6 @@ const CrudFormBus = ({
 		});
 	};
 
-	console.log(form);
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -41,9 +39,6 @@ const CrudFormBus = ({
 			alert("Datos incompletos");
 			return;
 		}
-
-		console.log(data);
-		console.log(form);
 
 		//metodo .some comprueba si almenos un elemento cumple con la condicion implementada
 		let found = data.some((item) => item.placa === form.placa);
