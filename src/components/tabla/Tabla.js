@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Excel } from "../../helpers/Excel";
 import { useSedes } from "../../hooks/useSedes";
 import { useServicios } from "../../hooks/useServicios";
+import { ServicioLote } from "../../helpers/ServicioLote";
 import { SedeLote } from "../../helpers/SedeLote";
 /* import { helpHttp } from "../../helpers/helpHttp"; */
 import axios from "axios";
@@ -29,17 +30,16 @@ const initialLote = {
 function Tabla() {
 	/* let api = helpHttp(); */
 	const { importExcel, data, colDefs } = Excel();
+	let day = new Date();
 
 	const { sedes } = useSedes();
-
-	console.log(sedes);
 
 	const { servicios } = useServicios();
 	const [servicioLote, setServicioLote] = useState();
 
 	/* const [loading, setLoading] = useState(false); */
-	const [form, setForm] = useState(initialForm);
 	const [file, setFile] = useState(false);
+	const [form, setForm] = useState(initialForm);
 	const [lote, setLote] = useState(initialLote);
 
 	const handleInputChange = (e) => {
@@ -48,13 +48,6 @@ function Tabla() {
 			[e.target.name]: e.target.value,
 		});
 	};
-
-	console.log(form);
-
-	/* 
-	
-	let fecha = form.fecha_salida.toLocaleDateString("en-US");
-	console.log(fecha); */
 
 	const validarLote = async (e) => {
 		await axios
@@ -68,22 +61,25 @@ function Tabla() {
 					setForm(initialForm);
 				} else if (res === "NO") {
 					setFile(true);
-					/* setLote({
-						cod_servicio: "",
+					/* let c_s = SedeLote(form.nombre_sede); */
+					setLote({
+						cod_servicio: form.cod_servicio,
 						nombre_servicio: "",
 						cod_sede: "",
-						nombre_sede: "",
-						fecha_actual: "", // toLocalDateString()
-						hora: "", // toLocalTimeString()
-						fecha_salida: "",
-
-					}) */
+						nombre_sede: form.nombre_sede,
+						fecha_actual: day.toLocaleDateString(), // toLocalDateString()
+						hora: day.toLocaleTimeString(), // toLocalTimeString()
+						fecha_salida: form.fecha_salida,
+					});
 				}
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
+
+	console.log(form);
+	console.log(lote);
 
 	return (
 		<>
