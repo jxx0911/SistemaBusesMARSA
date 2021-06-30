@@ -40,11 +40,10 @@ function Tabla() {
 	const [band, setBand] = useState(false);
 
 	/* const [loading, setLoading] = useState(false); */
-	const [enable, setEnable] = useState(false);
+	/* const [enable, setEnable] = useState(false); */
 	const [file, setFile] = useState(false);
-	const [register, setRegister] = useState(false);
+	/* const [register, setRegister] = useState(false); */
 	const [form, setForm] = useState(initialForm);
-	/* const [lote, setLote] = useState(initialLote); */
 
 	const handleInputChange = (e) => {
 		setForm({
@@ -93,19 +92,6 @@ function Tabla() {
 	};
 
 	const registrarLote = async () => {
-		await axios
-			.post("http://167.99.115.105/bdmarsa/tercera/lote/registrar", lote)
-			.then((response) => {
-				if (response) {
-					lote = {};
-					setForm(initialForm);
-					setBand(!band);
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-
 		/* const resp2 = await axios.post(
 				"http://167.99.115.105/bdmarsa/tercera/lote/registrar",
 				lote
@@ -117,6 +103,9 @@ function Tabla() {
 			if (respuesta === "OK") {
 			} */
 	};
+
+	console.log(data);
+	console.log(colDefs);
 
 	return (
 		<>
@@ -179,13 +168,14 @@ function Tabla() {
 							Validar Lote
 						</button>
 
-						{file ? (
+						{/* {file ? (
 							<>
 								<input className="col-3" type="file" onChange={importExcel} />
 							</>
 						) : (
 							""
-						)}
+						)} */}
+						<input className="col-3" type="file" onChange={importExcel} />
 					</div>
 				</div>
 
