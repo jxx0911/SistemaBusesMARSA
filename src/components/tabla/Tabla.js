@@ -102,7 +102,6 @@ function Tabla() {
 				nombre_sede: form.nombre_sede,
 				fecha_salida_formulario: form.fecha_salida,
 				cod_Servicio: parseInt(form.cod_servicio),
-				datosJson,
 			};
 
 			setFile(!file);
@@ -110,16 +109,21 @@ function Tabla() {
 	};
 
 	const registrarLote = async () => {
-		let body = Object.assign(datosJson, informacionInicial);
-		console.log(body);
-		const resp = await axios.post(
-			"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
-			{
-				body,
-			}
+		console.log(lote);
+		const resp2 = await axios.post(
+			"http://167.99.115.105/bdmarsa/tercera/lote/registrar",
+			lote
 		);
+
+		const { data } = resp2;
+		const respuesta = data.Respuesta;
+
+		/* if (respuesta === "OK") {
+			
+		} */
+
 		/* const { data } = resp; */
-		console.log(resp);
+
 		/* const resp2 = await axios.post(
 				"http://167.99.115.105/bdmarsa/tercera/lote/registrar",
 				lote
@@ -130,6 +134,22 @@ function Tabla() {
 	
 			if (respuesta === "OK") {
 			} */
+	};
+
+	const registrarInformacion = async () => {
+		informacionInicial = {
+			...informacionInicial,
+			resultp2: "",
+			asistencia: "",
+		};
+		let body = Object.assign(datosJson, informacionInicial);
+		console.log("llego informacion importada");
+		console.log(body);
+		const resp = await axios.post(
+			"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
+			body
+		);
+		console.log(resp);
 	};
 
 	console.log(datos);
@@ -211,6 +231,9 @@ function Tabla() {
 				</div>
 				<button className="btn btn-success" onClick={registrarLote}>
 					Registrar
+				</button>
+				<button className="btn btn-success" onClick={registrarInformacion}>
+					Registrar2
 				</button>
 			</div>
 		</>
