@@ -3,6 +3,7 @@ import { Excel } from "../../helpers/Excel";
 import { useSedes } from "../../hooks/useSedes";
 import { useServicios } from "../../hooks/useServicios";
 import { Fecha } from "../../helpers/Fecha";
+import { getJsDateFromExcel } from "excel-date-to-js";
 /* import { helpHttp } from "../../helpers/helpHttp"; */
 import axios from "axios";
 
@@ -29,11 +30,15 @@ const initialLote = {
 let sedeLote = "";
 let servicioLote = "";
 let lote = {};
+let informacionInicial = {
+	ruc: "20477167561",
+	id_historia_login: 2,
+};
 let day = new Date();
 
 function Tabla() {
 	/* let api = helpHttp(); */
-	const { importExcel, data, colDefs } = Excel();
+	const { importExcel, datos, colDefs } = Excel();
 
 	const { sedes } = useSedes();
 	const { servicios } = useServicios();
@@ -87,11 +92,23 @@ function Tabla() {
 				hora: day.toLocaleTimeString(),
 				fecha_salida: form.fecha_salida,
 			};
+			informacionInicial = {
+				...informacionInicial,
+				cod_lote: `${form.nombre_sede}-${form.fecha_salida}-${form.cod_servicio}`,
+			};
+			console.log(informacionInicial);
 			setFile(!file);
 		}
 	};
 
 	const registrarLote = async () => {
+		console.log(datos);
+		const resp = await axios.post(
+			"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
+			datos
+		);
+		const { data } = resp;
+		console.log(data);
 		/* const resp2 = await axios.post(
 				"http://167.99.115.105/bdmarsa/tercera/lote/registrar",
 				lote
@@ -104,8 +121,7 @@ function Tabla() {
 			} */
 	};
 
-	console.log(data);
-	console.log(colDefs);
+	console.log(datos);
 
 	return (
 		<>
@@ -180,9 +196,11 @@ function Tabla() {
 				</div>
 
 				<div className="table-responsive">
-					<MaterialTable title="Marsa Data" data={data} columns={colDefs} />
+					<MaterialTable title="Marsa Data" data={datos} columns={colDefs} />
 				</div>
-				<button className="btn btn-success">Registrar</button>
+				<button className="btn btn-success" onClick={registrarLote}>
+					Registrar
+				</button>
 			</div>
 		</>
 	);

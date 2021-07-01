@@ -8,7 +8,7 @@ export const Excel = () => {
 	getJsDateFromExcel("42510"); */
 
 	const [colDefs, setColDefs] = useState();
-	const [data, setData] = useState();
+	const [datos, setDatos] = useState();
 
 	const getExention = (file) => {
 		const parts = file.name.split(".");
@@ -55,8 +55,8 @@ export const Excel = () => {
 	const importExcel = (e) => {
 		const file = e.target.files[0];
 		//const fecha = "Fecha";
-		const fechaAtencion = "FECHA DE ATENCION (dd/mm/yyyy)";
-		const fechaNacimiento = "FECHA NACIMIENTO (dd/mm/aaaa)";
+		const fechaAtencion = "fecha_salida";
+		const fechaNacimiento = "f_nac";
 
 		const reader = new FileReader();
 		reader.onload = (event) => {
@@ -104,7 +104,7 @@ export const Excel = () => {
 			//removing header
 			fileData.splice(0, 1);
 
-			setData(convertToJson(headers, fileData));
+			setDatos(convertToJson(headers, fileData));
 		};
 
 		if (file) {
@@ -114,14 +114,14 @@ export const Excel = () => {
 				alert("Invalid file input, Select Excel, CSV file");
 			}
 		} else {
-			setData([]);
+			setDatos([]);
 			setColDefs([]);
 		}
 	};
 
 	return {
 		importExcel,
-		data,
+		datos,
 		colDefs,
 	};
 };
