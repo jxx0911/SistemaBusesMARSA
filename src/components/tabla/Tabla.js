@@ -41,10 +41,10 @@ function Tabla() {
 	/* let api = helpHttp(); */
 	const { importExcel, datos, colDefs } = Excel();
 
-	if (datos) {
+	/* if (datos) {
 		datosJson = datos[0];
 	}
-
+ */
 	const { sedes } = useSedes();
 	const { servicios } = useServicios();
 	const [band, setBand] = useState(false);
@@ -142,14 +142,26 @@ function Tabla() {
 			resultp2: "",
 			asistencia: "",
 		};
-		let body = Object.assign(datosJson, informacionInicial);
-		console.log("llego informacion importada");
+		/* let body = Object.assign(datosJson, informacionInicial); */
+		let body = {};
 		console.log(body);
-		const resp = await axios.post(
+
+		datos.map(async (excel) => {
+			body = await Object.assign(excel, informacionInicial);
+			await axios.post(
+				"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
+				body
+			);
+		});
+
+		/* const datosExcel = await Promise.all(promises);
+		console.log(datosExcel); */
+
+		/* const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
 			body
 		);
-		console.log(resp);
+		console.log(resp); */
 	};
 
 	console.log(datos);
