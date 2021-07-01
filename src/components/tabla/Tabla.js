@@ -34,11 +34,16 @@ let informacionInicial = {
 	ruc: "20477167561",
 	id_historia_login: 2,
 };
+let datosJson = {};
 let day = new Date();
 
 function Tabla() {
 	/* let api = helpHttp(); */
 	const { importExcel, datos, colDefs } = Excel();
+
+	if (datos) {
+		datosJson = datos[0];
+	}
 
 	const { sedes } = useSedes();
 	const { servicios } = useServicios();
@@ -94,21 +99,27 @@ function Tabla() {
 			};
 			informacionInicial = {
 				...informacionInicial,
-				cod_lote: `${form.nombre_sede}-${form.fecha_salida}-${form.cod_servicio}`,
+				nombre_sede: form.nombre_sede,
+				fecha_salida_formulario: form.fecha_salida,
+				cod_Servicio: parseInt(form.cod_servicio),
+				datosJson,
 			};
-			console.log(informacionInicial);
+
 			setFile(!file);
 		}
 	};
 
 	const registrarLote = async () => {
-		console.log(datos);
+		let body = Object.assign(datosJson, informacionInicial);
+		console.log(body);
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
-			datos
+			{
+				body,
+			}
 		);
-		const { data } = resp;
-		console.log(data);
+		/* const { data } = resp; */
+		console.log(resp);
 		/* const resp2 = await axios.post(
 				"http://167.99.115.105/bdmarsa/tercera/lote/registrar",
 				lote
