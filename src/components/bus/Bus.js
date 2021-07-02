@@ -77,8 +77,8 @@ const Bus = () => {
 	};
 
 	return (
-		<div>
-			<h2>BUSES</h2>
+		<div className="container">
+			<h2 className="d-flex justify-content-center">BUSES</h2>
 			<article className="grid-1-2">
 				<CrudFormBus
 					createData={createData}

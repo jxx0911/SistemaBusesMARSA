@@ -33,6 +33,8 @@ const CrudFormBus = ({
 		});
 	};
 
+	console.log(form);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -56,15 +58,18 @@ const CrudFormBus = ({
 
 	return (
 		<div>
-			<h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
+			<h3>{dataToEdit ? "EDITAR" : "AGREGAR"}</h3>
 			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					name="placa"
-					placeholder="Placa"
-					onChange={handleChange}
-					value={form.placa}
-				/>
+				<div className="mb-3 d-flex">
+					<input
+						type="text"
+						className="form-control"
+						name="placa"
+						placeholder="Placa"
+						onChange={handleChange}
+						value={form.placa}
+					/>
+				</div>
 				<select
 					name="empresa"
 					className="form-select"
@@ -73,11 +78,11 @@ const CrudFormBus = ({
 				>
 					{empresasBus.map((item, index) =>
 						item.nombre_empresa !== form.empresa ? (
-							<option key={index} value={item.nombre_empresa}>
+							<option key={index} value={form.empresa}>
 								{item.nombre_empresa}
 							</option>
 						) : (
-							<option key={index} value={item.nombre_empresa} selected>
+							<option key={index} value={form.empresa}>
 								{item.nombre_empresa}
 							</option>
 						)

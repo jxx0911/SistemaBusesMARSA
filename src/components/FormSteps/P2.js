@@ -70,13 +70,11 @@ export const P2 = ({ paciente, bus }) => {
 				<p className="centrar">--------------------------------------</p>
 				<p className="size18">INFORMACION BUS</p>
 				<p className="centrar">--------------------------------------</p>
-				<br />
 				<p className="size14izq">
 					PLACA:<span>{bus.placa}</span>
 					<br />
 					EMPRESA:<span>{bus.empresa}</span>
 				</p>
-				<br />
 				<p className="centrar">--------------------------------------</p>
 				<p className="centrar">{bus.mensaje}</p>
 				<p className="centrar">--------------------------------------</p>
