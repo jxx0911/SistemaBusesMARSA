@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import $ from "jquery";
+import { ImSearch } from "react-icons/im";
+import axios from "axios";
 
-export const IngresoBus = ({ formData, setForm, navigation }) => {
-	const { busPlaca, busAforo, busEmpresa, busCapacidad } = formData;
+const initialBody = {
+	placa: "",
+};
+
+let imprimirBusTicket = {};
+
+export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
+	const [form, setForm] = useState(initialBody);
+	console.log(imprimirBus);
+	const handleInputChange = (e) => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value,
+		});
+	};
 
 	$(document).ready(function () {
 		$("form").keypress(function (e) {
@@ -11,6 +26,29 @@ export const IngresoBus = ({ formData, setForm, navigation }) => {
 			}
 		});
 	});
+
+	const importarBus = async (e) => {
+		e.preventDefault();
+		console.log(form);
+		const resp = await axios.post(
+			"http://167.99.115.105/bdmarsa/tercera/ticket/primeraVista",
+			form
+		);
+		const { data } = resp;
+		const { empresa, capacidad } = data[0];
+		const { mensaje, aforo } = data[1];
+		imprimirBusTicket = {
+			...form,
+			empresa: empresa,
+			mensaje: mensaje,
+			aforo: aforo,
+			capacidad: (aforo * capacidad) / 100,
+		};
+		setForm(imprimirBusTicket);
+		setImprimirBus(imprimirBusTicket);
+	};
+
+	console.log(form);
 
 	return (
 		<>
@@ -30,52 +68,37 @@ export const IngresoBus = ({ formData, setForm, navigation }) => {
 									<input
 										type="text"
 										className="form-control inputBus"
-										autocomplete="off"
 										placeholder="Ingrese Placa de Bus"
 										style={{ textTransform: "uppercase" }}
-										value={busPlaca}
-										onChange={setForm}
-										name="busPlaca"
+										value={form.placa}
+										onChange={handleInputChange}
+										name="placa"
 										autoFocus
 									/>
+									<button className="btn btn-dark" onClick={importarBus}>
+										<ImSearch />
+									</button>
 								</div>
-								<div className="mb-3">
-									<label className="form-label">Aforo</label>
-									<input
-										type="text"
-										className="form-control"
-										name="busAforo"
-										placeholder={busAforo}
-										value={busAforo}
-										disabled="true"
-									/>
-								</div>
-								<div className="mb-3">
-									<label className="form-label">Empresa</label>
-									<input
-										type="text"
-										className="form-control"
-										name="busEmpresa"
-										placeholder={busEmpresa}
-										value={busEmpresa}
-										disabled="true"
-									/>
-								</div>
-								<div className="mb-3">
-									<label className="form-label">Capacidad</label>
-									<input
-										type="text"
-										className="form-control"
-										name="busCapacidad"
-										placeholder={busCapacidad}
-										value={busCapacidad}
-										disabled="true"
-									/>
+								<div className="tab-pane active show" id="tabs-home-ex5">
+									<div>
+										Placa : {form.placa ? form.placa : imprimirBus.placa}
+										<br />
+										Aforo :{" "}
+										{form.aforo ? `${form.aforo}%` : `${imprimirBus.aforo}%`}
+										<br />
+										Empresa :{" "}
+										{form.empresa ? form.empresa : imprimirBus.empresa}
+										<br />
+										Capacidad(Aforo) :{" "}
+										{form.capacidad ? form.capacidad : imprimirBus.capacidad}
+									</div>
 								</div>
 								<div className="col-6 col-sm-4  mb-3 float-end">
 									<button
 										className="btn btn-primary w-100"
-										onClick={() => navigation.next()}
+										onClick={() => {
+											navigation.next();
+										}}
 									>
 										Siguiente
 									</button>

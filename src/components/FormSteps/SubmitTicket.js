@@ -1,16 +1,6 @@
 import React from "react";
 
-export const SubmitTicket = ({ formData, setForm, navigation }) => {
-	const {
-		busPlaca,
-		busAforo,
-		busEmpresa,
-		busCapacidad,
-		dni,
-		apellidos,
-		nombres,
-	} = formData;
-
+export const SubmitTicket = ({ navigation }) => {
 	return (
 		<>
 			<div className="container-tight py-2">
@@ -43,30 +33,6 @@ export const SubmitTicket = ({ formData, setForm, navigation }) => {
 									</button>
 								</li>
 							</ul>
-							<div className="card-body">
-								<div className="tab-content">
-									<div className="tab-pane active show" id="tabs-home-ex5">
-										<div>
-											Placa : {busPlaca}
-											<br />
-											Aforo : {busAforo}
-											<br />
-											Empresa : {busEmpresa}
-											<br />
-											Capacidad : {busCapacidad}
-										</div>
-									</div>
-									<div className="tab-pane" id="tabs-profile-ex5">
-										<div>
-											D.N.I. : {dni}
-											<br />
-											Apellidos : {apellidos}
-											<br />
-											Nombres : {nombres}
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 
 						<div className="col-sm-12 mb-3 mt-3 d-flex justify-content-between">

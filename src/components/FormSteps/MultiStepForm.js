@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { IngresoBus } from "./IngresoBus";
 import { IngresoPaciente } from "./IngresoPaciente";
 import { SubmitTicket } from "./SubmitTicket";
-import { useFormHook } from "../../hooks/useFormHook";
 import { useStepHook } from "../../hooks/useStepHook";
 
 export const MultiStepForm = () => {
-	const { formData, setForm } = useFormHook();
 	const { step, navigation } = useStepHook();
-
-	const props = { formData, setForm, navigation };
+	const [imprimirBus, setImprimirBus] = useState({});
+	const [imprimirPaciente, setImprimirPaciente] = useState({});
+	const [statusBeta, setStatusBeta] = useState(2);
+	const props = {
+		imprimirBus,
+		setImprimirBus,
+		imprimirPaciente,
+		setImprimirPaciente,
+		navigation,
+		statusBeta,
+		setStatusBeta,
+	};
 
 	// eslint-disable-next-line default-case
 	switch (step.id) {

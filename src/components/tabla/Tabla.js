@@ -3,7 +3,7 @@ import { Excel } from "../../helpers/Excel";
 import { useSedes } from "../../hooks/useSedes";
 import { useServicios } from "../../hooks/useServicios";
 import { Fecha } from "../../helpers/Fecha";
-import { getJsDateFromExcel } from "excel-date-to-js";
+import LoaderBus from "./LoaderBus";
 /* import { helpHttp } from "../../helpers/helpHttp"; */
 import axios from "axios";
 
@@ -27,6 +27,7 @@ const initialLote = {
 	fecha_salida: "", // form.fecha_salida
 };
 
+let loading = false;
 let sedeLote = "";
 let servicioLote = "";
 let lote = {};
@@ -48,8 +49,6 @@ function Tabla() {
 	const { sedes } = useSedes();
 	const { servicios } = useServicios();
 	const [band, setBand] = useState(false);
-
-	/* const [loading, setLoading] = useState(false); */
 	/* const [enable, setEnable] = useState(false); */
 	const [file, setFile] = useState(false);
 	/* const [register, setRegister] = useState(false); */
@@ -118,50 +117,24 @@ function Tabla() {
 		const { data } = resp2;
 		const respuesta = data.Respuesta;
 
-		/* if (respuesta === "OK") {
-			
-		} */
+		if (respuesta === "OK") {
+			informacionInicial = {
+				...informacionInicial,
+				resultp2: "",
+				asistencia: "",
+			};
+			/* let body = Object.assign(datosJson, informacionInicial); */
+			let body = {};
+			console.log(body);
 
-		/* const { data } = resp; */
-
-		/* const resp2 = await axios.post(
-				"http://167.99.115.105/bdmarsa/tercera/lote/registrar",
-				lote
-			);
-	
-			const { data } = resp2;
-			const respuesta = data.Respuesta;
-	
-			if (respuesta === "OK") {
-			} */
-	};
-
-	const registrarInformacion = async () => {
-		informacionInicial = {
-			...informacionInicial,
-			resultp2: "",
-			asistencia: "",
-		};
-		/* let body = Object.assign(datosJson, informacionInicial); */
-		let body = {};
-		console.log(body);
-
-		datos.map(async (excel) => {
-			body = await Object.assign(excel, informacionInicial);
-			await axios.post(
-				"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
-				body
-			);
-		});
-
-		/* const datosExcel = await Promise.all(promises);
-		console.log(datosExcel); */
-
-		/* const resp = await axios.post(
-			"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
-			body
-		);
-		console.log(resp); */
+			datos.map(async (excel) => {
+				body = await Object.assign(excel, informacionInicial);
+				await axios.post(
+					"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
+					body
+				);
+			});
+		}
 	};
 
 	console.log(datos);
@@ -227,25 +200,25 @@ function Tabla() {
 							Validar Lote
 						</button>
 
-						{/* {file ? (
+						{file ? (
 							<>
 								<input className="col-3" type="file" onChange={importExcel} />
 							</>
 						) : (
 							""
-						)} */}
-						<input className="col-3" type="file" onChange={importExcel} />
+						)}
 					</div>
 				</div>
 
 				<div className="table-responsive">
-					<MaterialTable title="Marsa Data" data={datos} columns={colDefs} />
+					{loading ? (
+						<LoaderBus />
+					) : (
+						<MaterialTable title="Marsa Data" data={datos} columns={colDefs} />
+					)}
 				</div>
 				<button className="btn btn-success" onClick={registrarLote}>
 					Registrar
-				</button>
-				<button className="btn btn-success" onClick={registrarInformacion}>
-					Registrar2
 				</button>
 			</div>
 		</>

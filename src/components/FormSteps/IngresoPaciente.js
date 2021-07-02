@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import $ from "jquery";
+import { ImSearch } from "react-icons/im";
+import { Fecha } from "../../helpers/Fecha";
+import axios from "axios";
 
-export const IngresoPaciente = ({ formData, setForm, navigation }) => {
-	const { dni, apellidos, nombres } = formData;
+const initialBody = {
+	fecha_actual: Fecha().fechaHoy,
+	nro_documento: "",
+};
+
+let resultados = {};
+let imprimirPacienteTicket = {};
+
+export const IngresoPaciente = ({
+	imprimirPaciente,
+	setImprimirPaciente,
+	navigation,
+	statusBeta,
+}) => {
+	const [form, setForm] = useState(initialBody);
+	const [status, setStatus] = useState(2);
+
+	const handleInputChange = (e) => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value,
+		});
+	};
 
 	$(document).ready(function () {
 		$("form").keypress(function (e) {
@@ -12,6 +36,77 @@ export const IngresoPaciente = ({ formData, setForm, navigation }) => {
 		});
 	});
 
+	const importarPaciente = async (e) => {
+		e.preventDefault();
+
+		const resp = await axios.post(
+			"http://167.99.115.105/bdmarsa/tercera/ticket/SegundaVista",
+			form
+		);
+		console.log(resp);
+		const { data } = resp;
+
+		console.log(data);
+
+		if (data.length === 3) {
+			console.log("tamaño 3");
+			setStatus(3);
+			for (let index = 0; index <= 2; index++) {
+				if (index === 0) {
+					const { dni, resultado, sintomatologia, fecha_examen } = data[0];
+					resultados = {
+						...form,
+						dni: dni,
+						resultado2: resultado,
+						sintomatologia2: sintomatologia,
+						fecha_examen2: fecha_examen,
+					};
+				}
+				if (data[1] === null) {
+					resultados = {
+						...resultados,
+					};
+				} else {
+					const { resultado, sintomatologia, fecha_examen } = data[1];
+					resultados = {
+						...resultados,
+						resultado: resultado,
+						sintomatologia: sintomatologia,
+						fecha_examen: fecha_examen,
+					};
+				}
+				if (index === 2) {
+					const { clinica } = data[2];
+					resultados = {
+						...resultados,
+						clinica: clinica,
+					};
+				}
+			}
+			setForm(resultados);
+			setImprimirPaciente(resultados);
+		} else if (data.length === 2) {
+			console.log("tamaño 2");
+			setStatus(2);
+			const { dni, resultado, sintomatologia, fecha_examen } = data[0];
+			resultados = {
+				...form,
+				dni: dni,
+				resultado: resultado,
+				sintomatologia: sintomatologia,
+				fecha_examen: fecha_examen,
+			};
+			const { clinica } = data[1];
+			resultados = {
+				...resultados,
+				clinica: clinica,
+			};
+			setForm(resultados);
+			setImprimirPaciente(resultados);
+		}
+	};
+
+	console.log(form);
 	return (
 		<>
 			<div className="container-tight py-2">
@@ -30,36 +125,93 @@ export const IngresoPaciente = ({ formData, setForm, navigation }) => {
 									<input
 										type="number"
 										className="form-control"
-										autocomplete="off"
 										placeholder="Ingrese D.N.I."
 										style={{ textTransform: "uppercase" }}
-										value={dni}
-										onChange={setForm}
-										name="dni"
+										value={form.nro_documento}
+										onChange={handleInputChange}
+										name="nro_documento"
 										autoFocus
 									/>
+									<button className="btn btn-dark" onClick={importarPaciente}>
+										<ImSearch />
+									</button>
 								</div>
-								<div className="mb-3">
-									<label className="form-label">Apellidos</label>
-									<input
-										type="text"
-										className="form-control"
-										name="apellidos"
-										placeholder={apellidos}
-										value={apellidos}
-										disabled="true"
-									/>
-								</div>
-								<div className="mb-3">
-									<label className="form-label">Nombres</label>
-									<input
-										type="text"
-										className="form-control"
-										name="nombres"
-										placeholder={nombres}
-										value={nombres}
-										disabled="true"
-									/>
+								<div className="tab-pane active show" id="tabs-home-ex5">
+									{status === 2 ? (
+										<div>
+											D.N.I. : {form.dni ? form.dni : imprimirPaciente.dni}
+											<br />
+											RESULTADO :{" "}
+											{form.resultado
+												? form.resultado
+												: imprimirPaciente.resultado}
+											<br />
+											SINTOMATOLOGIA :{" "}
+											{form.sintomatologia
+												? form.sintomatologia
+												: imprimirPaciente.sintomatologia}
+											<br />
+											FECHA DE PRUEBA :{" "}
+											{form.fecha_examen
+												? form.fecha_examen
+												: imprimirPaciente.fecha_examen}
+											<br />
+											CLINICA :{" "}
+											{form.clinica ? form.clinica : imprimirPaciente.clinica}
+											<br />
+										</div>
+									) : (
+										(
+											status === 3 && (
+												<div>
+													D.N.I. : {form.dni ? form.dni : imprimirPaciente.dni}
+													<br />
+													<br />
+													RESULTADO P1 :{" "}
+													{form.resultado
+														? form.resultado
+														: imprimirPaciente.resultado}
+													<br />
+													SINTOMATOLOGIA :{" "}
+													{form.sintomatologia
+														? form.sintomatologia
+														: imprimirPaciente.sintomatologia}
+													<br />
+													FECHA DE PRUEBA :{" "}
+													{form.fecha_examen
+														? form.fecha_examen
+														: imprimirPaciente.fecha_examen}
+													<br />
+													CLINICA :{" "}
+													{form.clinica
+														? form.clinica
+														: imprimirPaciente.clinica}
+													<br />
+													<br />
+													RESULTADO P2 :{" "}
+													{form.resultado2
+														? form.resultado2
+														: imprimirPaciente.resultado2}
+													<br />
+													SINTOMATOLOGIA :{" "}
+													{form.sintomatologia2
+														? form.sintomatologia2
+														: imprimirPaciente.sintomatologia2}
+													<br />
+													FECHA DE PRUEBA :{" "}
+													{form.fecha_examen2
+														? form.fecha_examen2
+														: imprimirPaciente.fecha_examen2}
+													<br />
+													CLINICA :{" "}
+													{form.clinica
+														? form.clinica
+														: imprimirPaciente.clinica}
+													<br /> {""}
+												</div>
+											)
+										)()
+									)}
 								</div>
 								<div className="col-sm-12 mb-3 d-flex justify-content-between">
 									<button
