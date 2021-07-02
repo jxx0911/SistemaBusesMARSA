@@ -1,6 +1,9 @@
 import React from "react";
+import { Inmune } from "./Inmune";
+import { P2 } from "./P2";
 
-export const SubmitTicket = ({ navigation }) => {
+export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
+	console.log(imprimirPaciente);
 	return (
 		<>
 			<div className="container-tight py-2">
@@ -13,26 +16,13 @@ export const SubmitTicket = ({ navigation }) => {
 					</div>
 					<div className="card-body">
 						<div className="card">
-							<ul className="nav nav-tabs nav-fill" data-bs-toggle="tabs">
-								<li className="nav-item">
-									<button
-										href="#tabs-home-ex5"
-										className="nav-link active"
-										data-bs-toggle="tab"
-									>
-										Bus
-									</button>
-								</li>
-								<li className="nav-item">
-									<button
-										href="#tabs-profile-ex5"
-										className="nav-link"
-										data-bs-toggle="tab"
-									>
-										Paciente
-									</button>
-								</li>
-							</ul>
+							{imprimirPaciente.status === "INMUNE" ? (
+								<Inmune paciente={imprimirPaciente} bus={imprimirBus} />
+							) : (
+								imprimirPaciente.status === "P2" && (
+									<P2 paciente={imprimirPaciente} bus={imprimirBus} />
+								)
+							)}
 						</div>
 
 						<div className="col-sm-12 mb-3 mt-3 d-flex justify-content-between">

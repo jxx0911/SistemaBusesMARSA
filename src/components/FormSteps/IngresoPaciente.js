@@ -67,10 +67,11 @@ export const IngresoPaciente = ({
 				};
 			}
 
-			const { clinica, clave } = data[2];
+			const { clinica, status, clave } = data[2];
 			resultados = {
 				...resultados,
 				clinica: clinica,
+				status: status,
 				clave: clave,
 			};
 			setForm(resultados);
@@ -84,10 +85,11 @@ export const IngresoPaciente = ({
 				sintomatologia: sintomatologia,
 				fecha_examen: fecha_examen,
 			};
-			const { clinica, clave } = data[1];
+			const { clinica, status, clave } = data[1];
 			resultados = {
 				...resultados,
 				clinica: clinica,
+				status: status,
 				clave: clave,
 			};
 			setForm(resultados);
