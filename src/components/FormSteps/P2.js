@@ -6,7 +6,7 @@ export const P2 = ({ paciente, bus }) => {
 		ventana.document.write("<html><><title>" + document.title + "</title>");
 		ventana.document.write('<link rel="stylesheet" href="style.css">');
 		ventana.document.write(
-			"<style>@page{margin: 0;}body{ font-family: Lucida Sans Typewriter; }.size18{font-size: 18px;font-weight: bold;text-align:center;}.size14{font-size: 14px;text-align:center;}.size14izq{font-size: 14px;font-weight: bold;}.size14der{font-size: 14px;text-align:right;}.centrar{text-align:center;}</style>"
+			"<style>*{margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}@page{margin: 0;}body{ font-family: Lucida Sans Typewriter; }.size18{font-size: 18px;font-weight: bold;text-align:center;}.size14{font-size: 14px;text-align:center;}.size14izq{font-size: 14px;font-weight: bold;}.size14der{font-size: 14px;text-align:right;}.centrar{text-align:center;}</style>"
 		);
 		ventana.document.write("</head><body >");
 		ventana.document.write(elemento.innerHTML);
@@ -51,11 +51,9 @@ export const P2 = ({ paciente, bus }) => {
 				<p className="size18">CONTROL DE SALIDA</p>
 				<p className="size14">Minera Aurífera Retamas S.A.</p>
 				<p className="size14">20132367800</p>
-				<br />
 				<p className="centrar">--------------------------------------</p>
 				<p className="size18">{paciente.status}</p>
 				<p className="centrar">--------------------------------------</p>
-				<br />
 				<p className="size14izq">
 					Dni:<span>{paciente.dni}</span>
 				</p>
@@ -63,7 +61,6 @@ export const P2 = ({ paciente, bus }) => {
 				<p className="size14izq">Fecha Prueba: {paciente.fecha_examen}</p>
 				<p className="size14izq">Sintomatología: {paciente.sintomatologia}</p>
 				<p className="size14izq">Clinica: {paciente.clinica}</p>
-				<br />
 				<br />
 				<p className="size14izq">Resultado P2: {paciente.resultado}</p>
 				<p className="size14izq">Fecha Prueba: {paciente.fecha_examen2}</p>
@@ -79,11 +76,9 @@ export const P2 = ({ paciente, bus }) => {
 					EMPRESA:<span>{bus.empresa}</span>
 				</p>
 				<br />
-				<br />
 				<p className="centrar">--------------------------------------</p>
 				<p className="centrar">{bus.mensaje}</p>
 				<p className="centrar">--------------------------------------</p>
-				<br />
 			</div>
 			<button onClick={imprimir} className="btn btn-success">
 				Imprimir
