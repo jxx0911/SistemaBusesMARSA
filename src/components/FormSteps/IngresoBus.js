@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import $ from "jquery";
 import { ImSearch } from "react-icons/im";
+import { useBus } from "../../hooks/useBus";
 import axios from "axios";
 
 const initialBody = {
@@ -11,6 +12,7 @@ let imprimirBusTicket = {};
 
 export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 	const [form, setForm] = useState(initialBody);
+	const { buses } = useBus();
 	const handleInputChange = (e) => {
 		setForm({
 			...form,
@@ -69,8 +71,13 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 										value={form.placa}
 										onChange={handleInputChange}
 										name="placa"
-										autoFocus
+										list="placas"
 									/>
+									<datalist id="placas">
+										{buses.map((valor, index) => (
+											<option key={index} value={valor.placa}></option>
+										))}
+									</datalist>
 									<button className="btn btn-dark" onClick={importarBus}>
 										<ImSearch />
 									</button>

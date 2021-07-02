@@ -4,22 +4,19 @@ import { P2 } from "./P2";
 
 export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
 	const div = useRef(null);
-	const imprimir = () => {
-		console.log(div.current);
-	};
 
 	return (
 		<>
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">
-						<h1 className>SELECCION DE BUS</h1>
+						<h1>IMPRIMIR TICKET</h1>
 						<p className="text-muted">
 							lorem ipsum dolor sit amet, consectetur adip
 						</p>
 					</div>
 					<div className="card-body">
-						<div className="card" ref={div}>
+						<div className="card">
 							{imprimirPaciente.status === "INMUNE" ? (
 								<Inmune paciente={imprimirPaciente} bus={imprimirBus} />
 							) : (
@@ -36,12 +33,6 @@ export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
 							>
 								Atras
 							</button>
-							{/* <button
-							className="btn btn-primary"
-							onClick={() => navigation.next()}
-						>
-							Siguiente
-						</button> */}
 						</div>
 					</div>
 				</div>
