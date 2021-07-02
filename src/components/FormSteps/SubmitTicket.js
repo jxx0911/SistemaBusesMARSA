@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Inmune } from "./Inmune";
 import { P2 } from "./P2";
 
 export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
-	console.log(imprimirPaciente);
+	const div = useRef(null);
+	const imprimir = () => {
+		console.log(div.current);
+	};
+
 	return (
 		<>
 			<div className="container-tight py-2">
@@ -15,7 +19,7 @@ export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
 						</p>
 					</div>
 					<div className="card-body">
-						<div className="card">
+						<div className="card" ref={div}>
 							{imprimirPaciente.status === "INMUNE" ? (
 								<Inmune paciente={imprimirPaciente} bus={imprimirBus} />
 							) : (
@@ -38,7 +42,6 @@ export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
 						>
 							Siguiente
 						</button> */}
-							<button className="btn btn-success">Imprimir</button>
 						</div>
 					</div>
 				</div>
