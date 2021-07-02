@@ -11,7 +11,6 @@ let imprimirBusTicket = {};
 
 export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 	const [form, setForm] = useState(initialBody);
-	console.log(imprimirBus);
 	const handleInputChange = (e) => {
 		setForm({
 			...form,
@@ -29,7 +28,6 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 
 	const importarBus = async (e) => {
 		e.preventDefault();
-		console.log(form);
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/primeraVista",
 			form
@@ -47,8 +45,6 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 		setForm(imprimirBusTicket);
 		setImprimirBus(imprimirBusTicket);
 	};
-
-	console.log(form);
 
 	return (
 		<>
@@ -84,7 +80,11 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 										Placa : {form.placa ? form.placa : imprimirBus.placa}
 										<br />
 										Aforo :{" "}
-										{form.aforo ? `${form.aforo}%` : `${imprimirBus.aforo}%`}
+										{form.aforo
+											? `${form.aforo}%`
+											: imprimirBus.aforo
+											? `${imprimirBus.aforo}%`
+											: ""}
 										<br />
 										Empresa :{" "}
 										{form.empresa ? form.empresa : imprimirBus.empresa}

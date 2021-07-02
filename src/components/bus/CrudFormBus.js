@@ -5,6 +5,7 @@ const initialForm = {
 	placa: "",
 	empresa: "",
 	capacidad: "",
+	chofer: "",
 };
 
 const CrudFormBus = ({
@@ -35,7 +36,7 @@ const CrudFormBus = ({
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (!form.placa || !form.empresa || !form.capacidad) {
+		if (!form.placa || !form.empresa || !form.capacidad || form.chofer) {
 			alert("Datos incompletos");
 			return;
 		}
@@ -44,12 +45,6 @@ const CrudFormBus = ({
 		let found = data.some((item) => item.placa === form.placa);
 
 		found ? updateData(form) : createData(form);
-
-		/* if (form.ruc === null) {
-			createData(form);
-		} else {
-			updateData(form);
-		} */
 
 		handleReset();
 	};
@@ -91,9 +86,16 @@ const CrudFormBus = ({
 				<input
 					type="number"
 					name="capacidad"
-					placeholder="capacidad"
+					placeholder="Capacidad"
 					onChange={handleChange}
 					value={form.capacidad}
+				/>
+				<input
+					type="text"
+					name="chofer"
+					placeholder="Conductor"
+					onChange={handleChange}
+					value={form.chofer}
 				/>
 				<input type="submit" value="Enviar" />
 				<input type="reset" value="Limpiar" onClick={handleReset} />

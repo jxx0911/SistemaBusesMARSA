@@ -44,7 +44,6 @@ export const IngresoPaciente = ({
 		const { data } = resp;
 
 		if (data.length === 3) {
-			console.log("aca 1");
 			const { dni, resultado, sintomatologia, fecha_examen } = data[0];
 			resultados = {
 				...form,
@@ -74,7 +73,6 @@ export const IngresoPaciente = ({
 				clinica: clinica,
 				clave: clave,
 			};
-			console.log("aca 2");
 			setForm(resultados);
 			setImprimirPaciente(resultados);
 		} else if (data.length === 2) {
