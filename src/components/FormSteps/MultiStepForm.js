@@ -8,15 +8,13 @@ export const MultiStepForm = () => {
 	const { step, navigation } = useStepHook();
 	const [imprimirBus, setImprimirBus] = useState({});
 	const [imprimirPaciente, setImprimirPaciente] = useState({});
-	const [statusBeta, setStatusBeta] = useState(2);
+	/* 	const [statusBeta, setStatusBeta] = useState(2); */
 	const props = {
 		imprimirBus,
 		setImprimirBus,
 		imprimirPaciente,
 		setImprimirPaciente,
 		navigation,
-		statusBeta,
-		setStatusBeta,
 	};
 
 	// eslint-disable-next-line default-case
