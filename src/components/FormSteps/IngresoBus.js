@@ -102,6 +102,12 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 								</div>
 								<div className="col-6 col-sm-4  mb-3 float-end">
 									<button
+										className="btn btn-dark"
+										onClick={() => navigation.previous()}
+									>
+										Atras
+									</button>
+									<button
 										className="btn btn-primary w-100"
 										onClick={() => {
 											navigation.next();

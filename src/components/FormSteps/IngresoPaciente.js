@@ -118,21 +118,25 @@ export const IngresoPaciente = ({
 						<form>
 							<fieldset className="form-fieldset">
 								<div className="mb-3">
-									<label className="form-label required">D.N.I.</label>
-									<input
-										type="number"
-										className="form-control"
-										placeholder="Ingrese D.N.I."
-										style={{ textTransform: "uppercase" }}
-										value={form.nro_documento}
-										onChange={handleInputChange}
-										name="nro_documento"
-										autoFocus
-										/* onKeyPress={handleKeyPress} */
-									/>
-									<button className="btn btn-dark" onClick={importarPaciente}>
-										<ImSearch />
-									</button>
+									<div className="d-flex flex-row">
+										<input
+											type="number"
+											className="form-control"
+											placeholder="Ingrese D.N.I."
+											style={{ textTransform: "uppercase" }}
+											value={form.nro_documento}
+											onChange={handleInputChange}
+											name="nro_documento"
+											autoFocus
+											/* onKeyPress={handleKeyPress} */
+										/>
+										<button
+											className="btn btn-dark m-2"
+											onClick={importarPaciente}
+										>
+											<ImSearch />
+										</button>
+									</div>
 								</div>
 								<div className="tab-pane active show" id="tabs-home-ex5">
 									<div>
@@ -178,15 +182,9 @@ export const IngresoPaciente = ({
 										<br /> {""}
 									</div>
 								</div>
-								<div className="col-sm-12 mb-3 d-flex justify-content-between">
+								<div>
 									<button
-										className="btn btn-dark"
-										onClick={() => navigation.previous()}
-									>
-										Atras
-									</button>
-									<button
-										className="btn btn-primary"
+										className="btn btn-primary mt-3 float-end"
 										onClick={() => navigation.next()}
 									>
 										Siguiente

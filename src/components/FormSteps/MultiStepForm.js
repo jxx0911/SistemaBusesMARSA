@@ -20,9 +20,9 @@ export const MultiStepForm = () => {
 	// eslint-disable-next-line default-case
 	switch (step.id) {
 		case "names":
-			return <IngresoBus {...props} />;
-		case "address":
 			return <IngresoPaciente {...props} />;
+		case "address":
+			return <IngresoBus {...props} />;
 		case "contact":
 			return <SubmitTicket {...props} />;
 	}
