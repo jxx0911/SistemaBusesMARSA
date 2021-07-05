@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home } from "./components/home/Home";
 import Tabla from "./components/tabla/Tabla";
@@ -12,7 +11,10 @@ import { Config } from "./components/config/Config";
 import { useFormHook } from "./hooks/useFormHook";
 import { useStepHook } from "./hooks/useStepHook";
 import HistorialEditar from "./components/historial/HistorialEditar";
+import { Manifiesto } from "./components/manifiesto/Manifiesto";
 import Navbar from "./components/navbar/Navbar";
+
+import "./App.css";
 
 function MainWindow() {
 	const { formData, setForm } = useFormHook();
@@ -53,6 +55,10 @@ function MainWindow() {
 						<Navbar />
 						<HistorialEditar />
 					</Route>
+					<Router path="/manifiesto" exact>
+						<Navbar />
+						<Manifiesto />
+					</Router>
 					<Route path="/config" exact>
 						<Navbar />
 						<Config {...props} />

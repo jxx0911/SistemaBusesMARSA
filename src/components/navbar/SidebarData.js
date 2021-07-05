@@ -48,6 +48,12 @@ export const SidebarData = [
 		cName: "nav-text",
 	},
 	{
+		title: "Manifiesto",
+		path: "/manifiesto",
+		icon: <ImIcons.ImPrinter />,
+		cName: "nav-text",
+	},
+	{
 		title: "Configuracion",
 		path: "/config",
 		icon: <IoSettings />,
