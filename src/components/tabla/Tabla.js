@@ -154,7 +154,7 @@ function Tabla() {
 
 	return (
 		<>
-			<div className="App">
+			<div className="App container">
 				<h1 align="center">TABLE IMPORT</h1>
 				{/* <h4 align="center">Descripcion</h4> */}
 				<div className="container">
@@ -194,19 +194,19 @@ function Tabla() {
 					</div>
 					{/* Input para fecha */}
 					<div>
-						<div>
-							<label className="form-label">FECHA DE SALIDA</label>
-							<input
-								type="date"
-								className="form-control"
-								name="fecha_salida"
-								placeholder="Input placeholder"
-								onChange={handleInputChange}
-								value={form.fecha_salida}
-							/>
-						</div>
+						<label className="form-label">FECHA DE SALIDA</label>
+						<input
+							type="date"
+							className="form-control"
+							name="fecha_salida"
+							placeholder="Input placeholder"
+							onChange={handleInputChange}
+							value={form.fecha_salida}
+						/>
+					</div>
+					<div className="container d-flex flex-column flex-lg-row">
 						<button
-							className="btn btn-dark"
+							className="btn btn-dark m-3"
 							onClick={validarLote}
 							disabled={file ? "disabled" : ""}
 						>
@@ -214,9 +214,11 @@ function Tabla() {
 						</button>
 
 						{file ? (
-							<>
-								<input className="col-3" type="file" onChange={importExcel} />
-							</>
+							<input
+								className="form-input m-3"
+								type="file"
+								onChange={importExcel}
+							/>
 						) : (
 							""
 						)}
@@ -226,7 +228,10 @@ function Tabla() {
 				<div className="table-responsive">
 					<MaterialTable title="Marsa Data" data={datos} columns={colDefs} />
 				</div>
-				<button className="btn btn-success" onClick={registrarLote}>
+				<button
+					className="btn btn-success float-end mb-3"
+					onClick={registrarLote}
+				>
 					Registrar
 				</button>
 			</div>
