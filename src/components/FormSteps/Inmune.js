@@ -55,20 +55,20 @@ export const Inmune = ({ paciente, bus }) => {
 				<p className="centrar">--------------------------------------</p>
 				<p className="size18">{paciente.status}</p>
 				<p className="centrar">--------------------------------------</p>
-				<p className="size14izq">
-					Dni: <span>{paciente.dni}</span>
-				</p>
+				<p className="size14izq">Dni: {paciente.dni}</p>
 				<p className="size14izq">Resultado P1: {paciente.resultado}</p>
-				<p className="size14izq">Fecha Prueba: {paciente.fecha_examen}</p>
+				<p className="size14izq">
+					Fecha Prueba: {paciente.fecha_examen.slice(0, 10)}
+				</p>
 				<p className="size14izq">Sintomatología: {paciente.sintomatologia}</p>
 				<p className="size14izq">Clinica: {paciente.clinica}</p>
 				<p className="centrar">--------------------------------------</p>
 				<p className="size18">INFORMACION BUS</p>
 				<p className="centrar">--------------------------------------</p>
 				<p className="size14izq">
-					PLACA:<span>{bus.placa}</span>
+					PLACA: {bus.placa}
 					<br />
-					EMPRESA:<span>{bus.empresa}</span>
+					EMPRESA: {bus.empresa}
 				</p>
 				<p className="centrar">--------------------------------------</p>
 				<p className="centrar">{bus.mensaje}</p>

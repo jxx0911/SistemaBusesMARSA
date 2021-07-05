@@ -1,19 +1,14 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Inmune } from "./Inmune";
 import { P2 } from "./P2";
 
 export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
-	const div = useRef(null);
-
 	return (
 		<>
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">
-						<h1>IMPRIMIR TICKET</h1>
-						<p className="text-muted">
-							lorem ipsum dolor sit amet, consectetur adip
-						</p>
+						<h2>IMPRIMIR TICKET</h2>
 					</div>
 					<div className="card-body">
 						<div className="card">
