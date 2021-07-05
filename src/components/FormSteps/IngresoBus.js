@@ -20,14 +20,6 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 		});
 	};
 
-	$(document).ready(function () {
-		$("form").keypress(function (e) {
-			if (e.which === 13) {
-				return false;
-			}
-		});
-	});
-
 	const importarBus = async (e) => {
 		e.preventDefault();
 		const resp = await axios.post(
@@ -53,16 +45,12 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">
-						<h1 className>SELECCION DE BUS</h1>
-						<p className="text-muted">
-							lorem ipsum dolor sit amet, consectetur adip
-						</p>
+						<h2 className>SELECCION DE BUS</h2>
 					</div>
 					<div className="card-body">
 						<form>
 							<fieldset className="form-fieldset">
-								<div className="mb-3">
-									<label className="form-label required">Bus</label>
+								<div className="mb-3 d-flex flex-row">
 									<input
 										type="text"
 										className="form-control inputBus"
@@ -78,7 +66,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 											<option key={index} value={valor.placa}></option>
 										))}
 									</datalist>
-									<button className="btn btn-dark" onClick={importarBus}>
+									<button className="btn btn-dark m-2" onClick={importarBus}>
 										<ImSearch />
 									</button>
 								</div>
@@ -100,7 +88,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 										{form.capacidad ? form.capacidad : imprimirBus.capacidad}
 									</div>
 								</div>
-								<div className="col-6 col-sm-4  mb-3 float-end">
+								<div className="m-3 d-flex flex-row justify-content-between">
 									<button
 										className="btn btn-dark"
 										onClick={() => navigation.previous()}
@@ -108,16 +96,13 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 										Atras
 									</button>
 									<button
-										className="btn btn-primary w-100"
+										className="btn btn-primary"
 										onClick={() => {
 											navigation.next();
 										}}
 									>
 										Siguiente
 									</button>
-									{/* <button href="#" class="btn btn-primary disabled w-100">
-									Primary
-								</button> */}
 								</div>
 							</fieldset>
 						</form>

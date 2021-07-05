@@ -112,7 +112,7 @@ export const IngresoPaciente = ({
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">
-						<h1 className>DATOS DE PACIENTE</h1>
+						<h2 className>DATOS DE PACIENTE</h2>
 					</div>
 					<div className="card-body">
 						<form>
