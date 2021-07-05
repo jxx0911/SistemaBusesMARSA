@@ -27,14 +27,6 @@ export const IngresoPaciente = ({
 		});
 	};
 
-	$(document).ready(function () {
-		$("form").keypress(function (e) {
-			if (e.which === 13) {
-				return false;
-			}
-		});
-	});
-
 	const importarPaciente = async (e) => {
 		e.preventDefault();
 
@@ -45,16 +37,24 @@ export const IngresoPaciente = ({
 		);
 
 		const { data } = resp;
+		console.log(data);
 
 		if (data.length === 3) {
-			const { dni, resultado, sintomatologia, fecha_examen } = data[0];
-			resultados = {
-				...form,
-				dni: dni,
-				resultado2: resultado,
-				sintomatologia2: sintomatologia,
-				fecha_examen2: fecha_examen,
-			};
+			if (data[0] === null) {
+				resultados = {
+					...resultados,
+				};
+			} else {
+				const { dni, resultado, sintomatologia, fecha_examen } = data[0];
+
+				resultados = {
+					...form,
+					dni: dni,
+					resultado2: resultado,
+					sintomatologia2: sintomatologia,
+					fecha_examen2: fecha_examen,
+				};
+			}
 
 			if (data[1] === null) {
 				resultados = {
@@ -100,15 +100,19 @@ export const IngresoPaciente = ({
 		}
 	};
 
+	/* const handleKeyPress = (e) => {
+		e.preventDefault();
+		if (e.key === "Enter") {
+			console.log("Enter");
+		}
+	}; */
+
 	return (
 		<>
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">
 						<h1 className>DATOS DE PACIENTE</h1>
-						<p className="text-muted">
-							lorem ipsum dolor sit amet, consectetur adip
-						</p>
 					</div>
 					<div className="card-body">
 						<form>
@@ -124,6 +128,7 @@ export const IngresoPaciente = ({
 										onChange={handleInputChange}
 										name="nro_documento"
 										autoFocus
+										/* onKeyPress={handleKeyPress} */
 									/>
 									<button className="btn btn-dark" onClick={importarPaciente}>
 										<ImSearch />
