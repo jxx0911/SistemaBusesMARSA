@@ -85,24 +85,6 @@ const CrudFormBus = ({
 							</option>
 						))}
 					</datalist>
-					{/* <select
-					name="empresa"
-					className="form-select"
-					value={form.empresa}
-					onChange={handleChange}
-				>
-					{empresasBus.map((item, index) =>
-						item.nombre_empresa !== form.empresa ? (
-							<option key={index} value={form.empresa}>
-								{item.nombre_empresa}
-							</option>
-						) : (
-							<option key={index} value={form.empresa}>
-								{item.nombre_empresa}
-							</option>
-						)
-					)}
-				</select> */}
 					<input
 						className="form-control mb-3"
 						type="number"
