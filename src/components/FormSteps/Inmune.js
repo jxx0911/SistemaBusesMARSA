@@ -49,7 +49,7 @@ export const Inmune = ({ paciente, bus }) => {
 	return (
 		<div>
 			<div id="imprimible">
-				<p className="size18">CONTROL DE SALIDA</p>
+				<p className="size18 ">CONTROL DE SALIDA</p>
 				<p className="size14">Minera Aurífera Retamas S.A.</p>
 				<p className="size14">20132367800</p>
 				<p className="centrar">--------------------------------------</p>
