@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useConfig } from "../../hooks/useConfig";
 import { useForm } from "react-hook-form";
+import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
 
 const date = new Date();
-const dia = date.toLocaleDateString("en-US");
 
 export const Config = () => {
 	const { mensaje, aforo } = useConfig();
@@ -12,7 +12,6 @@ export const Config = () => {
 	const [edit, setEdit] = useState(true);
 	const [datosConfig, setDatosConfig] = useState({
 		aforo: "",
-		date: date.toLocaleDateString(),
 		mensaje: "",
 	});
 
@@ -29,12 +28,19 @@ export const Config = () => {
 		});
 	};
 
+	console.log(datosConfig);
+
 	const onSubmit = (data) => {
-		console.log(data);
+		let newData = {
+			...data,
+			fecha: Fecha().fechaHoy,
+		};
+		console.log(newData);
 		axios
-			.post("http://167.99.115.105/bd/configuracion/insertar", data)
+			.post("http://167.99.115.105/bd/configuracion/insertar", newData)
 			.then((response) => {
 				console.log(response);
+				setEdit(!edit);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -46,10 +52,7 @@ export const Config = () => {
 			<div className="container-tight py-4">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">
-						<h1>CONFIGURACION</h1>
-						<p className="text-muted">
-							lorem ipsum dolor sit amet, consectetur adip
-						</p>
+						<h2>CONFIGURACION</h2>
 					</div>
 					<div className="card-body">
 						<form onSubmit={handleSubmit(onSubmit)}>
@@ -63,7 +66,8 @@ export const Config = () => {
 											name="aforo"
 											placeholder={aforo}
 											value={aforo}
-											disabled={edit}
+											onChange={handleInputChange}
+											readOnly
 										/>
 									) : (
 										<input
@@ -71,7 +75,6 @@ export const Config = () => {
 											className="form-control"
 											name="aforo"
 											placeholder={"Ingresa Aforo"}
-											disabled={edit}
 											onChange={handleInputChange}
 											{...register("aforo", {
 												required: true,
@@ -88,8 +91,9 @@ export const Config = () => {
 											name="mensaje"
 											placeholder={mensaje}
 											value={mensaje}
+											onChange={handleInputChange}
 											maxLength="100"
-											disabled={edit}
+											readOnly
 										/>
 									) : (
 										<textarea
@@ -97,7 +101,6 @@ export const Config = () => {
 											name="mensaje"
 											placeholder={mensaje}
 											maxLength="100"
-											disabled={edit}
 											onChange={handleInputChange}
 											{...register("mensaje", {
 												required: true,
@@ -106,19 +109,7 @@ export const Config = () => {
 									)}
 									<div id="contador">0/50</div>
 								</div>
-								<div className="mb-3">
-									<label className="form-label">Fecha</label>
-									<input
-										type="text"
-										className="form-control"
-										name="fecha"
-										placeholder={dia}
-										value={dia}
-										{...register("fecha", {
-											required: true,
-										})}
-									/>
-								</div>
+
 								<div className="col-sm-12 mb-3 d-flex justify-content-between">
 									<button
 										type="reset"

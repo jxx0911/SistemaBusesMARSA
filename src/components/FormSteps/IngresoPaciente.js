@@ -115,8 +115,7 @@ export const IngresoPaciente = ({
 										<input
 											type="number"
 											className="form-control"
-											placeholder="Ingrese D.N."
-											style={{ textTransform: "uppercase" }}
+											placeholder="Ingrese D.N.I."
 											value={form.nro_documento}
 											onChange={handleInputChange}
 											name="nro_documento"

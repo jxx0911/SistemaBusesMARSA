@@ -2,7 +2,13 @@ import React from "react";
 import { Inmune } from "./Inmune";
 import { P2 } from "./P2";
 
-export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
+export const SubmitTicket = ({
+	imprimirBus,
+	imprimirPaciente,
+	setImprimirBus,
+	setImprimirPaciente,
+	navigation,
+}) => {
 	return (
 		<>
 			<div className="container-tight py-2">
@@ -33,6 +39,8 @@ export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
 							<button
 								className="btn btn-primary"
 								onClick={() => {
+									setImprimirBus({});
+									setImprimirPaciente({});
 									navigation.go(0);
 								}}
 							>
