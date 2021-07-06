@@ -1,6 +1,6 @@
 import { useStep } from "react-hooks-helper";
 
-const steps = [{ id: "names" }, { id: "address" }, { id: "contact" }];
+const steps = [{ id: "bus" }, { id: "paciente" }, { id: "submit" }];
 
 export const useStepHook = () => {
 	const { step, navigation } = useStep({

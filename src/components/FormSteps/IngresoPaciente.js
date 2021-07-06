@@ -100,19 +100,12 @@ export const IngresoPaciente = ({
 		}
 	};
 
-	/* const handleKeyPress = (e) => {
-		e.preventDefault();
-		if (e.key === "Enter") {
-			console.log("Enter");
-		}
-	}; */
-
 	return (
 		<>
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">
-						<h2 className>DATOS DE PACIENTE</h2>
+						<h2>DATOS DE PACIENTE</h2>
 					</div>
 					<div className="card-body">
 						<form>
@@ -122,12 +115,11 @@ export const IngresoPaciente = ({
 										<input
 											type="number"
 											className="form-control"
-											placeholder="Ingrese D.N.I."
+											placeholder="Ingrese D.N."
 											style={{ textTransform: "uppercase" }}
 											value={form.nro_documento}
 											onChange={handleInputChange}
 											name="nro_documento"
-											autoFocus
 											/* onKeyPress={handleKeyPress} */
 										/>
 										<button

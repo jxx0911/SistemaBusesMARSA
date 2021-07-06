@@ -21,12 +21,22 @@ export const SubmitTicket = ({ imprimirBus, imprimirPaciente, navigation }) => {
 							)}
 						</div>
 
-						<div className="col-sm-12 mb-3 mt-3 d-flex justify-content-between">
+						<div className="mt-3 d-flex justify-content-between">
 							<button
 								className="btn btn-dark"
-								onClick={() => navigation.previous()}
+								onClick={() => {
+									navigation.previous();
+								}}
 							>
 								Atras
+							</button>
+							<button
+								className="btn btn-primary"
+								onClick={() => {
+									navigation.go(0);
+								}}
+							>
+								Reset
 							</button>
 						</div>
 					</div>

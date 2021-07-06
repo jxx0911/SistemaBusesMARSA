@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import $ from "jquery";
 import { ImSearch } from "react-icons/im";
 import { useBus } from "../../hooks/useBus";
 import axios from "axios";
@@ -27,17 +26,25 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 			form
 		);
 		const { data } = resp;
-		const { empresa, capacidad } = data[0];
-		const { mensaje, aforo } = data[1];
-		imprimirBusTicket = {
-			...form,
-			empresa: empresa,
-			mensaje: mensaje,
-			aforo: aforo,
-			capacidad: (aforo * capacidad) / 100,
-		};
-		setForm(imprimirBusTicket);
-		setImprimirBus(imprimirBusTicket);
+		if (data[0] === null) {
+			imprimirBusTicket = {
+				...imprimirBusTicket,
+			};
+			setForm(imprimirBusTicket);
+			setImprimirBus(imprimirBusTicket);
+		} else {
+			const { empresa, capacidad } = data[0];
+			const { mensaje, aforo } = data[1];
+			imprimirBusTicket = {
+				...form,
+				empresa: empresa,
+				mensaje: mensaje,
+				aforo: aforo,
+				capacidad: (aforo * capacidad) / 100,
+			};
+			setForm(imprimirBusTicket);
+			setImprimirBus(imprimirBusTicket);
+		}
 	};
 
 	return (
@@ -45,7 +52,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 			<div className="container-tight py-2">
 				<div className="card card-md">
 					<div className="card-body text-center py-4 p-sm-5">
-						<h2 className>SELECCION DE BUS</h2>
+						<h2>SELECCION DE BUS</h2>
 					</div>
 					<div className="card-body">
 						<form>
@@ -70,7 +77,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 										<ImSearch />
 									</button>
 								</div>
-								<div className="tab-pane active show" id="tabs-home-ex5">
+								<div>
 									<div>
 										Placa : {form.placa ? form.placa : imprimirBus.placa}
 										<br />
@@ -88,7 +95,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 										{form.capacidad ? form.capacidad : imprimirBus.capacidad}
 									</div>
 								</div>
-								<div className="m-3 d-flex flex-row justify-content-between">
+								<div className="m-3 d-flex justify-content-between">
 									<button
 										className="btn btn-dark"
 										onClick={() => navigation.previous()}
