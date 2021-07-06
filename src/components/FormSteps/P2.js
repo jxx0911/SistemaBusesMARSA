@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 let form = {};
 let time = new Date();
+let body = {};
 
 export const P2 = ({ paciente, bus }) => {
 	function imprimirElemento(elemento) {
 		let ventana = window.open("", "PRINT", "height=400,width=600");
-		ventana.document.write("<html><><title>" + document.title + "</title>");
+		ventana.document.write("<html><><title>Marsa Bus</title>");
 		ventana.document.write('<link rel="stylesheet" href="style.css">');
 		ventana.document.write(
 			"<style>*{margin: 0;padding: 0;border: 0;}@page{margin: 0;}body{ font-family: Lucida Sans Typewriter; }.size18{font-size: 18px;font-weight: bold;text-align:center;}.size14{font-size: 14px;text-align:center;}.size14izq{font-size: 14px;font-weight: bold;}.size14der{font-size: 14px;text-align:right;}.centrar{text-align:center;}</style>"
@@ -24,7 +25,23 @@ export const P2 = ({ paciente, bus }) => {
 		return true;
 	}
 
-	const registroManifiesto = async (e) => {
+	const [cantidad, setCantidad] = useState();
+
+	body = {
+		fecha_act: "2021-07-01",
+		placa: bus.placa,
+	};
+	axios
+		.post(
+			"http://192.168.68.133:3003/bdmarsa/tercera/cantidadBus/mostrar",
+			body
+		)
+		.then((response) => {
+			const { data } = response;
+			setCantidad(data.cantidad);
+		});
+
+	const imprimir = async (e) => {
 		e.preventDefault();
 		form = {
 			clave: paciente.clave,
@@ -39,9 +56,6 @@ export const P2 = ({ paciente, bus }) => {
 			form
 		);
 		console.log(resp);
-	};
-
-	const imprimir = () => {
 		let div = document.querySelector("#imprimible");
 		imprimirElemento(div);
 	};
@@ -83,6 +97,8 @@ export const P2 = ({ paciente, bus }) => {
 					--------------------------------------
 				</p>
 				<p className="size14izq">
+					Nº ASIENTO: {cantidad}
+					<br />
 					PLACA: {bus.placa}
 					<br />
 					EMPRESA: {bus.empresa}
@@ -97,9 +113,6 @@ export const P2 = ({ paciente, bus }) => {
 					--------------------------------------
 				</p>
 			</div>
-			<button onClick={registroManifiesto} className="btn btn-primary">
-				Registrar MANIFIESTO
-			</button>
 			<button onClick={imprimir} className="btn btn-success">
 				Imprimir
 			</button>

@@ -86,7 +86,7 @@ const Bus = () => {
 					setDataToEdit={setDataToEdit}
 					data={db}
 				/>
-				{/* {loading && <LoaderBus />} */}
+				{loading && <LoaderBus />}
 				{error && (
 					<MessageBus
 						msg={`Error ${error.status}: ${error.statusText}`}
