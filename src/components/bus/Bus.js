@@ -17,7 +17,7 @@ const Bus = () => {
 		"http://167.99.115.105/bdmarsa/tercera/busPlaca/actualizar";
 	let urlPostRegistrar = "http://167.99.115.105/bd/bus/insertar";
 
-	/* useEffect(() => {
+	useEffect(() => {
 		setLoading(true);
 		helpHttp()
 			.get(urlGet)
@@ -32,7 +32,7 @@ const Bus = () => {
 				}
 				setLoading(false);
 			});
-	}, [urlGet]); */
+	}, [urlGet]);
 
 	const createData = (data) => {
 		let options = {
@@ -93,7 +93,7 @@ const Bus = () => {
 						bgColor="#dc3545"
 					/>
 				)}
-				{/* {db && <CrudTableBus data={db} setDataToEdit={setDataToEdit} />} */}
+				{db && <CrudTableBus data={db} setDataToEdit={setDataToEdit} />}
 			</div>
 		</div>
 	);

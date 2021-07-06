@@ -5,6 +5,8 @@ const initialForm = {
 	nombre_empresa: "",
 };
 
+let formTrim = {};
+
 const CrudFormEmpresa = ({
 	createData,
 	updateData,
@@ -40,10 +42,15 @@ const CrudFormEmpresa = ({
 		console.log(data);
 		console.log(form.ruc);
 
-		//metodo .some comprueba si almenos un elemento cumple con la condicion implementada
-		let found = data.some((item) => item.ruc === form.ruc);
+		formTrim = {
+			ruc: form.ruc.trim(),
+			nombre_empresa: form.nombre_empresa.trim(),
+		};
 
-		found ? updateData(form) : createData(form);
+		//metodo .some comprueba si almenos un elemento cumple con la condicion implementada
+		let found = data.some((item) => item.ruc === formTrim.ruc);
+
+		found ? updateData(formTrim) : createData(formTrim);
 
 		/* if (form.ruc === null) {
 			createData(form);
