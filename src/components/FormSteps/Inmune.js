@@ -49,30 +49,46 @@ export const Inmune = ({ paciente, bus }) => {
 	return (
 		<div>
 			<div id="imprimible">
-				<p className="size18 ">CONTROL DE SALIDA</p>
-				<p className="size14">Minera Aurífera Retamas S.A.</p>
-				<p className="size14">20132367800</p>
-				<p className="centrar">--------------------------------------</p>
-				<p className="size18">{paciente.status}</p>
-				<p className="centrar">--------------------------------------</p>
+				<p className="size18 d-flex justify-content-center">
+					CONTROL DE SALIDA
+				</p>
+				<p className="size14 d-flex justify-content-center">
+					Minera Aurífera Retamas S.A.
+				</p>
+				<p className="size14 d-flex justify-content-center">20132367800</p>
+				<p className="centrar d-flex justify-content-center">
+					--------------------------------------
+				</p>
+				<p className="size18 d-flex justify-content-center">
+					{paciente.status}
+				</p>
+				<p className="centrar d-flex justify-content-center">
+					--------------------------------------
+				</p>
 				<p className="size14izq">Dni: {paciente.dni}</p>
 				<p className="size14izq">Resultado P1: {paciente.resultado}</p>
-				<p className="size14izq">
-					Fecha Prueba: {paciente.fecha_examen.slice(0, 10)}
-				</p>
+				<p className="size14izq">Fecha Prueba: {paciente.fecha_examen}</p>
 				<p className="size14izq">Sintomatología: {paciente.sintomatologia}</p>
 				<p className="size14izq">Clinica: {paciente.clinica}</p>
-				<p className="centrar">--------------------------------------</p>
-				<p className="size18">INFORMACION BUS</p>
-				<p className="centrar">--------------------------------------</p>
+				<p className="centrar d-flex justify-content-center">
+					--------------------------------------
+				</p>
+				<p className="size18 d-flex justify-content-center">INFORMACION BUS</p>
+				<p className="centrar d-flex justify-content-center">
+					--------------------------------------
+				</p>
 				<p className="size14izq">
 					PLACA: {bus.placa}
 					<br />
 					EMPRESA: {bus.empresa}
 				</p>
-				<p className="centrar">--------------------------------------</p>
-				<p className="centrar">{bus.mensaje}</p>
-				<p className="centrar">--------------------------------------</p>
+				<p className="centrar d-flex justify-content-center">
+					--------------------------------------
+				</p>
+				<p className="centrar d-flex justify-content-center">{bus.mensaje}</p>
+				<p className="centrar d-flex justify-content-center">
+					--------------------------------------
+				</p>
 			</div>
 			<button onClick={registroManifiesto} className="btn btn-primary">
 				Registrar MANIFIESTO

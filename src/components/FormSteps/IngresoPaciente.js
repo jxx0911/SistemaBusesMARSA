@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import $ from "jquery";
 import { ImSearch } from "react-icons/im";
 import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
@@ -30,14 +29,12 @@ export const IngresoPaciente = ({
 	const importarPaciente = async (e) => {
 		e.preventDefault();
 
-		console.log(form);
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/SegundaVista",
 			form
 		);
 
 		const { data } = resp;
-		console.log(data);
 
 		if (data.length === 3) {
 			if (data[0] === null) {
@@ -52,7 +49,7 @@ export const IngresoPaciente = ({
 					dni: dni,
 					resultado2: resultado,
 					sintomatologia2: sintomatologia,
-					fecha_examen2: fecha_examen,
+					fecha_examen2: fecha_examen.slice(0, 10),
 				};
 			}
 
@@ -66,7 +63,7 @@ export const IngresoPaciente = ({
 					...resultados,
 					resultado: resultado,
 					sintomatologia: sintomatologia,
-					fecha_examen: fecha_examen,
+					fecha_examen: fecha_examen.slice(0, 10),
 				};
 			}
 
@@ -86,7 +83,7 @@ export const IngresoPaciente = ({
 				dni: dni,
 				resultado: resultado,
 				sintomatologia: sintomatologia,
-				fecha_examen: fecha_examen,
+				fecha_examen: fecha_examen.slice(0, 10),
 			};
 			const { clinica, status, clave } = data[1];
 			resultados = {
@@ -131,45 +128,74 @@ export const IngresoPaciente = ({
 								</div>
 								<div className="tab-pane active show" id="tabs-home-ex5">
 									<div>
-										D.N.I. : {form.dni ? form.dni : imprimirPaciente.dni}
+										<div className="d-flex">
+											D.N.I. :&nbsp;
+											<p style={{ color: "blue", fontWeight: "bold" }}>
+												{form.dni ? form.dni : imprimirPaciente.dni}
+											</p>
+										</div>
 										<br />
+										<div className="d-flex">
+											RESULTADO P1 :&nbsp;
+											<p style={{ color: "blue", fontWeight: "bold" }}>
+												{form.resultado
+													? form.resultado
+													: imprimirPaciente.resultado}
+											</p>
+										</div>
+										<div className="d-flex">
+											SINTOMATOLOGIA :&nbsp;
+											<p style={{ color: "blue", fontWeight: "bold" }}>
+												{form.sintomatologia
+													? form.sintomatologia
+													: imprimirPaciente.sintomatologia}
+											</p>
+										</div>
+										<div className="d-flex">
+											FECHA DE PRUEBA :&nbsp;
+											<p style={{ color: "blue", fontWeight: "bold" }}>
+												{form.fecha_examen
+													? form.fecha_examen
+													: imprimirPaciente.fecha_examen}
+											</p>
+										</div>
+										<div className="d-flex">
+											CLINICA :&nbsp;
+											<p style={{ color: "blue", fontWeight: "bold" }}>
+												{form.clinica ? form.clinica : imprimirPaciente.clinica}
+											</p>
+										</div>
 										<br />
-										RESULTADO P1 :{" "}
-										{form.resultado
-											? form.resultado
-											: imprimirPaciente.resultado}
-										<br />
-										SINTOMATOLOGIA :{" "}
-										{form.sintomatologia
-											? form.sintomatologia
-											: imprimirPaciente.sintomatologia}
-										<br />
-										FECHA DE PRUEBA :{" "}
-										{form.fecha_examen
-											? form.fecha_examen
-											: imprimirPaciente.fecha_examen}
-										<br />
-										CLINICA :{" "}
-										{form.clinica ? form.clinica : imprimirPaciente.clinica}
-										<br />
-										<br />
-										RESULTADO P2 :{" "}
-										{form.resultado2
-											? form.resultado2
-											: imprimirPaciente.resultado2}
-										<br />
-										SINTOMATOLOGIA :{" "}
-										{form.sintomatologia2
-											? form.sintomatologia2
-											: imprimirPaciente.sintomatologia2}
-										<br />
-										FECHA DE PRUEBA :{" "}
-										{form.fecha_examen2
-											? form.fecha_examen2
-											: imprimirPaciente.fecha_examen2}
-										<br />
-										CLINICA :{" "}
-										{form.clinica ? form.clinica : imprimirPaciente.clinica}
+										<div className="d-flex">
+											RESULTADO P2 :&nbsp;
+											<p style={{ color: "blue", fontWeight: "bold" }}>
+												{form.resultado2
+													? form.resultado2
+													: imprimirPaciente.resultado2}
+											</p>
+										</div>
+										<div className="d-flex">
+											SINTOMATOLOGIA :&nbsp;
+											<p style={{ color: "blue", fontWeight: "bold" }}>
+												{form.sintomatologia2
+													? form.sintomatologia2
+													: imprimirPaciente.sintomatologia2}
+											</p>
+										</div>
+										<div className="d-flex">
+											FECHA DE PRUEBA :&nbsp;
+											<p style={{ color: "blue", fontWeight: "bold" }}>
+												{form.fecha_examen2
+													? form.fecha_examen2
+													: imprimirPaciente.fecha_examen2}
+											</p>
+										</div>
+										<div className="d-flex">
+											CLINICA :&nbsp;
+											<p style={{ color: "blue", fontWeight: "bold" }}>
+												{form.clinica ? form.clinica : imprimirPaciente.clinica}
+											</p>
+										</div>
 										<br /> {""}
 									</div>
 								</div>

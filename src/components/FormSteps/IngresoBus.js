@@ -79,20 +79,36 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 								</div>
 								<div>
 									<div>
-										Placa : {form.placa ? form.placa : imprimirBus.placa}
-										<br />
-										Aforo :{" "}
-										{form.aforo
-											? `${form.aforo}%`
-											: imprimirBus.aforo
-											? `${imprimirBus.aforo}%`
-											: ""}
-										<br />
-										Empresa :{" "}
-										{form.empresa ? form.empresa : imprimirBus.empresa}
-										<br />
-										Capacidad(Aforo) :{" "}
-										{form.capacidad ? form.capacidad : imprimirBus.capacidad}
+										<div className="d-flex">
+											Placa : &nbsp;
+											<p style={{ color: "red", fontWeight: "bold" }}>
+												{form.placa ? form.placa : imprimirBus.placa}
+											</p>
+										</div>
+										<div className="d-flex">
+											Aforo :&nbsp;
+											<p style={{ color: "red", fontWeight: "bold" }}>
+												{form.aforo
+													? `${form.aforo}%`
+													: imprimirBus.aforo
+													? `${imprimirBus.aforo}%`
+													: ""}
+											</p>
+										</div>
+										<div>
+											Empresa :&nbsp;
+											<p style={{ color: "red", fontWeight: "bold" }}>
+												{form.empresa ? form.empresa : imprimirBus.empresa}
+											</p>
+										</div>
+										<div className="d-flex">
+											Capacidad(Aforo) :&nbsp;
+											<p style={{ color: "red", fontWeight: "bold" }}>
+												{form.capacidad
+													? form.capacidad
+													: imprimirBus.capacidad}
+											</p>
+										</div>
 									</div>
 								</div>
 								<div className="m-3 d-flex justify-content-between">
