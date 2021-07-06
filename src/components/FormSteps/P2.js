@@ -82,10 +82,12 @@ export const P2 = ({ paciente, bus }) => {
 				<p className="centrar d-flex justify-content-center">
 					--------------------------------------
 				</p>
-				<p className="size14izq d-flex justify-content-center">
+				<p className="size14izq">
 					PLACA: {bus.placa}
 					<br />
 					EMPRESA: {bus.empresa}
+					<br />
+					CONDUCTOR: {bus.chofer}
 				</p>
 				<p className="centrar d-flex justify-content-center">
 					--------------------------------------

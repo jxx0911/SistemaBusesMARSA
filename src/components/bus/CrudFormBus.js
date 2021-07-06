@@ -8,6 +8,8 @@ const initialForm = {
 	chofer: "",
 };
 
+let formTrim = {};
+
 const CrudFormBus = ({
 	createData,
 	updateData,
@@ -33,20 +35,26 @@ const CrudFormBus = ({
 		});
 	};
 
-	console.log(form);
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (!form.placa || !form.empresa || !form.capacidad || form.chofer) {
+		console.log(form);
+		if (!form.placa || !form.empresa || !form.capacidad || !form.chofer) {
 			alert("Datos incompletos");
 			return;
 		}
 
-		//metodo .some comprueba si almenos un elemento cumple con la condicion implementada
-		let found = data.some((item) => item.placa === form.placa);
+		formTrim = {
+			placa: form.placa.trim(),
+			empresa: form.empresa.trim(),
+			capacidad: form.capacidad.trim(),
+			chofer: form.chofer.trim(),
+		};
 
-		found ? updateData(form) : createData(form);
+		//metodo .some comprueba si almenos un elemento cumple con la condicion implementada
+		let found = data.some((item) => item.placa === formTrim.placa);
+
+		found ? updateData(formTrim) : createData(formTrim);
 
 		handleReset();
 	};

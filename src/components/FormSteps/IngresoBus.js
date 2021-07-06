@@ -33,13 +33,14 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 			setForm(imprimirBusTicket);
 			setImprimirBus(imprimirBusTicket);
 		} else {
-			const { empresa, capacidad } = data[0];
+			const { empresa, capacidad, chofer } = data[0];
 			const { mensaje, aforo } = data[1];
 			imprimirBusTicket = {
 				...form,
 				empresa: empresa,
 				mensaje: mensaje,
 				aforo: aforo,
+				chofer: chofer,
 				capacidad: (aforo * capacidad) / 100,
 			};
 			setForm(imprimirBusTicket);
@@ -95,10 +96,16 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 													: ""}
 											</p>
 										</div>
-										<div>
+										<div className="d-flex">
 											Empresa :&nbsp;
 											<p style={{ color: "red", fontWeight: "bold" }}>
 												{form.empresa ? form.empresa : imprimirBus.empresa}
+											</p>
+										</div>
+										<div className="d-flex">
+											Conductor :&nbsp;
+											<p style={{ color: "red", fontWeight: "bold" }}>
+												{form.chofer ? form.chofer : imprimirBus.chofer}
 											</p>
 										</div>
 										<div className="d-flex">

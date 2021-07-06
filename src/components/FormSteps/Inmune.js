@@ -81,6 +81,8 @@ export const Inmune = ({ paciente, bus }) => {
 					PLACA: {bus.placa}
 					<br />
 					EMPRESA: {bus.empresa}
+					<br />
+					CONDUCTOR: {bus.chofer}
 				</p>
 				<p className="centrar d-flex justify-content-center">
 					--------------------------------------
