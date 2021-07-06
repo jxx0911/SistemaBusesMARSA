@@ -47,7 +47,7 @@ const CrudFormBus = ({
 		formTrim = {
 			placa: form.placa.trim(),
 			empresa: form.empresa.trim(),
-			capacidad: form.capacidad.trim(),
+			capacidad: form.capacidad,
 			chofer: form.chofer.trim(),
 		};
 
