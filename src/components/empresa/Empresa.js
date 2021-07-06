@@ -78,8 +78,10 @@ const Empresa = () => {
 	};
 
 	return (
-		<div>
-			<h2>EMPRESAS</h2>
+		<div className="container">
+			<h2 className="d-flex justify-content-center mt-3 fs-1 fw-bold">
+				EMPRESAS
+			</h2>
 			<article className="grid-1-2">
 				<CrudFormEmpresa
 					createData={createData}
@@ -88,7 +90,7 @@ const Empresa = () => {
 					setDataToEdit={setDataToEdit}
 					data={db}
 				/>
-				{loading && <LoaderEmpresa />}
+				{/* {loading && <LoaderEmpresa />} */}
 				{error && (
 					<MessageEmpresa
 						msg={`Error ${error.status}: ${error.statusText}`}

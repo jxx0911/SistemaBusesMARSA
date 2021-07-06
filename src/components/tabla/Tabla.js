@@ -155,9 +155,9 @@ function Tabla() {
 	return (
 		<>
 			<div className="App container">
-				<h1 className="mt-3" align="center">
+				<h2 className="mt-3 fs-1 fw-bold" align="center">
 					TABLE IMPORT
-				</h1>
+				</h2>
 				{/* <h4 align="center">Descripcion</h4> */}
 				<div className="container">
 					{/* Select para Sede */}

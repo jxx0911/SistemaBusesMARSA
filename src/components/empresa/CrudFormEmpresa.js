@@ -61,24 +61,32 @@ const CrudFormEmpresa = ({
 
 	return (
 		<div>
-			<h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
 			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					name="ruc"
-					placeholder="R.U.C."
-					onChange={handleChange}
-					value={form.ruc}
-				/>
-				<input
-					type="text"
-					name="nombre_empresa"
-					placeholder="Empresa"
-					onChange={handleChange}
-					value={form.nombre_empresa}
-				/>
-				<input type="submit" value="Enviar" />
-				<input type="reset" value="Limpiar" onClick={handleReset} />
+				<div className="container">
+					<h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
+					<input
+						className="form-control mb-3"
+						type="text"
+						name="ruc"
+						placeholder="R.U.C."
+						onChange={handleChange}
+						value={form.ruc}
+					/>
+					<input
+						className="form-control mb-3"
+						type="text"
+						name="nombre_empresa"
+						placeholder="Empresa"
+						onChange={handleChange}
+						value={form.nombre_empresa}
+					/>
+					<div className="float-end mb-3">
+						<button className="btn btn-warning m-1" onClick={handleReset}>
+							Limpiar
+						</button>
+						<button className="btn btn-success m-1">Enviar</button>
+					</div>
+				</div>
 			</form>
 		</div>
 	);

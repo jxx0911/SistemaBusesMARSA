@@ -8,7 +8,9 @@ const CrudTableRowEmpresa = ({ el, setDataToEdit }) => {
 			<td>{ruc}</td>
 			<td>{nombre_empresa}</td>
 			<td>
-				<button onClick={() => setDataToEdit(el)}>Editar</button>
+				<button className="btn btn-primary" onClick={() => setDataToEdit(el)}>
+					Editar
+				</button>
 			</td>
 		</tr>
 	);

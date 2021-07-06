@@ -3,9 +3,8 @@ import CrudTableRowEmpresa from "./CrudTableRowEmpresa";
 
 const CrudTableEmpresa = ({ data, setDataToEdit }) => {
 	return (
-		<div>
-			<h3>Tabla de Empresas</h3>
-			<table>
+		<div className="container mt-3 table-responsive">
+			<table className="table">
 				<thead>
 					<tr>
 						<th>R.U.C.</th>
