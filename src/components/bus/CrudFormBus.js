@@ -101,8 +101,12 @@ const CrudFormBus = ({
 						onChange={handleChange}
 						value={form.chofer}
 					/>
-					<input type="submit" value="Enviar" />
-					<input type="reset" value="Limpiar" onClick={handleReset} />
+					<div className="float-end mb-3">
+						<button className="btn btn-warning m-1" onClick={handleReset}>
+							Limpiar
+						</button>
+						<button className="btn btn-success m-1">Enviar</button>
+					</div>
 				</div>
 			</form>
 		</div>

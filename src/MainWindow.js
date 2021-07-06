@@ -55,10 +55,10 @@ function MainWindow() {
 						<Navbar />
 						<HistorialEditar />
 					</Route>
-					<Router path="/manifiesto" exact>
+					<Route path="/manifiesto" exact>
 						<Navbar />
 						<Manifiesto />
-					</Router>
+					</Route>
 					<Route path="/config" exact>
 						<Navbar />
 						<Config {...props} />
