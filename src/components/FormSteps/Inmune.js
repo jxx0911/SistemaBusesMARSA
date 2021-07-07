@@ -87,9 +87,11 @@ export const Inmune = ({ paciente, bus }) => {
 					--------------------------------------
 				</p>
 			</div>
-			<button onClick={imprimir} className="btn btn-success">
-				Imprimir
-			</button>
+			<div className="d-flex justify-content-center mb-1">
+				<button onClick={imprimir} className="btn btn-success ">
+					Imprimir
+				</button>
+			</div>
 		</div>
 	);
 };
