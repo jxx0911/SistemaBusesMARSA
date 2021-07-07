@@ -14,10 +14,7 @@ export const Inmune = ({ paciente, bus }) => {
 		placa: bus.placa,
 	};
 	axios
-		.post(
-			"http://192.168.68.133:3003/bdmarsa/tercera/cantidadBus/mostrar",
-			body
-		)
+		.post("http://167.99.115.105/bdmarsa/tercera/cantidadBus/mostrar", body)
 		.then((response) => {
 			const { data } = response;
 			setCantidad(data.cantidad);
