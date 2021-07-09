@@ -6,6 +6,7 @@ const initialForm = {
 	empresa: "",
 	capacidad: "",
 	chofer: "",
+	chofer2: "",
 };
 
 let formTrim = {};
@@ -39,7 +40,13 @@ const CrudFormBus = ({
 		e.preventDefault();
 
 		console.log(form);
-		if (!form.placa || !form.empresa || !form.capacidad || !form.chofer) {
+		if (
+			!form.placa ||
+			!form.empresa ||
+			!form.capacidad ||
+			!form.chofer ||
+			!form.chofer2
+		) {
 			alert("Datos incompletos");
 			return;
 		}
@@ -49,6 +56,7 @@ const CrudFormBus = ({
 			empresa: form.empresa.trim(),
 			capacidad: form.capacidad,
 			chofer: form.chofer.trim(),
+			chofer2: form.chofer2.trim(),
 		};
 
 		//metodo .some comprueba si almenos un elemento cumple con la condicion implementada
@@ -105,9 +113,17 @@ const CrudFormBus = ({
 						className="form-control mb-3"
 						type="text"
 						name="chofer"
-						placeholder="Conductor"
+						placeholder="Conductor 1"
 						onChange={handleChange}
 						value={form.chofer}
+					/>
+					<input
+						className="form-control mb-3"
+						type="text"
+						name="chofer2"
+						placeholder="Conductor 2"
+						onChange={handleChange}
+						value={form.chofer2}
 					/>
 					<div className="float-end mb-3">
 						<button className="btn btn-warning m-1" onClick={handleReset}>

@@ -1,7 +1,7 @@
 import React from "react";
 
 const CrudTableRowBus = ({ el, setDataToEdit }) => {
-	let { placa, empresa, capacidad, chofer } = el;
+	let { placa, empresa, capacidad, chofer, chofer2 } = el;
 
 	return (
 		<tr>
@@ -9,6 +9,7 @@ const CrudTableRowBus = ({ el, setDataToEdit }) => {
 			<td>{empresa}</td>
 			<td>{capacidad}</td>
 			<td>{chofer}</td>
+			<td>{chofer2}</td>
 			<td>
 				<button className="btn btn-primary" onClick={() => setDataToEdit(el)}>
 					Editar

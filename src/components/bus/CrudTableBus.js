@@ -10,7 +10,8 @@ const CrudTableBus = ({ data, setDataToEdit }) => {
 						<th>Placa</th>
 						<th>Empresa</th>
 						<th>Capacidad</th>
-						<th>Conductor</th>
+						<th>Conductor 1</th>
+						<th>Conductor 2</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
