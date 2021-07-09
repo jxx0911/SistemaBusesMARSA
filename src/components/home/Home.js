@@ -1,7 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { ImSearch } from "react-icons/im";
+import { Fecha } from "../../helpers/Fecha";
+import axios from "axios";
+
+const initialBody = {
+	fecha_act: Fecha().fechaHoy,
+	nro_documento: "",
+};
 
 export const Home = () => {
+	const [form, setForm] = useState(initialBody);
+
+	const handleInputChange = (e) => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const registrarPaciente = async (e) => {
+		e.preventDefault();
+
+		console.log(form);
+		const resp = await axios.post(
+			"http://167.99.115.105/bdmarsa/tercera/registroAuto/HistoriaC",
+			form
+		);
+		const { data } = resp;
+		alert(data.Respuesta);
+		setForm(initialBody);
+	};
+
+	const handleKeyPress = async (e) => {
+		if (e.key === "Enter") {
+			console.log(form);
+			const resp = await axios.post(
+				"http://167.99.115.105/bdmarsa/tercera/registroAuto/HistoriaC",
+				form
+			);
+			const { data } = resp;
+			alert(data.Respuesta);
+			setForm(initialBody);
+		}
+	};
+
 	return (
 		<>
 			<div className="container-tight py-2">
@@ -17,14 +59,14 @@ export const Home = () => {
 										type="number"
 										className="form-control"
 										placeholder="Ingrese D.N.I."
-										/* value={form.nro_documento}
-										onChange={handleInputChange} */
+										value={form.nro_documento}
+										onChange={handleInputChange}
 										name="nro_documento"
-										/* onKeyPress={handleKeyPress} */
+										onKeyPress={handleKeyPress}
 									/>
 									<button
 										className="btn btn-dark m-2"
-										/* onClick={importarPaciente} */
+										onClick={registrarPaciente}
 									>
 										<ImSearch />
 									</button>

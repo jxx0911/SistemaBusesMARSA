@@ -37,14 +37,14 @@ export const SubmitTicket = ({
 								Atras
 							</button>
 							<button
-								className="btn btn-primary"
+								className="btn btn-danger"
 								onClick={() => {
 									setImprimirBus({});
 									setImprimirPaciente({});
 									navigation.go(0);
 								}}
 							>
-								Reset
+								RESET
 							</button>
 						</div>
 					</div>
