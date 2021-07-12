@@ -4,7 +4,7 @@ import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
 
 const initialBody = {
-	fecha_actual: Fecha().fechaHoy,
+	fecha_actual: "2021-07-07",
 	nro_documento: "",
 };
 
