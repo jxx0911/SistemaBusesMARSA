@@ -6,7 +6,7 @@ import Login from "./components/login/Login";
 import { Historial } from "./components/historial/Historial";
 import Bus from "./components/bus/Bus";
 import Empresa from "./components/empresa/Empresa";
-import { MultiStepForm } from "./components/FormSteps/MultiStepForm";
+import { MultiStepForm } from "./components/formSteps/MultiStepForm";
 import { Config } from "./components/config/Config";
 import { useFormHook } from "./hooks/useFormHook";
 import { useStepHook } from "./hooks/useStepHook";

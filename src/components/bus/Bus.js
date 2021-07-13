@@ -10,67 +10,59 @@ const Bus = () => {
 	const [dataToEdit, setDataToEdit] = useState(null);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
+	const [url, setUrl] = useState(true);
 
 	let api = helpHttp();
-	let urlGet = "http://167.99.115.105/bdmarsa/tercera/mostrar/bus";
-	let urlPostActualizar =
-		"http://167.99.115.105/bdmarsa/tercera/busPlaca/actualizar";
-	let urlPostRegistrar = "http://167.99.115.105/bd/bus/insertar";
 
 	useEffect(() => {
 		setLoading(true);
-		helpHttp()
-			.get(urlGet)
-			.then((res) => {
-				//console.log(res);
-				if (!res.err) {
-					setDb(res);
-					setError(null);
-				} else {
-					setDb(null);
-					setError(res);
-				}
-				setLoading(false);
-			});
-	}, [urlGet]);
+		if (url) {
+			helpHttp()
+				.get("http://167.99.115.105/bdmarsa/tercera/mostrar/bus")
+				.then((res) => {
+					//console.log(res);
+					if (!res.err) {
+						setDb(res);
+						setError(null);
+					} else {
+						setDb(null);
+						setError(res);
+					}
+					setLoading(false);
+				});
+		}
+		setUrl(false);
+	}, [url]);
 
 	const createData = (data) => {
-		let options = {
-			body: data,
-			headers: { "content-type": "application/json" },
-		};
+		let urlRegistrar = `http://167.99.115.105/bd/bus/insertar?placa=${data.placa}&empresa=${data.empresa}&capacidad=${data.capacidad}&chofer=${data.chofer}&chofer2=${data.chofer2}`;
 
-		api.post(urlPostRegistrar, options).then((res) => {
-			//console.log(res);
+		api.get(urlRegistrar).then((res) => {
 			if (!res.err) {
 				console.log(res);
 				setDb([...db, res]);
+				setUrl(true);
 			} else {
 				console.log(res);
-				/* setError(res); */
 			}
 		});
 	};
 
 	const updateData = (data) => {
-		let endpoint = urlPostActualizar;
+		let urlActualizar =
+			"http://167.99.115.105/bdmarsa/tercera/busPlaca/actualizar";
 
 		let options = {
 			body: data,
 			headers: { "content-type": "application/json" },
 		};
 
-		api.post(endpoint, options).then((res) => {
-			//console.log(res);
+		api.post(urlActualizar, options).then((res) => {
 			if (!res.err) {
 				console.log(res);
-				/* let newData = db.map((el) =>
-					el.placa === data.placa ? data.empresa : el.empresa : 
-				);
-				setDb(newData); */
+				setUrl(true);
 			} else {
 				console.log(res);
-				/* setError(res); */
 			}
 		});
 	};

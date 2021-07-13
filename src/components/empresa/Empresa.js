@@ -10,42 +10,44 @@ const Empresa = () => {
 	const [dataToEdit, setDataToEdit] = useState(null);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
+	const [url, setUrl] = useState(true);
 
 	let api = helpHttp();
-	let urlGet = "http://167.99.115.105/bdmarsa/tercera/mostrar/empresaBus";
-	let urlPostActualizar =
-		"http://167.99.115.105/bdmarsa/tercera/busEmpresa/actualizar";
-	let urlPostRegistrar =
-		"http://167.99.115.105/bdmarsa/tercera/busEmpresa/registrar";
 
 	useEffect(() => {
 		setLoading(true);
-		helpHttp()
-			.get(urlGet)
-			.then((res) => {
-				//console.log(res);
-				if (!res.err) {
-					setDb(res);
-					setError(null);
-				} else {
-					setDb(null);
-					setError(res);
-				}
-				setLoading(false);
-			});
-	}, [urlGet]);
+		if (url) {
+			helpHttp()
+				.get("http://167.99.115.105/bdmarsa/tercera/mostrar/empresaBus")
+				.then((res) => {
+					//console.log(res);
+					if (!res.err) {
+						setDb(res);
+						setError(null);
+					} else {
+						setDb(null);
+						setError(res);
+					}
+					setLoading(false);
+				});
+		}
+		setUrl(false);
+	}, [url]);
 
 	const createData = (data) => {
+		let urlRegistrar =
+			"http://167.99.115.105/bdmarsa/tercera/busEmpresa/registrar";
+
 		let options = {
 			body: data,
 			headers: { "content-type": "application/json" },
 		};
 
-		api.post(urlPostRegistrar, options).then((res) => {
-			//console.log(res);
+		api.post(urlRegistrar, options).then((res) => {
 			if (!res.err) {
 				console.log(res);
 				setDb([...db, res]);
+				setUrl(true);
 			} else {
 				console.log(res);
 				/* setError(res); */
@@ -54,7 +56,7 @@ const Empresa = () => {
 	};
 
 	const updateData = (data) => {
-		let endpoint = urlPostActualizar;
+		let urlPostActualizar = `http://167.99.115.105/bdmarsa/tercera/busEmpresa/actualizar?ruc=${data.ruc}&nombre_empresa=${data.empresa}`;
 		//console.log(endpoint);
 
 		let options = {
@@ -62,8 +64,7 @@ const Empresa = () => {
 			headers: { "content-type": "application/json" },
 		};
 
-		api.post(endpoint, options).then((res) => {
-			//console.log(res);
+		api.post(urlPostActualizar, options).then((res) => {
 			if (!res.err) {
 				console.log(res);
 				let newData = db.map((el) =>
@@ -90,7 +91,7 @@ const Empresa = () => {
 					setDataToEdit={setDataToEdit}
 					data={db}
 				/>
-				{/* {loading && <LoaderEmpresa />} */}
+				{loading && <LoaderEmpresa />}
 				{error && (
 					<MessageEmpresa
 						msg={`Error ${error.status}: ${error.statusText}`}

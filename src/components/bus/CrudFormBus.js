@@ -39,7 +39,6 @@ const CrudFormBus = ({
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		console.log(form);
 		if (
 			!form.placa ||
 			!form.empresa ||
