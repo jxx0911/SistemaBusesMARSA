@@ -5,6 +5,7 @@ import axios from "axios";
 
 const initialBody = {
 	placa: "",
+	asiento: "",
 };
 
 let imprimirBusTicket = {};
@@ -16,6 +17,28 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
+		});
+	};
+
+	const estadoAsiento = async (e) => {
+		e.preventDefault();
+		let body = {
+			fecha_act: "2021-07-01",
+			placa: form.placa,
+		};
+		const resp = await axios.post(
+			"http://167.99.115.105/bdmarsa/tercera/mostrar/listadoAsientos",
+			body
+		);
+		const { data } = resp;
+		data.forEach((element) => {
+			if (parseInt(form.asiento) === element.nro_asiento) {
+				if (element.estado === false) {
+					navigation.next();
+				} else {
+					alert("ASIENTO NO DISPONIBLE");
+				}
+			}
 		});
 	};
 
@@ -42,6 +65,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 				aforo: aforo,
 				chofer: chofer,
 				capacidad: (aforo * capacidad) / 100,
+				/* asiento:  */
 			};
 			setForm(imprimirBusTicket);
 			setImprimirBus(imprimirBusTicket);
@@ -78,6 +102,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 										<ImSearch />
 									</button>
 								</div>
+
 								<div>
 									<div>
 										<div className="d-flex">
@@ -118,6 +143,16 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 										</div>
 									</div>
 								</div>
+								<div className="mt-3 d-flex flex-row">
+									<label className="form-label">Ingrese Nº de Asiento</label>
+									<input
+										type="number"
+										className="form-control"
+										value={form.asiento}
+										onChange={handleInputChange}
+										name="asiento"
+									/>
+								</div>
 								<div className="m-3 d-flex justify-content-between">
 									<button
 										className="btn btn-dark"
@@ -125,12 +160,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 									>
 										Atras
 									</button>
-									<button
-										className="btn btn-primary"
-										onClick={() => {
-											navigation.next();
-										}}
-									>
+									<button className="btn btn-primary" onClick={estadoAsiento}>
 										Siguiente
 									</button>
 								</div>
