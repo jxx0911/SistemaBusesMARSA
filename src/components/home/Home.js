@@ -18,22 +18,8 @@ export const Home = () => {
 		});
 	};
 
-	const registrarPaciente = async (e) => {
-		e.preventDefault();
-
-		console.log(form);
-		const resp = await axios.post(
-			"http://167.99.115.105/bdmarsa/tercera/registroAuto/HistoriaC",
-			form
-		);
-		const { data } = resp;
-		alert(data.Respuesta);
-		setForm(initialBody);
-	};
-
 	const handleKeyPress = async (e) => {
 		if (e.key === "Enter") {
-			console.log(form);
 			const resp = await axios.post(
 				"http://167.99.115.105/bdmarsa/tercera/registroAuto/HistoriaC",
 				form
@@ -64,12 +50,6 @@ export const Home = () => {
 										name="nro_documento"
 										onKeyPress={handleKeyPress}
 									/>
-									<button
-										className="btn btn-dark m-2"
-										onClick={registrarPaciente}
-									>
-										<ImSearch />
-									</button>
 								</div>
 							</div>
 						</fieldset>

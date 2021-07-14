@@ -1,35 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import imprimirElemento from "../../helpers/imprimirElemento";
 
 let form = {};
 let time = new Date();
-let body = {};
 
 export const P2 = ({ paciente, bus }) => {
-	const [cantidad, setCantidad] = useState();
-
-	body = {
-		fecha_act: "2021-07-01",
-		placa: bus.placa,
-	};
-	axios
-		.post("http://167.99.115.105/bdmarsa/tercera/cantidadBus/mostrar", body)
-		.then((response) => {
-			const { data } = response;
-			setCantidad(data.cantidad);
-		});
-
 	const imprimir = async (e) => {
 		e.preventDefault();
 		form = {
 			clave: paciente.clave,
-			fecha_act: "2021-07-01",
+			fecha_act: "2021-07-07",
 			hora_act: time.toLocaleTimeString(),
 			placa: bus.placa,
 			capacidad_aforo: bus.capacidad,
+			asiento: bus.asiento,
 		};
-		console.log(form);
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/ticketManifiesto",
 			form
@@ -58,7 +44,7 @@ export const P2 = ({ paciente, bus }) => {
 				<p className="centrar d-flex justify-content-center">
 					--------------------------------------
 				</p>
-				<p className="size14izq">Dni:{paciente.dni}</p>
+				<p className="size14izq">DNI: {paciente.dni}</p>
 				<p className="size14izq">Resultado P1: {paciente.resultado}</p>
 				<p className="size14izq">Fecha Prueba: {paciente.fecha_examen}</p>
 				<p className="size14izq">Sintomatología: {paciente.sintomatologia}</p>
@@ -76,13 +62,15 @@ export const P2 = ({ paciente, bus }) => {
 					--------------------------------------
 				</p>
 				<p className="size14izq">
-					Nº ASIENTO: {cantidad}
+					Nº Asiento: {bus.asiento}
 					<br />
-					PLACA: {bus.placa}
+					Placa: {bus.placa}
 					<br />
-					EMPRESA: {bus.empresa}
+					Empresa: {bus.empresa}
 					<br />
-					CONDUCTOR: {bus.chofer}
+					Conductor 1: {bus.chofer}
+					{/* <br />
+					Conductor 2: {bus.chofer2} */}
 				</p>
 				<p className="centrar d-flex justify-content-center">
 					--------------------------------------

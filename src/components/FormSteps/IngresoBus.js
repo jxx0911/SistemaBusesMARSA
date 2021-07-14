@@ -23,27 +23,38 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 	const estadoAsiento = async (e) => {
 		e.preventDefault();
 		let body = {
-			fecha_act: "2021-07-01",
+			fecha_act: "2021-07-07",
 			placa: form.placa,
 		};
-		const resp = await axios.post(
-			"http://167.99.115.105/bdmarsa/tercera/mostrar/listadoAsientos",
-			body
-		);
-		const { data } = resp;
-		data.forEach((element) => {
-			if (parseInt(form.asiento) === element.nro_asiento) {
-				if (element.estado === false) {
-					navigation.next();
-				} else {
-					alert("ASIENTO NO DISPONIBLE");
+		if (body.placa === "") {
+			navigation.next();
+		} else {
+			const resp = await axios.post(
+				"http://167.99.115.105/bdmarsa/tercera/mostrar/listadoAsientos",
+				body
+			);
+			const { data } = resp;
+			data.forEach((element) => {
+				if (parseInt(form.asiento) === element.nro_asiento) {
+					if (element.estado === false) {
+						imprimirBusTicket = {
+							...imprimirBusTicket,
+							asiento: form.asiento,
+						};
+						setForm(imprimirBusTicket);
+						setImprimirBus(imprimirBusTicket);
+						navigation.next();
+					} else {
+						alert("ASIENTO NO DISPONIBLE");
+					}
 				}
-			}
-		});
+			});
+		}
 	};
 
 	const importarBus = async (e) => {
 		e.preventDefault();
+
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/primeraVista",
 			form
@@ -64,8 +75,8 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 				mensaje: mensaje,
 				aforo: aforo,
 				chofer: chofer,
+				/* chofer2: chofer2, */
 				capacidad: (aforo * capacidad) / 100,
-				/* asiento:  */
 			};
 			setForm(imprimirBusTicket);
 			setImprimirBus(imprimirBusTicket);
@@ -133,6 +144,12 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 												{form.chofer ? form.chofer : imprimirBus.chofer}
 											</p>
 										</div>
+										{/* <div className="d-flex">
+											Conductor 2:&nbsp;
+											<p style={{ color: "red", fontWeight: "bold" }}>
+												{form.chofer2 ? form.chofer2 : imprimirBus.chofer2}
+											</p>
+										</div> */}
 										<div className="d-flex">
 											Capacidad(Aforo) :&nbsp;
 											<p style={{ color: "red", fontWeight: "bold" }}>
@@ -141,13 +158,19 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 													: imprimirBus.capacidad}
 											</p>
 										</div>
+										<div className="d-flex">
+											N° Asiento:&nbsp;
+											<p style={{ color: "red", fontWeight: "bold" }}>
+												{form.asiento ? form.asiento : imprimirBus.asiento}
+											</p>
+										</div>
 									</div>
 								</div>
 								<div className="mt-3 d-flex flex-row">
-									<label className="form-label">Ingrese Nº de Asiento</label>
 									<input
 										type="number"
 										className="form-control"
+										placeholder="Ingrese Nº de Asiento"
 										value={form.asiento}
 										onChange={handleInputChange}
 										name="asiento"

@@ -16,7 +16,6 @@ export const IngresoPaciente = ({
 	navigation,
 }) => {
 	const [form, setForm] = useState(initialBody);
-	/* const [status, setStatus] = useState(false); */
 
 	const handleInputChange = (e) => {
 		setForm({
@@ -27,7 +26,6 @@ export const IngresoPaciente = ({
 
 	const importarPaciente = async (e) => {
 		e.preventDefault();
-
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/SegundaVista",
 			form
@@ -115,7 +113,6 @@ export const IngresoPaciente = ({
 											value={form.nro_documento}
 											onChange={handleInputChange}
 											name="nro_documento"
-											/* onKeyPress={handleKeyPress} */
 										/>
 										<button
 											className="btn btn-dark m-2"
