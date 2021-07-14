@@ -122,6 +122,8 @@ export const Excel = () => {
 	return {
 		importExcel,
 		datos,
+		setDatos,
 		colDefs,
+		setColDefs,
 	};
 };

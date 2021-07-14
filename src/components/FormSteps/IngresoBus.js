@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ImSearch } from "react-icons/im";
 import { useBus } from "../../hooks/useBus";
+import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
 
 const initialBody = {
@@ -23,7 +24,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 	const estadoAsiento = async (e) => {
 		e.preventDefault();
 		let body = {
-			fecha_act: "2021-07-07",
+			fecha_act: Fecha().fechaHoy,
 			placa: form.placa,
 		};
 		if (body.placa === "") {

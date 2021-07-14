@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import imprimirElemento from "../../helpers/imprimirElemento";
+import { Fecha } from "../../helpers/Fecha";
 
 let form = {};
 let time = new Date();
@@ -10,7 +11,7 @@ export const Inmune = ({ paciente, bus }) => {
 		e.preventDefault();
 		form = {
 			clave: paciente.clave,
-			fecha_act: "2021-07-07",
+			fecha_act: Fecha().fechaHoy,
 			hora_act: time.toLocaleTimeString(),
 			placa: bus.placa,
 			capacidad_aforo: bus.capacidad,

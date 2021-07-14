@@ -34,7 +34,7 @@ function Tabla() {
 	//importExcel() -> funcion para obtener la data de un archivo Excel
 	//datos -> data extraida del libro Excel
 	//coldDefs -> cabeceras de columnas extraidas del libro Excel
-	const { importExcel, datos, colDefs } = Excel();
+	const { importExcel, datos, colDefs, setDatos, setColDefs } = Excel();
 	//Sedes extraidas del metodo GET usando un Custom Hook
 	const { sedes } = useSedes();
 	//Servicios extraidas del metodo GET usando un Custom Hook
@@ -147,10 +147,12 @@ function Tabla() {
 					body
 				);
 			});
+			setForm(initialForm);
+			setFile(!file);
+			setDatos([]);
+			setColDefs([]);
 		}
 	};
-
-	console.log(datos);
 
 	return (
 		<>
