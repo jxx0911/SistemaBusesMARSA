@@ -18,6 +18,12 @@ export const SidebarData = [
 		cName: "nav-text",
 	},
 	{
+		title: "Ticket",
+		path: "/ticket",
+		icon: <IoTicket />,
+		cName: "nav-text",
+	},
+	{
 		title: "Tablas",
 		path: "/tabla",
 		icon: <ImIcons.ImTable />,
@@ -39,12 +45,6 @@ export const SidebarData = [
 		title: "Empresa",
 		path: "/empresas",
 		icon: <IoBusinessSharp />,
-		cName: "nav-text",
-	},
-	{
-		title: "Ticket",
-		path: "/ticket",
-		icon: <IoTicket />,
 		cName: "nav-text",
 	},
 	{
