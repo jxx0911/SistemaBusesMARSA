@@ -24,7 +24,8 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 	const estadoAsiento = async (e) => {
 		e.preventDefault();
 		let body = {
-			fecha_act: Fecha().fechaHoy,
+			/* fecha_act: Fecha().fechaHoy, */
+			fecha_act: "2021-07-14",
 			placa: form.placa,
 		};
 		if (body.placa === "") {
@@ -35,21 +36,18 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 				body
 			);
 			const { data } = resp;
-			data.forEach((element) => {
-				if (parseInt(form.asiento) === element.nro_asiento) {
-					if (element.estado === false) {
-						imprimirBusTicket = {
-							...imprimirBusTicket,
-							asiento: form.asiento,
-						};
-						setForm(imprimirBusTicket);
-						setImprimirBus(imprimirBusTicket);
-						navigation.next();
-					} else {
-						alert("ASIENTO NO DISPONIBLE");
-					}
-				}
-			});
+			console.log(data);
+			if (data[parseInt(form.asiento) - 1].estado === false) {
+				imprimirBusTicket = {
+					...imprimirBusTicket,
+					asiento: form.asiento,
+				};
+				setForm(imprimirBusTicket);
+				setImprimirBus(imprimirBusTicket);
+				navigation.next();
+			} else {
+				alert("ASIENTO NO DISPONIBLE");
+			}
 		}
 	};
 
@@ -98,8 +96,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 									<input
 										type="text"
 										className="form-control inputBus"
-										placeholder="Ingrese Placa de Bus"
-										style={{ textTransform: "uppercase" }}
+										placeholder="Ingrese Nº de Bus"
 										value={form.placa}
 										onChange={handleInputChange}
 										name="placa"
@@ -118,7 +115,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 								<div>
 									<div>
 										<div className="d-flex">
-											Placa : &nbsp;
+											Bus : &nbsp;
 											<p style={{ color: "red", fontWeight: "bold" }}>
 												{form.placa ? form.placa : imprimirBus.placa}
 											</p>
@@ -139,12 +136,12 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 												{form.empresa ? form.empresa : imprimirBus.empresa}
 											</p>
 										</div>
-										<div className="d-flex">
+										{/* <div className="d-flex">
 											Conductor :&nbsp;
 											<p style={{ color: "red", fontWeight: "bold" }}>
 												{form.chofer ? form.chofer : imprimirBus.chofer}
 											</p>
-										</div>
+										</div> */}
 										{/* <div className="d-flex">
 											Conductor 2:&nbsp;
 											<p style={{ color: "red", fontWeight: "bold" }}>

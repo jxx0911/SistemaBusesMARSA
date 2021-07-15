@@ -6,17 +6,19 @@ import { Fecha } from "../../helpers/Fecha";
 let form = {};
 let time = new Date();
 
-export const Inmune = ({ paciente, bus }) => {
+export const Inmune = ({ paciente, setPaciente, bus, setBus, navigation }) => {
 	const imprimir = async (e) => {
 		e.preventDefault();
 		form = {
 			clave: paciente.clave,
-			fecha_act: Fecha().fechaHoy,
+			/* fecha_actual: Fecha().fechaHoy, */
+			fecha_actual: "2021-07-14",
 			hora_act: time.toLocaleTimeString(),
 			placa: bus.placa,
 			capacidad_aforo: bus.capacidad,
 			asiento: bus.asiento,
 		};
+		console.log(form);
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/ticketManifiesto",
 			form
@@ -24,6 +26,9 @@ export const Inmune = ({ paciente, bus }) => {
 		console.log(resp);
 		let div = document.querySelector("#imprimible");
 		imprimirElemento(div);
+		setBus({});
+		setPaciente({});
+		navigation.go(0);
 	};
 
 	return (
@@ -60,11 +65,11 @@ export const Inmune = ({ paciente, bus }) => {
 				<p className="size14izq">
 					Nº Asiento: {bus.asiento}
 					<br />
-					Placa: {bus.placa}
+					Bus: {bus.placa}
 					<br />
 					Empresa: {bus.empresa}
-					<br />
-					Conductor 1: {bus.chofer}
+					{/* <br />
+					Conductor 1: {bus.chofer} */}
 					{/* <br />
 					Conductor 2: {bus.chofer2} */}
 				</p>

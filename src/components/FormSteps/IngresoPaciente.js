@@ -4,7 +4,8 @@ import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
 
 const initialBody = {
-	fecha_actual: Fecha().fechaHoy,
+	/* fecha_actual: Fecha().fechaHoy, */
+	fecha_actual: "2021-07-14",
 	nro_documento: "",
 };
 
@@ -26,12 +27,14 @@ export const IngresoPaciente = ({
 
 	const importarPaciente = async (e) => {
 		e.preventDefault();
+		console.log(form);
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/SegundaVista",
 			form
 		);
 
 		const { data } = resp;
+		console.log(data);
 
 		if (data.length === 3) {
 			if (data[0] === null) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import imprimirElemento from "../../helpers/imprimirElemento";
 import { Fecha } from "../../helpers/Fecha";
@@ -6,17 +6,22 @@ import { Fecha } from "../../helpers/Fecha";
 let form = {};
 let time = new Date();
 
-export const P2 = ({ paciente, bus }) => {
+export const P2 = ({ paciente, setPaciente, bus, setBus, navigation }) => {
+	const [click, setClick] = useState(true);
+	console.log(click);
 	const imprimir = async (e) => {
+		setClick(!click);
 		e.preventDefault();
 		form = {
 			clave: paciente.clave,
-			fecha_act: Fecha().fechaHoy,
+			/* fecha_act: Fecha().fechaHoy, */
+			fecha_act: "2021-07-14",
 			hora_act: time.toLocaleTimeString(),
 			placa: bus.placa,
 			capacidad_aforo: bus.capacidad,
 			asiento: bus.asiento,
 		};
+		console.log(form);
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/ticketManifiesto",
 			form
@@ -24,6 +29,9 @@ export const P2 = ({ paciente, bus }) => {
 		console.log(resp);
 		let div = document.querySelector("#imprimible");
 		imprimirElemento(div);
+		setBus({});
+		setPaciente({});
+		navigation.go(0);
 	};
 
 	return (
@@ -65,11 +73,11 @@ export const P2 = ({ paciente, bus }) => {
 				<p className="size14izq">
 					Nº Asiento: {bus.asiento}
 					<br />
-					Placa: {bus.placa}
+					Bus: {bus.placa}
 					<br />
 					Empresa: {bus.empresa}
-					<br />
-					Conductor 1: {bus.chofer}
+					{/* <br />
+					Conductor 1: {bus.chofer} */}
 					{/* <br />
 					Conductor 2: {bus.chofer2} */}
 				</p>
@@ -82,7 +90,11 @@ export const P2 = ({ paciente, bus }) => {
 				</p>
 			</div>
 			<div className="d-flex justify-content-center mb-1">
-				<button onClick={imprimir} className="btn btn-success ">
+				<button
+					onClick={imprimir}
+					className="btn btn-success "
+					disabled={click ? false : true}
+				>
 					Imprimir
 				</button>
 			</div>

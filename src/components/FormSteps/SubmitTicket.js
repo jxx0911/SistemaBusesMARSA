@@ -19,10 +19,22 @@ export const SubmitTicket = ({
 					<div className="card-body">
 						<div className="card">
 							{imprimirPaciente.status === "INMUNE" ? (
-								<Inmune paciente={imprimirPaciente} bus={imprimirBus} />
+								<Inmune
+									paciente={imprimirPaciente}
+									setPaciente={setImprimirPaciente}
+									bus={imprimirBus}
+									setBus={setImprimirBus}
+									navigation={navigation}
+								/>
 							) : (
 								imprimirPaciente.status === "P2" && (
-									<P2 paciente={imprimirPaciente} bus={imprimirBus} />
+									<P2
+										paciente={imprimirPaciente}
+										setPaciente={setImprimirPaciente}
+										bus={imprimirBus}
+										setBus={setImprimirBus}
+										navigation={navigation}
+									/>
 								)
 							)}
 						</div>
