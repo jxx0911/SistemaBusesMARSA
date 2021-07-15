@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import imprimirElemento from "../../helpers/imprimirElemento";
-import { Fecha } from "../../helpers/Fecha";
+/* import { Fecha } from "../../helpers/Fecha"; */
 
 let form = {};
 let time = new Date();
@@ -18,7 +18,6 @@ export const Inmune = ({ paciente, setPaciente, bus, setBus, navigation }) => {
 			capacidad_aforo: bus.capacidad,
 			asiento: bus.asiento,
 		};
-		console.log(form);
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/ticketManifiesto",
 			form

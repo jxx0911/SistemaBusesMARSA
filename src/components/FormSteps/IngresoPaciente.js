@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ImSearch } from "react-icons/im";
-import { Fecha } from "../../helpers/Fecha";
+/* import { Fecha } from "../../helpers/Fecha"; */
 import axios from "axios";
 
 const initialBody = {

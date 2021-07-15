@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { ImSearch } from "react-icons/im";
 import { useBus } from "../../hooks/useBus";
-import { Fecha } from "../../helpers/Fecha";
+/* import { Fecha } from "../../helpers/Fecha"; */
+import { HoraEmbarque } from "./HoraEmbarque";
 import axios from "axios";
 
 const initialBody = {
 	placa: "",
 	asiento: "",
+	hora: "",
 };
 
 let imprimirBusTicket = {};
@@ -14,13 +16,14 @@ let imprimirBusTicket = {};
 export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 	const [form, setForm] = useState(initialBody);
 	const { buses } = useBus();
+
 	const handleInputChange = (e) => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
 		});
 	};
-
+	console.log(form.hora);
 	const estadoAsiento = async (e) => {
 		e.preventDefault();
 		let body = {
@@ -111,6 +114,26 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 										<ImSearch />
 									</button>
 								</div>
+								<div className="m-3 d-flex flex-row">
+									<input
+										type="number"
+										className="form-control"
+										placeholder="Ingrese Nº de Asiento"
+										value={form.asiento}
+										onChange={handleInputChange}
+										name="asiento"
+									/>
+								</div>
+								<div className="m-3 d-flex flex-row">
+									<label className="form-label">HORA DE SALIDA : </label>
+									<input
+										type="time"
+										className="form-control"
+										value={form.hora}
+										onChange={handleInputChange}
+										/* name="asiento" */
+									/>
+								</div>
 
 								<div>
 									<div>
@@ -156,24 +179,9 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 													: imprimirBus.capacidad}
 											</p>
 										</div>
-										<div className="d-flex">
-											N° Asiento:&nbsp;
-											<p style={{ color: "red", fontWeight: "bold" }}>
-												{form.asiento ? form.asiento : imprimirBus.asiento}
-											</p>
-										</div>
 									</div>
 								</div>
-								<div className="mt-3 d-flex flex-row">
-									<input
-										type="number"
-										className="form-control"
-										placeholder="Ingrese Nº de Asiento"
-										value={form.asiento}
-										onChange={handleInputChange}
-										name="asiento"
-									/>
-								</div>
+
 								<div className="m-3 d-flex justify-content-between">
 									<button
 										className="btn btn-dark"

@@ -8,7 +8,6 @@ let time = new Date();
 
 export const P2 = ({ paciente, setPaciente, bus, setBus, navigation }) => {
 	const [click, setClick] = useState(true);
-	console.log(click);
 	const imprimir = async (e) => {
 		setClick(!click);
 		e.preventDefault();
@@ -21,7 +20,6 @@ export const P2 = ({ paciente, setPaciente, bus, setBus, navigation }) => {
 			capacidad_aforo: bus.capacidad,
 			asiento: bus.asiento,
 		};
-		console.log(form);
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/ticketManifiesto",
 			form
