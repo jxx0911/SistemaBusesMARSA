@@ -27,7 +27,7 @@ export const IngresoPaciente = ({
 
 	const importarPaciente = async (e) => {
 		e.preventDefault();
-		console.log(form);
+
 		const resp = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/ticket/SegundaVista",
 			form
@@ -41,6 +41,7 @@ export const IngresoPaciente = ({
 				resultados = {
 					...resultados,
 				};
+				alert("NO SE ENCONTRO RESPUESTA");
 			} else {
 				const { dni, resultado, sintomatologia, fecha_examen } = data[0];
 
@@ -77,23 +78,30 @@ export const IngresoPaciente = ({
 			setForm(resultados);
 			setImprimirPaciente(resultados);
 		} else if (data.length === 2) {
-			const { dni, resultado, sintomatologia, fecha_examen } = data[0];
-			resultados = {
-				...form,
-				dni: dni,
-				resultado: resultado,
-				sintomatologia: sintomatologia,
-				fecha_examen: fecha_examen.slice(0, 10),
-			};
-			const { clinica, status, clave } = data[1];
-			resultados = {
-				...resultados,
-				clinica: clinica,
-				status: status,
-				clave: clave,
-			};
-			setForm(resultados);
-			setImprimirPaciente(resultados);
+			if (data[0] === null) {
+				resultados = {
+					...resultados,
+				};
+				alert("NO SE ENCONTRO RESPUESTA");
+			} else {
+				const { dni, resultado, sintomatologia, fecha_examen } = data[0];
+				resultados = {
+					...form,
+					dni: dni,
+					resultado: resultado,
+					sintomatologia: sintomatologia,
+					fecha_examen: fecha_examen.slice(0, 10),
+				};
+				const { clinica, status, clave } = data[1];
+				resultados = {
+					...resultados,
+					clinica: clinica,
+					status: status,
+					clave: clave,
+				};
+				setForm(resultados);
+				setImprimirPaciente(resultados);
+			}
 		}
 	};
 

@@ -7,12 +7,6 @@ import { HoraEmbarque } from "./HoraEmbarque";
 import { useHoraEmbarque } from "../../hooks/useHoraEmbarque";
 import axios from "axios";
 
-/* const initialBody = {
-	placa: "",
-	asiento: "",
-	hora: HoraEmbarque[0],
-}; */
-
 let imprimirBusTicket = {};
 
 export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
@@ -21,7 +15,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 	const [form, setForm] = useState({
 		placa: "",
 		asiento: "",
-		hora: "",
+		hora_embarque: "",
 	});
 	const { buses } = useBus();
 
@@ -56,7 +50,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 				imprimirBusTicket = {
 					...imprimirBusTicket,
 					asiento: form.asiento,
-					hora: HoraEmbarque[index],
+					hora_embarque: HoraEmbarque[index],
 				};
 				setForm(imprimirBusTicket);
 				setImprimirBus(imprimirBusTicket);
@@ -67,8 +61,6 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 		}
 	};
 
-	console.log(form);
-
 	const importarBus = async (e) => {
 		e.preventDefault();
 
@@ -77,6 +69,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 			form
 		);
 
+		console.log(resp);
 		const { data } = resp;
 
 		if (data[0] === null) {
@@ -145,10 +138,10 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 									<input
 										type="text"
 										className="form-control"
-										value={HoraEmbarque[index]}
+										value={HoraEmbarque[index].pm}
 										onChange={handleInputChange}
+										name="hora_embarque"
 										readOnly
-										/* name="asiento" */
 									/>
 									<button
 										type="button"
@@ -211,16 +204,16 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 													: imprimirBus.capacidad}
 											</p>
 										</div>
-										<div className="d-flex">
+										{/* <div className="d-flex">
 											Hora :&nbsp;
 											<p style={{ color: "red", fontWeight: "bold" }}>
-												{form.hora
-													? `${form.hora}%`
-													: imprimirBus.hora
-													? `${imprimirBus.hora}%`
+												{form.hora_embarque
+													? `${form.hora_embarque}%`
+													: imprimirBus.hora_embarque
+													? `${imprimirBus.hora_embarque}%`
 													: ""}
 											</p>
-										</div>
+										</div> */}
 									</div>
 								</div>
 

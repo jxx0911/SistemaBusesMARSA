@@ -1,6 +1,5 @@
 import React from "react";
-import { Inmune } from "./Inmune";
-import { P2 } from "./P2";
+import { Ticket } from "./Ticket";
 
 export const SubmitTicket = ({
 	imprimirBus,
@@ -18,25 +17,13 @@ export const SubmitTicket = ({
 					</div>
 					<div className="card-body">
 						<div className="card">
-							{imprimirPaciente.status === "INMUNE" ? (
-								<Inmune
-									paciente={imprimirPaciente}
-									setPaciente={setImprimirPaciente}
-									bus={imprimirBus}
-									setBus={setImprimirBus}
-									navigation={navigation}
-								/>
-							) : (
-								imprimirPaciente.status === "P2" && (
-									<P2
-										paciente={imprimirPaciente}
-										setPaciente={setImprimirPaciente}
-										bus={imprimirBus}
-										setBus={setImprimirBus}
-										navigation={navigation}
-									/>
-								)
-							)}
+							<Ticket
+								paciente={imprimirPaciente}
+								setPaciente={setImprimirPaciente}
+								bus={imprimirBus}
+								setBus={setImprimirBus}
+								navigation={navigation}
+							/>
 						</div>
 
 						<div className="mt-3 d-flex justify-content-between">

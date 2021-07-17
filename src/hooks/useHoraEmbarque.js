@@ -4,11 +4,13 @@ export const useHoraEmbarque = () => {
 	const [index, setIndex] = useState(0);
 
 	const siguiente = () => {
-		setIndex(index + 1);
+		if (index < 8) setIndex(index + 1);
+		else setIndex(0);
 	};
 
 	const anterior = () => {
-		setIndex(index - 1);
+		if (index > 0) setIndex(index - 1);
+		else setIndex(8);
 	};
 
 	return {
