@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import { ImSearch } from "react-icons/im";
+import { GrAdd, GrFormSubtract } from "react-icons/gr";
 import { useBus } from "../../hooks/useBus";
 /* import { Fecha } from "../../helpers/Fecha"; */
 import { HoraEmbarque } from "./HoraEmbarque";
+import { useHoraEmbarque } from "../../hooks/useHoraEmbarque";
 import axios from "axios";
 
-const initialBody = {
+/* const initialBody = {
 	placa: "",
 	asiento: "",
-	hora: "",
-};
+	hora: HoraEmbarque[0],
+}; */
 
 let imprimirBusTicket = {};
 
 export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
-	const [form, setForm] = useState(initialBody);
+	const { index, siguiente, anterior } = useHoraEmbarque();
+
+	const [form, setForm] = useState({
+		placa: "",
+		asiento: "",
+		hora: "",
+	});
 	const { buses } = useBus();
 
 	const handleInputChange = (e) => {
@@ -23,14 +31,16 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 			[e.target.name]: e.target.value,
 		});
 	};
-	console.log(form.hora);
+
 	const estadoAsiento = async (e) => {
 		e.preventDefault();
+
 		let body = {
 			/* fecha_act: Fecha().fechaHoy, */
 			fecha_act: "2021-07-14",
 			placa: form.placa,
 		};
+
 		if (body.placa === "") {
 			navigation.next();
 		} else {
@@ -38,12 +48,15 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 				"http://167.99.115.105/bdmarsa/tercera/mostrar/listadoAsientos",
 				body
 			);
+
+			console.log(resp);
 			const { data } = resp;
-			console.log(data);
+
 			if (data[parseInt(form.asiento) - 1].estado === false) {
 				imprimirBusTicket = {
 					...imprimirBusTicket,
 					asiento: form.asiento,
+					hora: HoraEmbarque[index],
 				};
 				setForm(imprimirBusTicket);
 				setImprimirBus(imprimirBusTicket);
@@ -54,6 +67,8 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 		}
 	};
 
+	console.log(form);
+
 	const importarBus = async (e) => {
 		e.preventDefault();
 
@@ -61,7 +76,9 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 			"http://167.99.115.105/bdmarsa/tercera/ticket/primeraVista",
 			form
 		);
+
 		const { data } = resp;
+
 		if (data[0] === null) {
 			imprimirBusTicket = {
 				...imprimirBusTicket,
@@ -95,7 +112,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 					<div className="card-body">
 						<form>
 							<fieldset className="form-fieldset">
-								<div className="mb-3 d-flex flex-row">
+								<div className="m-3 d-flex flex-row">
 									<input
 										type="text"
 										className="form-control inputBus"
@@ -125,14 +142,28 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 									/>
 								</div>
 								<div className="m-3 d-flex flex-row">
-									<label className="form-label">HORA DE SALIDA : </label>
 									<input
-										type="time"
+										type="text"
 										className="form-control"
-										value={form.hora}
+										value={HoraEmbarque[index]}
 										onChange={handleInputChange}
+										readOnly
 										/* name="asiento" */
 									/>
+									<button
+										type="button"
+										onClick={anterior}
+										className="btn btn-outline-danger m-1"
+									>
+										<GrFormSubtract />
+									</button>
+									<button
+										type="button"
+										onClick={siguiente}
+										className="btn btn-outline-primary m-1"
+									>
+										<GrAdd />
+									</button>
 								</div>
 
 								<div>
@@ -159,6 +190,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 												{form.empresa ? form.empresa : imprimirBus.empresa}
 											</p>
 										</div>
+
 										{/* <div className="d-flex">
 											Conductor :&nbsp;
 											<p style={{ color: "red", fontWeight: "bold" }}>
@@ -177,6 +209,16 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 												{form.capacidad
 													? form.capacidad
 													: imprimirBus.capacidad}
+											</p>
+										</div>
+										<div className="d-flex">
+											Hora :&nbsp;
+											<p style={{ color: "red", fontWeight: "bold" }}>
+												{form.hora
+													? `${form.hora}%`
+													: imprimirBus.hora
+													? `${imprimirBus.hora}%`
+													: ""}
 											</p>
 										</div>
 									</div>
