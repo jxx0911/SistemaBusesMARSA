@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../../App.css";
 import MaterialTable from "material-table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Excel } from "../../helpers/Excel";
 
 function HistorialEditar() {
+	const [form, setForm] = useState({});
+
 	const { importExcel, data, colDefs } = Excel();
+	const location = useLocation();
+	const cod_lote = location.state?.cod_lote;
+	const fecha_salida = location.state?.fecha_salida;
+	const nombre_sede = location.state?.nombre_sede;
+	const nombre_servicio = location.state?.nombre_servicio;
+
+	const handleChange = (e) => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value,
+		});
+	};
 
 	return (
 		<>
@@ -16,42 +31,47 @@ function HistorialEditar() {
 					{/* Select para Sede */}
 					<div className="sede">
 						<div className="form-label">SEDE</div>
-						<select className="form-select">
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-						</select>
+						<input
+							type="text"
+							className="form-control"
+							value={nombre_sede}
+							onChange={handleChange}
+							readOnly
+						/>
 					</div>
 					{/* Select para Servicio */}
 					<div className="servicio">
 						<div className="form-label">SERVICIO</div>
-						<select className="form-select">
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-						</select>
+						<input
+							type="text"
+							className="form-control"
+							value={nombre_servicio}
+							onChange={handleChange}
+							readOnly
+						/>
 					</div>
 					{/* Input para fecha */}
 					<div className="fecha">
 						<label className="form-label">FECHA DE ATENCION</label>
 						<input
-							type="date"
+							type="text"
 							className="form-control"
-							name="example-text-input"
-							placeholder="Input placeholder"
+							value={fecha_salida}
+							onChange={handleChange}
+							readOnly
 						/>
 					</div>
 				</div>
 				<div className="container mt-1">
 					<div className="grid-editar ">
 						<div className="lote d-flex">
-							<label style={{ width: "5rem" }}># Lote: </label>
+							<label style={{ width: "5rem" }}>Codigo: </label>
 							<input
 								className="form-control"
 								type="text"
-								name="codigoLote"
-								value="abc"
-								disabled={true}
+								value={cod_lote}
+								onChange={handleChange}
+								readOnly
 							/>
 						</div>
 						<div className="subir">

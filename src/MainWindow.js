@@ -31,34 +31,42 @@ function MainWindow() {
 						<Navbar />
 						<Home />
 					</Route>
+
 					<Route path="/tabla" exact>
 						<Navbar />
 						<Tabla />
 					</Route>
+
 					<Route path="/historial" exact>
 						<Navbar />
 						<Historial />
 					</Route>
-					<Route path="/buses" exact>
-						<Navbar />
-						<Bus />
-					</Route>
-					<Route path="/empresas" exact>
-						<Navbar />
-						<Empresa />
-					</Route>
-					<Route path="/ticket" exact>
-						<Navbar />
-						<MultiStepForm />
-					</Route>
+
 					<Route path="/historial-editar" exact>
 						<Navbar />
 						<HistorialEditar />
 					</Route>
+
+					<Route path="/buses" exact>
+						<Navbar />
+						<Bus />
+					</Route>
+
+					<Route path="/empresas" exact>
+						<Navbar />
+						<Empresa />
+					</Route>
+
+					<Route path="/ticket" exact>
+						<Navbar />
+						<MultiStepForm />
+					</Route>
+
 					<Route path="/manifiesto" exact>
 						<Navbar />
 						<Manifiesto />
 					</Route>
+
 					<Route path="/config" exact>
 						<Navbar />
 						<Config {...props} />

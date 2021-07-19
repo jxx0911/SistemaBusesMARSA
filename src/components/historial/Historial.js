@@ -9,10 +9,10 @@ export const Historial = () => {
 					<thead>
 						<tr>
 							<th scope="col"># Lote</th>
+							<th scope="col">Codigo</th>
 							<th scope="col">Fecha de Atencion</th>
 							<th scope="col">Sede</th>
 							<th scope="col">Servicio</th>
-							<th scope="col">Usuario</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
