@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import "../../App.css";
 import MaterialTable from "material-table";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Excel } from "../../helpers/Excel";
+import axios from "axios";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../App.css";
 
 function HistorialEditar() {
 	const [form, setForm] = useState({});
 
-	const { importExcel, data, colDefs } = Excel();
+	const { importExcel, data, colDefs, setDatos, setColDefs } = Excel();
 	const location = useLocation();
 	const cod_lote = location.state?.cod_lote;
 	const fecha_salida = location.state?.fecha_salida;
@@ -21,6 +23,16 @@ function HistorialEditar() {
 			[e.target.name]: e.target.value,
 		});
 	};
+
+	useEffect(() => {
+		axios
+			.get(
+				`http://167.99.115.105/bdmarsa/tercera/mostrar/ContenidoLoteEditable?cod_lote=${cod_lote}`
+			)
+			.then((response) => {
+				console.log(response);
+			});
+	}, [cod_lote]);
 
 	return (
 		<>
