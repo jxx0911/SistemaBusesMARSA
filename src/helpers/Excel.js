@@ -7,7 +7,7 @@ export const Excel = () => {
 	/* const { getJsDateFromExcel } = require("excel-date-to-js");
 	getJsDateFromExcel("42510"); */
 
-	const [colDefs, setColDefs] = useState();
+	const [colDefs, setColDefs] = useState([]);
 	const [datos, setDatos] = useState();
 
 	const getExention = (file) => {

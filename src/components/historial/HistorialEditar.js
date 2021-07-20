@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import MaterialTable from "material-table";
 import { Excel } from "../../helpers/Excel";
 import axios from "axios";
+import { HeadersData } from "../../helpers/HeadersData";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../App.css";
