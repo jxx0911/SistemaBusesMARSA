@@ -3,7 +3,8 @@ import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
 
 const initialBody = {
-	fecha_act: Fecha().fechaHoy,
+	/* fecha_act: Fecha().fechaHoy, */
+	fecha_act: "2021-07-14",
 	nro_documento: "",
 };
 
@@ -24,7 +25,11 @@ export const Home = () => {
 				form
 			);
 			const { data } = resp;
-			alert(data.Respuesta);
+
+			console.log(data);
+			if (data.length === 1) alert(data[0].Respuesta);
+			if (data.length === 2) alert(data[0].Respuesta);
+
 			setForm(initialBody);
 		}
 	};
