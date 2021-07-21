@@ -3,8 +3,7 @@ import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
 
 const initialBody = {
-	/* fecha_act: Fecha().fechaHoy, */
-	fecha_act: "2021-07-14",
+	fecha_act: Fecha().fechaHoy,
 	nro_documento: "",
 };
 
