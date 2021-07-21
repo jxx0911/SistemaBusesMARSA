@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { ImSearch } from "react-icons/im";
-/* import { Fecha } from "../../helpers/Fecha"; */
+import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
 
 const initialBody = {
-	/* fecha_actual: Fecha().fechaHoy, */
-	fecha_actual: "2021-07-14",
+	fecha_actual: Fecha().fechaHoy,
 	nro_documento: "",
 };
 

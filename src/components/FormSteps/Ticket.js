@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import imprimirElemento from "../../helpers/imprimirElemento";
-/* import { Fecha } from "../../helpers/Fecha"; */
+import { Fecha } from "../../helpers/Fecha";
 
 let form = {};
 let time = new Date();
@@ -14,8 +14,7 @@ export const Ticket = ({ paciente, setPaciente, bus, setBus, navigation }) => {
 		e.preventDefault();
 		form = {
 			clave: paciente.clave,
-			/* fecha_act: Fecha().fechaHoy, */
-			fecha_act: "2021-07-14",
+			fecha_act: Fecha().fechaHoy,
 			hora_act: time.toLocaleTimeString(),
 			placa: bus.placa,
 			capacidad_aforo: bus.capacidad,

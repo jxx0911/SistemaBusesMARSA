@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ImSearch } from "react-icons/im";
 import { GrAdd, GrFormSubtract } from "react-icons/gr";
 import { useBus } from "../../hooks/useBus";
-/* import { Fecha } from "../../helpers/Fecha"; */
+import { Fecha } from "../../helpers/Fecha";
 import { HoraEmbarque } from "./HoraEmbarque";
 import { useHoraEmbarque } from "../../hooks/useHoraEmbarque";
 import axios from "axios";
@@ -30,8 +30,7 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 		e.preventDefault();
 
 		let body = {
-			/* fecha_act: Fecha().fechaHoy, */
-			fecha_act: "2021-07-14",
+			fecha_act: Fecha().fechaHoy,
 			placa: form.placa,
 		};
 

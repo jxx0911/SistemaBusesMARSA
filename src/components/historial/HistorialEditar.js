@@ -11,7 +11,10 @@ import "../../App.css";
 function HistorialEditar() {
 	const [form, setForm] = useState({});
 
-	const { importExcel, data, colDefs, setDatos, setColDefs } = Excel();
+	const { heads } = HeadersData();
+
+	const { importExcel, datos, colDefs, setDatos, setColDefs } = Excel();
+
 	const location = useLocation();
 	const cod_lote = location.state?.cod_lote;
 	const fecha_salida = location.state?.fecha_salida;
@@ -32,8 +35,10 @@ function HistorialEditar() {
 			)
 			.then((response) => {
 				console.log(response);
+				setDatos(response.data);
+				setColDefs(heads);
 			});
-	}, [cod_lote]);
+	}, [setColDefs, setDatos, cod_lote, heads]);
 
 	return (
 		<>
@@ -97,7 +102,7 @@ function HistorialEditar() {
 				</div>
 
 				<div className="table-responsive">
-					<MaterialTable title="Marsa Data" data={data} columns={colDefs} />
+					<MaterialTable title="Marsa Data" data={datos} columns={colDefs} />
 				</div>
 			</div>
 		</>
