@@ -10,7 +10,7 @@ import { MultiStepForm } from "./components/FormSteps/MultiStepForm";
 import { Config } from "./components/config/Config";
 import { useFormHook } from "./hooks/useFormHook";
 import { useStepHook } from "./hooks/useStepHook";
-import HistorialEditar from "./components/historial/HistorialEditar";
+import { HistorialEditar } from "./components/historial/HistorialEditar";
 import { Manifiesto } from "./components/manifiesto/Manifiesto";
 import Navbar from "./components/navbar/Navbar";
 
