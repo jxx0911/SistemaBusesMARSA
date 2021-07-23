@@ -1,0 +1,139 @@
+.containerGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1.1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	gap: 2px 2px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		"tipoDocumento nroDocumento codigo"
+		"apePaterno apeMaterno nombres"
+		"sexo celular correo"
+		"apenombres f_nac fecha_salida"
+		"sede clinica asistencia"
+		"edad resultp1 resultp2"
+		"compania unidad empresaContratista"
+		"rucContratista zonaTrabajo areaTrabajo"
+		"puesto ubicacion direccion"
+		"distrito provincia departamento"
+		"destino lugarEmbarque status";
+}
+
+.tipoDocumento {
+	grid-area: "tipoDocumento";
+}
+
+.nroDocumento {
+	grid-area: "nroDocumento";
+}
+
+.codigo {
+	grid-area: "codigo";
+}
+
+.apePaterno {
+	grid-area: "apePaterno";
+}
+
+.apeMaterno {
+	grid-area: "apeMaterno";
+}
+
+.nombres {
+	grid-area: "nombres";
+}
+
+.sexo {
+	grid-area: "sexo";
+}
+
+.celular {
+	grid-area: "celular";
+}
+
+.correo {
+	grid-area: "correo";
+}
+
+.apenombres {
+	grid-area: "apenombres";
+}
+
+.f_nac {
+	grid-area: "f_nac";
+}
+
+.fecha_salida {
+	grid-area: "fecha_salida";
+}
+
+.sede {
+	grid-area: "sede";
+}
+
+.clinica {
+	grid-area: "clinica";
+}
+
+.asistencia {
+	grid-area: "asistencia";
+}
+
+.edad {
+	grid-area: "edad";
+}
+
+.resultp1 {
+	grid-area: "resultp1";
+}
+
+.resultp2 {
+	grid-area: "resultp2";
+}
+
+.compania {
+	grid-area: "compania";
+}
+
+.unidad {
+	grid-area: "unidad";
+}
+
+.empresaContratista {
+	grid-area: "empresaContratista";
+}
+
+.rucContratista {
+	grid-area: "rucContratista";
+}
+
+.zonaTrabajo {
+	grid-area: "zonaTrabajo";
+}
+
+.areaTrabajo {
+	grid-area: "areaTrabajo";
+}
+
+.puesto {
+	grid-area: "puesto";
+}
+
+.ubicacion {
+	grid-area: "ubicacion";
+}
+
+.direccion {
+	grid-area: "direccion";
+}
+
+.distrito {
+	grid-area: "distrito";
+}
+
+.provincia {
+	grid-area: "provincia";
+}
+
+.departamento {
+	grid-area: "departamento";
+}
