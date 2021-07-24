@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import imprimirElemento from "../../helpers/imprimirElemento";
+import imprimirTicket from "../../helpers/imprimirTicket";
 import { Fecha } from "../../helpers/Fecha";
 
 let form = {};
@@ -27,7 +27,7 @@ export const Ticket = ({ paciente, setPaciente, bus, setBus, navigation }) => {
 		);
 		console.log(resp);
 		let div = document.querySelector("#imprimible");
-		imprimirElemento(div);
+		imprimirTicket(div);
 		setBus({});
 		setPaciente({});
 		navigation.go(0);
