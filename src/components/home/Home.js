@@ -39,8 +39,8 @@ export const Home = () => {
 
 			setForm(initialBody);
 			setImprimir(!imprimir);
-			let div = document.querySelector("#imprimible");
-			imprimirAdmision(div);
+			/* let div = document.querySelector("#imprimible");
+			imprimirAdmision(div); */
 			/* setKeyPress(true); */
 		}
 	};
@@ -82,10 +82,184 @@ export const Home = () => {
 							style={{
 								width: "800px",
 								height: "1200px",
+								fontFamily: "Sans-Serif",
 							}}
 						/>
+						{/* caja */}
 						<div className="position-absolute">
-							PRUEBA CUANTITATIVA ANTIGENOS
+							{/* examen */}
+							<div
+								className="position-relative"
+								style={{
+									/* border: "1px solid black", */
+									height: "24.5rem",
+									top: "2.1rem",
+									width: "53rem",
+								}}
+							>
+								<div
+									className="position-absolute"
+									style={{
+										fontWeight: "bold",
+										right: "0rem",
+										top: ".65rem",
+										textDecoration: "underline",
+										width: "27.2rem",
+									}}
+								>
+									PRUEBA CUANTITATIVA ANTIGENOS
+								</div>
+								{/* examen */}
+								<div
+									className="position-relative"
+									style={{
+										width: "15rem",
+										height: "1.7rem",
+										top: "3.2rem",
+										left: "7.5rem",
+										fontSize: ".75rem",
+										fontWeight: "bold",
+										/* border: "1px solid black", */
+									}}
+								>
+									PRUEBA CUANTITATIVA ANTIGENOS
+								</div>
+								{/* nombres */}
+								<div
+									className="position-relative"
+									style={{
+										/* border: "1px solid black", */
+										height: "1.7rem",
+										width: "17rem",
+										top: "3.2rem",
+										left: "12.3rem",
+										fontSize: ".75rem",
+										fontWeight: "bold",
+									}}
+								>
+									CARLOS CRISTHIAN MOLINERO HUARCAYA
+								</div>
+								{/* empresa */}
+								<div
+									className="position-relative"
+									style={{
+										/* border: "1px solid black", */
+										fontSize: ".75rem",
+										fontWeight: "bold",
+										height: "1.7rem",
+										width: "17rem",
+										top: "3rem",
+										left: "8.5rem",
+									}}
+								>
+									MINERA AURIFERA RETAMAS S.A.
+								</div>
+								{/* cargo */}
+								<div
+									className="position-relative"
+									style={{
+										/* border: "1px solid black", */
+										fontSize: ".75rem",
+										fontWeight: "bold",
+										height: "1.7rem",
+										width: "17rem",
+										top: "2.6rem",
+										left: "7.4rem",
+									}}
+								>
+									PROBANDO
+								</div>
+								{/* fecha */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										fontSize: "1rem",
+										fontWeight: "bold",
+										height: "1.7rem",
+										width: "27rem",
+										right: "0rem",
+										top: "3rem",
+									}}
+								>
+									2021-07-24
+								</div>
+								{/* orden */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										fontSize: "1rem",
+										fontWeight: "bold",
+										height: "1.7rem",
+										width: "9.3rem",
+										right: "0rem",
+										top: "3rem",
+									}}
+								>
+									39588-T
+								</div>
+								{/* contrata */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										fontSize: ".6rem",
+										fontWeight: "bold",
+										height: "1.7rem",
+										width: "14.3rem",
+										right: "0rem",
+										top: "5rem",
+									}}
+								>
+									MINERA TAURO S.A.C.
+								</div>
+								{/* edad */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										fontSize: "1rem",
+										fontWeight: "bold",
+										height: "1.7rem",
+										width: "19rem",
+										right: "0rem",
+										top: "6.1rem",
+									}}
+								>
+									32
+								</div>
+								{/* dni */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										fontSize: "1rem",
+										fontWeight: "bold",
+										height: "1.7rem",
+										width: "19.8rem",
+										right: "0rem",
+										top: "7.5rem",
+									}}
+								>
+									46798727
+								</div>
+								{/* tipoooo */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										fontSize: "1rem",
+										fontWeight: "bold",
+										height: "1.7rem",
+										width: "4.7rem",
+										right: "0rem",
+										top: "7.6rem",
+									}}
+								>
+									Inmune
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
