@@ -1,48 +1,84 @@
 import React, { useState } from "react";
 import "./HistorialEditar.css";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+
+let body = {
+	ruc: "20477167561",
+	id_historia_login: 2,
+};
+
+let initialBody = {
+	tipoDocumento: "DNI",
+	nroDocumento: "",
+	codigo: "",
+	apePaterno: "",
+	apeMaterno: "",
+	nombres: "",
+	sexo: "",
+	celular: "",
+	correo: "",
+	apenombres: "",
+	f_nac: "",
+	fecha_salida: "",
+	sede: "",
+	clinica: "",
+	asistencia: "",
+	edad: "",
+	resultp1: "",
+	resultp2: "",
+	compania: "MINERA AURIFERA RETAMAS S.A.",
+	unidad: "SAN ANDRES",
+	empresaContratista: "",
+	rucContratista: "",
+	zonaTrabajo: "",
+	areaTrabajo: "",
+	puesto: "",
+	ubicacion: "",
+	direccion: "",
+	distrito: "",
+	provincia: "",
+	departamento: "",
+	destino: "",
+	lugarEmbarque: "",
+	status: "",
+};
 
 export const HistorialEditar = () => {
-	const [form, setForm] = useState({
-		tipoDocumento: "DNI",
-		nroDocumento: "",
-		codigo: "",
-		apePaterno: "",
-		apeMaterno: "",
-		nombres: "",
-		sexo: "",
-		celular: "",
-		correo: "",
-		apenombres: "",
-		f_nac: "",
-		fecha_salida: "",
-		sede: "",
-		clinica: "",
-		asistencia: "",
-		edad: "",
-		resultp1: "",
-		resultp2: "",
-		compania: "",
-		unidad: "",
-		empresaContratista: "",
-		rucContratista: "",
-		zonaTrabajo: "",
-		areaTrabajo: "",
-		puesto: "",
-		ubicacion: "",
-		direccion: "",
-		distrito: "",
-		provincia: "",
-		departamento: "",
-		destino: "",
-		lugarEmbarque: "",
-		status: "",
-	});
+	const location = useLocation();
+	const fecha_salida_formulario = location.state?.fecha_salida;
+	const nombre_sede = location.state?.nombre_sede;
+	const cod_Servicio = location.state?.cod_Servicio;
+
+	const [form, setForm] = useState(initialBody);
 
 	const handleChange = (e) => {
 		setForm({
 			...form,
 			[e.target.name]: e.target.value,
 		});
+	};
+
+	const registrar = async (e) => {
+		e.preventDefault();
+
+		body = {
+			...body,
+			fecha_salida_formulario,
+			nombre_sede,
+			cod_Servicio,
+		};
+
+		let post = {};
+		post = Object.assign(body, form);
+
+		console.log(post);
+
+		const resp = await axios.post(
+			"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
+			post
+		);
+		console.log(resp);
 	};
 
 	return (
@@ -155,7 +191,7 @@ export const HistorialEditar = () => {
 					<input
 						className="form-control"
 						name="f_nac"
-						type="number"
+						type="text"
 						placeholder="AAAA-MM-DD"
 						onChange={handleChange}
 						value={form.f_nac}
@@ -166,7 +202,7 @@ export const HistorialEditar = () => {
 					<input
 						className="form-control"
 						name="fecha_salida"
-						type="number"
+						type="text"
 						placeholder="AAAA-MM-DD"
 						onChange={handleChange}
 						value={form.fecha_salida}
@@ -240,6 +276,7 @@ export const HistorialEditar = () => {
 						type="text"
 						onChange={handleChange}
 						value={form.compania}
+						readOnly
 					/>
 				</div>
 				<div className="unidad container m-1">
@@ -250,6 +287,7 @@ export const HistorialEditar = () => {
 						type="text"
 						onChange={handleChange}
 						value={form.unidad}
+						readOnly
 					/>
 				</div>
 				<div className="empresaContratista container m-1">
@@ -383,6 +421,9 @@ export const HistorialEditar = () => {
 					/>
 				</div>
 			</div>
+			<button onClick={registrar} className="btn btn-success float-end m-2">
+				REGISTRAR
+			</button>
 		</>
 	);
 };

@@ -22,10 +22,9 @@ export const HistorialItem = () => {
 							to={{
 								pathname: "/historial-editar",
 								state: {
-									cod_lote: item.cod_lote,
 									fecha_salida: item.fecha_salida.slice(0, 10),
 									nombre_sede: item.nombre_sede,
-									nombre_servicio: item.nombre_servicio,
+									cod_Servicio: item.cod_servicio,
 								},
 							}}
 						>
