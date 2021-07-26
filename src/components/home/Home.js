@@ -49,7 +49,6 @@ export const Home = () => {
 			if (data.length === 2) {
 				respuesta = data[1];
 				alert(data[0].Respuesta);
-				console.log(data[1], data[1].orden);
 				setImprimir(!imprimir);
 				setForm(initialBody);
 				setKeyPress(true);
@@ -132,7 +131,7 @@ export const Home = () => {
 										width: "15rem",
 										height: "1.7rem",
 										top: "3.2rem",
-										left: "7.5rem",
+										left: "7.4rem",
 										fontSize: ".75rem",
 										fontWeight: "bold",
 										/* border: "1px solid black", */
@@ -148,7 +147,7 @@ export const Home = () => {
 										height: "1.7rem",
 										width: "17rem",
 										top: "3.2rem",
-										left: "12.3rem",
+										left: "12.5rem",
 										fontSize: ".75rem",
 										fontWeight: "bold",
 									}}
@@ -165,7 +164,7 @@ export const Home = () => {
 										height: "1.7rem",
 										width: "17rem",
 										top: "3rem",
-										left: "8.5rem",
+										left: "8.7rem",
 									}}
 								>
 									{respuesta.empresa}
@@ -180,10 +179,10 @@ export const Home = () => {
 										height: "1.7rem",
 										width: "17rem",
 										top: "2.6rem",
-										left: "7.4rem",
+										left: "7.6rem",
 									}}
 								>
-									PROBANDO
+									{respuesta.cargo}
 								</div>
 								{/* fecha */}
 								<div
@@ -274,6 +273,120 @@ export const Home = () => {
 									}}
 								>
 									{respuesta.tipoooo}
+								</div>
+								{/* X ADMISION */}
+								<div
+									className="position-relative"
+									style={{
+										/* border: "1px solid black", */
+										color: "blue",
+										fontWeight: "bold",
+										fontSize: "1.6rem",
+										width: "28.6rem",
+										float: "right",
+										top: "3.95rem",
+									}}
+								>
+									X
+								</div>
+								{/* X TRIAJE */}
+								<div
+									className="position-relative"
+									style={{
+										/* border: "1px solid black", */
+										color: "blue",
+										fontWeight: "bold",
+										fontSize: "1.6rem",
+										width: "28.6rem",
+										float: "right",
+										top: "4.47rem",
+									}}
+								>
+									X
+								</div>
+								{/* X PRIMERA */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										color: "red",
+										fontWeight: "bold",
+										fontSize: "1.6rem",
+										width: "28.6rem",
+										float: "right",
+										bottom: "3.5rem",
+										left: "7.8rem",
+									}}
+								>
+									X
+								</div>
+								{/* X SEGUNDA */}
+								{respuesta.tipoooo === "P2" ? (
+									""
+								) : (
+									<div
+										className="position-absolute"
+										style={{
+											/* border: "1px solid black", */
+											color: "red",
+											fontWeight: "bold",
+											fontSize: "1.6rem",
+											width: "28.6rem",
+											float: "right",
+											bottom: "3.5rem",
+											left: "20.6rem",
+										}}
+									>
+										X
+									</div>
+								)}
+								{/* X PA */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										color: "red",
+										fontWeight: "bold",
+										fontSize: "1.6rem",
+										width: "28.6rem",
+										float: "right",
+										bottom: "3.5rem",
+										left: "30rem",
+									}}
+								>
+									X
+								</div>
+								{/* X HOTEL */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										color: "red",
+										fontWeight: "bold",
+										fontSize: "1.6rem",
+										width: "28.6rem",
+										float: "right",
+										bottom: "3.5rem",
+										left: "40.6rem",
+									}}
+								>
+									X
+								</div>
+								{/* X PCON */}
+								<div
+									className="position-absolute"
+									style={{
+										/* border: "1px solid black", */
+										color: "red",
+										fontWeight: "bold",
+										fontSize: "1.6rem",
+										width: "28.6rem",
+										float: "right",
+										bottom: "3.5rem",
+										left: "46.8rem",
+									}}
+								>
+									X
 								</div>
 							</div>
 						</div>
