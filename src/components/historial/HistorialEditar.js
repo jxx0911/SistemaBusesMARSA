@@ -9,6 +9,7 @@ let body = {
 };
 
 let initialBody = {
+	nro: null,
 	tipoDocumento: "DNI",
 	nroDocumento: "",
 	codigo: "",
