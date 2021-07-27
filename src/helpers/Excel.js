@@ -71,7 +71,6 @@ export const Excel = () => {
 			//convert to array
 			const fileData = XLSX.utils.sheet_to_json(workSheet, { header: 1 });
 			// console.log(fileData)
-			console.log(fileData[0]);
 			const headers = fileData[0];
 			const heads = headers.map(
 				(head) =>
@@ -100,7 +99,6 @@ export const Excel = () => {
 			);
 
 			setColDefs(heads);
-			console.log(heads);
 			/* console.log(heads[1]["title"]); */
 
 			//removing header

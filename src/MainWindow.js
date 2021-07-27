@@ -12,6 +12,7 @@ import { useFormHook } from "./hooks/useFormHook";
 import { useStepHook } from "./hooks/useStepHook";
 import { HistorialEditar } from "./components/historial/HistorialEditar";
 import { Manifiesto } from "./components/manifiesto/Manifiesto";
+import { ManifiestoIndividual } from "./components/manifiesto/ManifiestoIndividual";
 import Navbar from "./components/navbar/Navbar";
 
 import "./App.css";
@@ -65,6 +66,11 @@ function MainWindow() {
 					<Route path="/manifiesto" exact>
 						<Navbar />
 						<Manifiesto />
+					</Route>
+
+					<Route path="/manifiesto-individual" exact>
+						<Navbar />
+						<ManifiestoIndividual />
 					</Route>
 
 					<Route path="/config" exact>

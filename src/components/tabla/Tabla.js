@@ -111,6 +111,8 @@ function Tabla() {
 		}
 	};
 
+	console.log(datos);
+
 	//Funcion asincrona para hace la peticion HTTP al API de registrar Lote
 	const registrarLote = async () => {
 		//Respuesta "resp2" usando "axios" con metodo POST, en el body se usa el objeto "lote"
@@ -125,15 +127,10 @@ function Tabla() {
 
 		//Condicional de respuesta
 		if (respuesta === "OK") {
-			//!!!!!!!!!!!!!!!!!POR OBSERVAR!!!!!!!!!!!!!!!!!!!!!!!
-			informacionInicial = {
-				...informacionInicial,
-				resultp2: "",
-				asistencia: "",
-			};
 			//se declara un objeto body vacio, que se usara para fucionar cada registro del JSON que manda excel en "datos",
 			//y la informacionInicial con informacion adicional necesaria para el API de registrar informacion importada
 			let body = {};
+
 			//se recorre los "datos" obtenidos del libro Excel, funcion asincrona debido a que por cada registro,
 			//se hara una peticion HTTP al API de informacion importada
 			datos.map(async (excel) => {
@@ -142,10 +139,12 @@ function Tabla() {
 				//Object.assign hace la fucion de dos objetos
 				body = await Object.assign(excel, informacionInicial);
 				//se usa "axios" con metodo POST para hacer el registro, recibiendo "body"
-				await axios.post(
+				let resp = await axios.post(
 					"http://167.99.115.105/bdmarsa/tercera/infoImportada/registrada",
 					body
 				);
+
+				console.log(resp);
 			});
 			setForm(initialForm);
 			setFile(!file);
