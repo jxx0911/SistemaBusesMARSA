@@ -14,7 +14,8 @@ export const Ticket = ({ paciente, setPaciente, bus, setBus, navigation }) => {
 		e.preventDefault();
 		form = {
 			clave: paciente.clave,
-			fecha_act: Fecha().fechaHoy,
+			/* fecha_act: Fecha().fechaHoy, */
+			fecha_act: "2021-07-28",
 			hora_act: time.toLocaleTimeString(),
 			placa: bus.placa,
 			capacidad_aforo: bus.capacidad,

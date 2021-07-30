@@ -30,7 +30,8 @@ export const IngresoBus = ({ imprimirBus, setImprimirBus, navigation }) => {
 		e.preventDefault();
 
 		let body = {
-			fecha_act: Fecha().fechaHoy,
+			/* fecha_act: Fecha().fechaHoy, */
+			fecha_act: "2021-07-28",
 			placa: form.placa,
 		};
 

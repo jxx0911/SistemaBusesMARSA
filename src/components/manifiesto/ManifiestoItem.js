@@ -17,7 +17,7 @@ export const ManifiestoItem = () => {
 								pathname: "/manifiesto-individual",
 								state: {
 									/* fecha_act: Fecha().fechaHoy, */
-									fecha_act: "2021-07-21",
+									fecha_act: "2021-07-28",
 									placa: item,
 								},
 							}}

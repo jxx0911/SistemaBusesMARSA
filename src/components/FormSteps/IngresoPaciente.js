@@ -4,7 +4,8 @@ import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
 
 const initialBody = {
-	fecha_actual: Fecha().fechaHoy,
+	/* fecha_actual: Fecha().fechaHoy, */
+	fecha_actual: "2021-07-28",
 	nro_documento: "",
 };
 
@@ -37,10 +38,20 @@ export const IngresoPaciente = ({
 
 		if (data.length === 3) {
 			if (data[0] === null) {
+				/* resultados = {
+					...resultados,
+				}; */
+				alert("NO SE ENCONTRO RESPUESTA");
+				const { nrodocumento, clinica, status, clave } = data[2];
 				resultados = {
 					...resultados,
+					dni: nrodocumento,
+					clinica: clinica,
+					status: status,
+					clave: clave,
 				};
-				alert("NO SE ENCONTRO RESPUESTA");
+				setForm(resultados);
+				setImprimirPaciente(resultados);
 			} else {
 				const { dni, resultado, sintomatologia, fecha_examen } = data[0];
 
@@ -78,10 +89,17 @@ export const IngresoPaciente = ({
 			setImprimirPaciente(resultados);
 		} else if (data.length === 2) {
 			if (data[0] === null) {
+				alert("NO SE ENCONTRO RESPUESTA");
+				const { nrodocumento, clinica, status, clave } = data[1];
 				resultados = {
 					...resultados,
+					dni: nrodocumento,
+					clinica: clinica,
+					status: status,
+					clave: clave,
 				};
-				alert("NO SE ENCONTRO RESPUESTA");
+				setForm(resultados);
+				setImprimirPaciente(resultados);
 			} else {
 				const { dni, resultado, sintomatologia, fecha_examen } = data[0];
 				resultados = {

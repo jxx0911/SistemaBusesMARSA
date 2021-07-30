@@ -21,11 +21,14 @@ export const ManifiestoIndividual = () => {
 			})
 			.then((response) => {
 				console.log(response);
-				let data = response.data;
-				let dataTable = data.filter(
+				let data = response?.data;
+				let dataTable = data?.filter(
 					(element) => Object.keys(element).length !== 3
 				);
 				setRow(dataTable);
+			})
+			.catch((error) => {
+				console.log(error);
 			});
 	}, [fecha_act, placa]);
 
