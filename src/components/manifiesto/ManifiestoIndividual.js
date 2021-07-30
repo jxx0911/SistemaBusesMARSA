@@ -34,76 +34,115 @@ export const ManifiestoIndividual = () => {
 			columns: [
 				{
 					title: "",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 100 },
 				},
 				{
 					title: "NOMBRE COMPLETO",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 130 },
 				},
 				{
 					title: "",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 100 },
 				},
 				{
 					title: "DNI",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 100 },
 				},
 				{
 					title: "Nº CELULAR",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 90 },
 				},
 				{
-					title: "DECLARACION JURADA (SI O NO)",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					title: "DECLARACION JURADA",
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 140 },
 				},
 				{
-					title:
-						"LUGAR DE PARTIDA (DEPARTAMENTO/PROVINCIA/DISTRITO/LOCALIDAD/DIRECCION)",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					title: "LUGAR DE PARTIDA",
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 130 },
 				},
 				{
-					title:
-						"LUGAR DE DESTINO (DEPARTAMENTO/PROVINCIA/DISTRITO/LOCALIDAD/DIRECCION)",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					title: "LUGAR DE DESTINO",
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 160 },
 				},
 				{
-					title:
-						"LUGAR DE CUARENTENA (DEPARTAMENTO/PROVINCIA/DISTRITO/LOCALIDAD/DIRECCION)",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					title: "LUGAR DE CUARENTENA",
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 150 },
 				},
 				{
-					title: "NOMBRE DEL HOTEL U OTRO LUGAR DE CUARENTENA",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					title: "NOMBRE DEL HOTEL U \n OTRO LUGAR DE CUARENTENA",
+					style: {
+						font: { sz: "12", bold: true },
+						alignment: { horizontal: "center" },
+					},
+					width: { wpx: 140 },
 				},
 				{
 					title: "TIEMPO DE CUARENTENA",
-					style: { font: { sz: "18", bold: true } },
-					width: { wpx: 30 },
+					style: { font: { sz: "12", bold: true } },
+					width: { wpx: 140 },
 				},
 			],
 			data: row.map((data) => [
-				{ value: data.ape_paterno, style: { font: { sz: "14" } } },
-				{ value: data.ape_materno, style: { font: { sz: "14" } } },
-				{ value: data.nombres, style: { font: { sz: "14" } } },
-				{ value: data.dni, style: { font: { sz: "14" } } },
-				{ value: data.celular, style: { font: { sz: "14" } } },
-				{ value: data.declaracion_jurada, style: { font: { sz: "14" } } },
-				{ value: data.relevo, style: { font: { sz: "14" } } },
-				{ value: data.origen, style: { font: { sz: "14" } } },
-				{ value: data.destino, style: { font: { sz: "14" } } },
-				{ value: data.lugar_cuarentena, style: { font: { sz: "14" } } },
-				{ value: data.nombre_hotel, style: { font: { sz: "14" } } },
-				{ value: data.tiempo_cuarentena, style: { font: { sz: "14" } } },
+				{ value: data.ape_paterno, style: { font: { sz: "10" } } },
+				{ value: data.ape_materno, style: { font: { sz: "10" } } },
+				{ value: data.nombres, style: { font: { sz: "10" } } },
+				{
+					value: data.dni,
+					style: { font: { sz: "10" }, alignment: { horizontal: "center" } },
+				},
+				{
+					value: data.celular,
+					style: { font: { sz: "10" }, alignment: { horizontal: "center" } },
+				},
+				{
+					value: data.declaracion_jurada,
+					style: { font: { sz: "10" }, alignment: { horizontal: "center" } },
+				},
+				{
+					value: data.relevo,
+					style: { font: { sz: "10" }, alignment: { horizontal: "center" } },
+				},
+				{ value: data.origen, style: { font: { sz: "10" } } },
+				{ value: data.destino, style: { font: { sz: "10" } } },
+				{ value: data.lugar_cuarentena, style: { font: { sz: "10" } } },
+				{ value: data.nombre_hotel, style: { font: { sz: "10" } } },
+				{ value: data.tiempo_cuarentena, style: { font: { sz: "10" } } },
 			]),
 		},
 	];

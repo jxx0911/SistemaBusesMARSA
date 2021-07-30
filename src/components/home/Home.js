@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-/* import { Fecha } from "../../helpers/Fecha";
- */ import axios from "axios";
+import { Fecha } from "../../helpers/Fecha";
+import axios from "axios";
 import admision from "../../assets/admision.jpg";
 
 const initialBody = {
 	/* fecha_act: Fecha().fechaHoy, */
-	fecha_act: "2021-07-21",
+	fecha_act: "2021-07-28",
 	nro_documento: "",
 };
 
