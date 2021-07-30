@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { ManifiestoBuses } from "./ManifiestoBuses";
 import { ImTable } from "react-icons/im";
 
-export const ManifiestoItem = () => {
+export const ManifiestoItem = ({ fecha }) => {
+	console.log(fecha);
 	return (
 		<>
 			{ManifiestoBuses.map((item, index) => (
@@ -17,7 +18,7 @@ export const ManifiestoItem = () => {
 								pathname: "/manifiesto-individual",
 								state: {
 									/* fecha_act: Fecha().fechaHoy, */
-									fecha_act: "2021-07-28",
+									fecha_act: fecha,
 									placa: item,
 								},
 							}}

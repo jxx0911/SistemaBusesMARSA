@@ -80,6 +80,7 @@ export const HistorialEditar = () => {
 			post
 		);
 		console.log(resp);
+		setForm(initialBody);
 	};
 
 	return (
