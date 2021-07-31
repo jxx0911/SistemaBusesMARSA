@@ -4,8 +4,7 @@ import axios from "axios";
 import admision from "../../assets/admision.jpg";
 
 const initialBody = {
-	/* fecha_act: Fecha().fechaHoy, */
-	fecha_act: "2021-07-28",
+	fecha_act: Fecha().fechaHoy,
 	nro_documento: "",
 };
 
@@ -285,21 +284,6 @@ export const Home = () => {
 										width: "28.6rem",
 										float: "right",
 										top: "3.95rem",
-									}}
-								>
-									X
-								</div>
-								{/* X TRIAJE */}
-								<div
-									className="position-relative"
-									style={{
-										/* border: "1px solid black", */
-										color: "blue",
-										fontWeight: "bold",
-										fontSize: "1.6rem",
-										width: "28.6rem",
-										float: "right",
-										top: "4.47rem",
 									}}
 								>
 									X

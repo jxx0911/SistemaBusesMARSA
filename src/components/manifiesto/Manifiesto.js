@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { ManifiestoItem } from "./ManifiestoItem";
 import { Fecha } from "../../helpers/Fecha";
 
-/* let fechaHoy = Fecha().fechaHoy; */
+let fechaHoy = Fecha().fechaHoy;
 
 export const Manifiesto = () => {
-	const [fecha, setFecha] = useState("2021-07-28");
+	const [fecha, setFecha] = useState(fechaHoy);
 
 	const handleChange = (e) => {
 		setFecha(e.target.value);

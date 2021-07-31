@@ -4,8 +4,6 @@ import { useForm } from "react-hook-form";
 import { Fecha } from "../../helpers/Fecha";
 import axios from "axios";
 
-const date = new Date();
-
 export const Config = () => {
 	const { mensaje, aforo } = useConfig();
 	const { register, handleSubmit } = useForm();
@@ -107,7 +105,6 @@ export const Config = () => {
 											})}
 										/>
 									)}
-									<div id="contador">0/50</div>
 								</div>
 
 								<div className="col-sm-12 mb-3 d-flex justify-content-between">

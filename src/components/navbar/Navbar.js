@@ -7,7 +7,6 @@ import "./Navbar.css";
 import { IconContext } from "react-icons";
 import { Hora } from "../../helpers/Hora";
 import Cookies from "universal-cookie";
-import { useLocation } from "react-router-dom";
 
 const cookies = new Cookies();
 
@@ -19,8 +18,6 @@ function componentDidMount() {
 
 function Navbar() {
 	const [sidebar, setSidebar] = useState(false);
-
-	const location = useLocation();
 
 	const showSidebar = () => setSidebar(!sidebar);
 

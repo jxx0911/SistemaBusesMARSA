@@ -30,9 +30,6 @@ export const HistorialItem = () => {
 						>
 							Editar
 						</Link>
-						<button type="button" className="btn btn-danger m-2">
-							Eliminar
-						</button>
 					</td>
 				</tr>
 			))}

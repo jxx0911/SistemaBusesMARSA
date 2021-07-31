@@ -209,17 +209,17 @@ export const ManifiestoIndividual = () => {
 						))}
 					</tbody>
 				</table>
+				<ExcelFile
+					filename={`Manifiesto Data Bus ${placa}`}
+					element={
+						<button type="button" className="btn btn-success float-end m-2">
+							EXPORTAR
+						</button>
+					}
+				>
+					<ExcelSheet dataSet={DataSet} name="Manifiesto Data Report" />
+				</ExcelFile>
 			</div>
-			<ExcelFile
-				filename="Manifiesto Data"
-				element={
-					<button type="button" className="btn btn-success float-end m-2">
-						EXPORTAR
-					</button>
-				}
-			>
-				<ExcelSheet dataSet={DataSet} name="Manifiesto Data Report" />
-			</ExcelFile>
 		</>
 	);
 };
