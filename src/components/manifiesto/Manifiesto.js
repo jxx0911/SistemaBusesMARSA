@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { ManifiestoItem } from "./ManifiestoItem";
+import { Fecha } from "../../helpers/Fecha";
+
+/* let fechaHoy = Fecha().fechaHoy; */
 
 export const Manifiesto = () => {
-	const [fecha, setFecha] = useState("");
+	const [fecha, setFecha] = useState("2021-07-28");
 
 	const handleChange = (e) => {
-		setFecha(...fecha, e.target.value);
+		setFecha(e.target.value);
 	};
 
 	console.log(fecha);
@@ -19,7 +22,7 @@ export const Manifiesto = () => {
 				<input
 					type="date"
 					onChange={handleChange}
-					name="fecha_act"
+					name="fecha"
 					className="form-control"
 					value={fecha}
 					style={{ width: "500px", marginLeft: "5rem", margin: "1rem" }}
