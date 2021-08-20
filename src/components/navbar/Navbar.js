@@ -8,20 +8,20 @@ import { IconContext } from "react-icons";
 import { Hora } from "../../helpers/Hora";
 import Cookies from "universal-cookie";
 
-const cookies = new Cookies();
+/* const cookies = new Cookies();
 
 function componentDidMount() {
 	if (!cookies.get("username")) {
 		window.location.href = "./";
 	}
-}
+} */
 
 function Navbar() {
 	const [sidebar, setSidebar] = useState(false);
 
 	const showSidebar = () => setSidebar(!sidebar);
 
-	const cerrarSesion = () => {
+	/* const cerrarSesion = () => {
 		cookies.remove("id", { path: "/" });
 		cookies.remove("apellido_paterno", { path: "/" });
 		cookies.remove("apellido_materno", { path: "/" });
@@ -30,7 +30,7 @@ function Navbar() {
 		window.location.href = "./";
 	};
 
-	componentDidMount();
+	componentDidMount(); */
 
 	return (
 		<>
@@ -63,7 +63,7 @@ function Navbar() {
 									<li key={index} className={item.cName}>
 										<Link to={item.path}>
 											{item.icon}
-											<span onClick={cerrarSesion}>{item.title}</span>
+											{/* <span onClick={cerrarSesion}>{item.title}</span> */}
 										</Link>
 									</li>
 								);

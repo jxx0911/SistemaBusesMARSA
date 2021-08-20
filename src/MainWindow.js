@@ -1,8 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from "react-router-dom";
 import { Home } from "./components/home/Home";
 import Tabla from "./components/tabla/Tabla";
-import Login from "./components/login/Login";
 import { Historial } from "./components/historial/Historial";
 import Bus from "./components/bus/Bus";
 import Empresa from "./components/empresa/Empresa";
@@ -26,9 +30,7 @@ function MainWindow() {
 		<>
 			<Router>
 				<Switch>
-					<Route exact path="/" component={Login} />
-
-					<Route path="/home" exact>
+					<Route path="/" exact>
 						<Navbar />
 						<Home />
 					</Route>
@@ -77,6 +79,8 @@ function MainWindow() {
 						<Navbar />
 						<Config {...props} />
 					</Route>
+
+					<Redirect to="/" />
 				</Switch>
 			</Router>
 		</>
