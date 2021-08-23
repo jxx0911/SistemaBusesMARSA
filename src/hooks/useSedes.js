@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
 
 export const useSedes = () => {
 	const [sedes, setSedes] = useState([]);
@@ -9,10 +10,11 @@ export const useSedes = () => {
 	}, []);
 
 	const getEmpresa = async () => {
-		const resp = await fetch("http://167.99.115.105/baseDatos/sedes");
-		const data = await resp.json();
+		const resp = await axios.get("http://167.99.115.105/baseDatos/sedes");
+		const { data } = resp;
 
 		setSedes(data);
+		console.log(data);
 	};
 
 	return {
