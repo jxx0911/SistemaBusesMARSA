@@ -89,6 +89,7 @@ function Tabla() {
 			//Se habilita el estado de bandera para la condicional de datos faltantes
 			setBand(!band);
 			//Se usa el objeto "lote" para almacenar el body que se usara para el API del registro de lote
+
 			lote = {
 				cod_servicio: form.cod_servicio,
 				nombre_servicio: servicioLote, //obtenido de la condicional para datos faltantes
@@ -98,6 +99,7 @@ function Tabla() {
 				hora: day.toLocaleTimeString(), //usando la instancia de la clase Date
 				fecha_salida: form.fecha_salida,
 			};
+
 			//Se usa el objeto informacionInicial declarado con informacion estatica,
 			//para almacenar el parte del body para el API del registro de informacion importada
 			informacionInicial = {
@@ -116,7 +118,7 @@ function Tabla() {
 	//Funcion asincrona para hace la peticion HTTP al API de registrar Lote
 	const registrarLote = async () => {
 		//Respuesta "resp2" usando "axios" con metodo POST, en el body se usa el objeto "lote"
-		console.log("lote: " + lote);
+		console.log("lote: " + JSON.stringify(lote));
 		const resp2 = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/lote/registrar",
 			lote
