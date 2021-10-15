@@ -116,15 +116,17 @@ function Tabla() {
 	//Funcion asincrona para hace la peticion HTTP al API de registrar Lote
 	const registrarLote = async () => {
 		//Respuesta "resp2" usando "axios" con metodo POST, en el body se usa el objeto "lote"
+		console.log("lote: " + lote);
 		const resp2 = await axios.post(
 			"http://167.99.115.105/bdmarsa/tercera/lote/registrar",
 			lote
 		);
 		//se destructura la data obtenida de "resp2
 		const { data } = resp2;
+		console.log("respuesta de registrarLote: " + data);
 		//Constante "respuesta", obtenido del campo Respuesta de la data
 		const respuesta = data.Respuesta;
-
+		console.log("dentro de registrar");
 		//Condicional de respuesta
 		if (respuesta === "OK") {
 			//se declara un objeto body vacio, que se usara para fucionar cada registro del JSON que manda excel en "datos",

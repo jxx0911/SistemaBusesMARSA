@@ -9,8 +9,12 @@ export const Fecha = () => {
 		fechaHoy = `${año}-0${mes}-0${dia}`;
 	} else if (mes < 10) {
 		fechaHoy = `${año}-0${mes}-${dia}`;
+		console.log("fecha Hoy aqui: " + fechaHoy);
 	} else if (dia < 10) {
 		fechaHoy = `${año}-${mes}-0${dia}`;
+		console.log("fecha Hoy aqui: " + fechaHoy);
+	} else {
+		fechaHoy = `${año}-${mes}-${dia}`;
 	}
 
 	return {
